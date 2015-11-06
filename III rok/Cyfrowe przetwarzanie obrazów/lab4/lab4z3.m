@@ -1,0 +1,15 @@
+[L1,map]=imread('C:\Users\Piotrek\Downloads\obrazy_lab4\krajobraz1.tif');
+subplot(2,3,1);
+imshow(L1);
+[L2a,map2a]=imapprox(L1,map,2^8);
+subplot(2,3,2)
+imshow(L2a,map2a);
+[L2b,map2b]=imapprox(L1,map,2^4);
+subplot(2,3,3);
+imshow(L2b,map2b);
+[L2c,map2c]=imapprox(L1,map,2^2);
+subplot(2,3,4);
+imshow(L2c,map2c);
+[L2d,map2d]=imapprox(L1,map,2^1);
+subplot(2,3,5);
+imshow(L2d,map2d);

@@ -1,0 +1,72 @@
+\documentclass[a4paper, 12pt]{article}
+\pagestyle{plain}
+\inputenc[cp1250]{inputenc}
+\usepackage{polski}
+ \renewcommand{\labelitemi}{$\blacksquare$}
+ \renewcommand\labelitemii{$\square$}
+
+\begin{document}
+
+	\tableofcontents
+
+	\section{Pierwsza sekcja}
+		Hello World
+		
+		\subsection{Podsekcja pierwszej sekcji}
+			Dziala?
+
+	\section{Druga sekcja}
+		Ala ma kota. Kot ma Alê.
+
+	\begin{enumerate}
+		\item
+			Pierwszy item
+		\item
+			Drugi item
+	\end{enumerate}
+	
+	\begin{enumerate}
+	\end{enumerate}
+	
+	\begin{description}
+	\item[pogrubione]
+	definicja
+	\end{description}
+	
+	\paragraph{nowy paragraf}
+	A tu tekst
+	
+	\section{jakas nowa sekcja}
+	\section{sekcja pomiedzy}
+	
+	Ala ma {\bf kota}.
+	Ala ma {\bfseries kota}.
+	Ala ma \textbf {kota}.
+	
+	\begin{itemize}
+	\item  Default item label for entry one
+	\item[$\square$]  Custom item label for entry three
+	\end{itemize}
+	
+	\begin{itemize}
+ \renewcommand{\labelitemi}{\scriptsize$\blacksquare$} 
+ \item  An extensively analysis 
+\end{itemize}
+	
+	%lab3
+	%\rule{0pt}{10pt}
+	%\vspace{10cm}
+	
+	\nonindent
+	{\tiny %\rule{1em}{10pt}
+	Ala ma \textbf{kota i psa}.}\\
+	{\scriptsize Ala ma \textbf {kota i psa}}\\
+	{\footnotesize Ala ma \textbf {kota i psa}}\\
+	{\small Ala ma kota}
+	{Ala ma \textbf{kota \footnote{Kot nie lubi ali.} i psa . }\\
+	{\large Ala ma kota}\\
+	{\Large Ala ma \textbf{kota}\footnote{A to inny footnote}}\\
+	{\huge Ala ma}\\
+	
+	
+\end{document}
