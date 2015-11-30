@@ -1,0 +1,25 @@
+/* Make something awesome! */
+body{
+	margin: 0px !important;
+	padding:50px;
+}
+
+p{
+	text-align:justify;
+}
+
+/* KOLORY LINKOW z DIALOGU*/
+#dialog a:link
+	{
+		color: #fee051;
+	}
+	
+#dialog a:visited
+	{
+		color: #fee051;
+	}
+	
+#dialog a:hover
+	{
+		color: orange;
+	}
