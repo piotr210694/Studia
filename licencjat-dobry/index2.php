@@ -63,6 +63,30 @@
 		</form>
 </div>
 
+<!-- Usuniecie konta - MODAL -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie konta</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć konto?</p>
+      </div>
+      <div class="modal-footer">
+		<form action="user/php/delete.php" >
+		<input type="submit" value="Usuń" class="btn btn-default" >
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 
     <div class="container">
       <div class="row">
@@ -107,7 +131,7 @@
 			<li><a href='php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='user/manage.php'><span>Przeglądaj</span></a></li>
 			<li><a href='#'><span>Edytuj dane</span></a></li>
-			<li><a href='#'><span>Usuń konto</span></a></li>
+			<li><a href='#'  data-toggle="modal" data-target="#myModal"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
 </ul>

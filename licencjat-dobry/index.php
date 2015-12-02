@@ -80,7 +80,7 @@
     <div id='cssmenu' class="navbar-fixed-top">
 	<ul>
    <li><a href='index.php'><span>Strona główna</span></a></li>
-   <li><a href='#'><span>Kontakt</span></a></li>
+   <li><a href='contact/kontakt.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
          <li class='has-sub'><a href='#'><span>Product 1</span></a>

@@ -7,6 +7,11 @@
 	}
 ?>
 
+<!-- Łaczymy się i wyciagamy dane-->	
+<?php 
+	include('php/connection.php');
+?>
+
 <!doctype html>
 
 <html LANG="pl">
@@ -47,7 +52,9 @@
       $( "#dialog" ).dialog( "open" );
     });
   });
-  </script>
+	</script>
+
+  
   </head>
   
   <body>
@@ -60,6 +67,30 @@
 		Nie masz konta? <a href="rejestracja.php">Zarejestruj się!</a>
 		</form>
 </div>
+
+<!-- Usuniecie konta - MODAL -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie konta</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć konto?</p>
+      </div>
+      <div class="modal-footer">
+		<form action="php/delete.php" >
+		<input type="submit" value="Usuń" class="btn btn-default" >
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 
     <div class="container">
@@ -105,7 +136,7 @@
 			<li><a href='../php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='manage.php'><span>Przeglądaj</span></a></li>
 			<li><a href='#'><span>Edytuj dane</span></a></li>
-			<li><a href='#'><span>Usuń konto</span></a></li>
+			<li><a href='#'  data-toggle="modal" data-target="#myModal"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
 </ul>
@@ -113,8 +144,8 @@
 	</div>
 <!-- KONIEC MENU-->
 			</div>
-			
-			
+	
+
 			<div class="container-fluid" style="padding:20px">
             <div class="row">
 				<div class="col-md-3"></div>
@@ -130,34 +161,83 @@
 			<form>
 					<tbody>
 					  <tr>
-						<td><strong>Login</strong></td>
-						<td>Michael</td>
-						<td><input type="text" name="ud_first" value="">&nbsp;<input type="button" name="" value="Edytuj"></td>
+						<td>Login</td>
+						<td><?php echo $_SESSION['login']; ?></td>
+						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="submit" name="" value="Edytuj">
+						</td>
 					  </tr>
 					  <tr>
 						<td>Hasło</td>
-						<td>Jake</td>
-						<td><input type="text" name="ud_first" value=""></td>
+						<td>*******</td>
+						<td><input type="button" name="" value="Zmień hasło"></td>
 					  </tr>
 					  <tr>
 						<td>E-mail</td>
-						<td>Michael</td>
-						<td><input type="text" name="ud_first" value=""></td>
+						<td><?php echo $_SESSION['email']; ?></td>
+						<td><input type="text" name="email" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="submit" name="bemail" value="Edytuj">
+						</td>
+						<?php
+						// error_reporting(E_ALL ^ E_NOTICE); 
+						// include('php/connection.php');
+						// $email = $_POST['email'];
+						// $id=$_SESSION['id'];
+						
+						// if($_POST['email'] ){
+						// $ins = @mysql_query("UPDATE `sysinf`.`user` SET `email` = '$_POST['email']' WHERE `user`.`id` = $id;");
+						// echo $email;
+						// echo $id;}
+						// }
+						// else {}
+						// if($ins) echo "Edycja zakończona sukcesem.<br>";
+						// else echo "Błąd nie udało się dodać rekordu.<br>";
+						
+						
+						
+						// error_reporting(E_ALL ^ E_NOTICE); 
+		
+		// $id = $_POST['id'];
+		// $czas = $_POST['czas'];
+		// $zawodnik = $_POST['zawodnik'];
+
+		// if(($id and $czas and $zawodnik) OR ($id and $czas)) 
+		// {
+		//łączymy się z bazą danych
+		// $connection = @mysql_connect('localhost', 'root', 'dlugowlosy')
+		// or die('Brak połączenia z serwerem MySQL');
+		// $db = @mysql_select_db('bieganie', $connection)
+		// or die('Nie mogę połączyć się z bazą danych');
+    
+		//dodajemy rekord do bazy
+		// if($id and $czas and $zawodnik)
+		// { $ins = @mysql_query("UPDATE rekordy SET czas='$czas', zawodnik='$zawodnik' WHERE id='$id'");}
+		// else
+		// {$ins = @mysql_query("UPDATE rekordy SET czas='$czas' WHERE id='$id'");}
+    
+		// if($ins) echo "Edycja zakończona sukcesem";
+		// else echo "Błąd nie udało się edytować rekordu";
+		
+		// mysql_close($connection);
+		// }
+						
+						?>
 					  </tr>
 					  <tr>
 						<td>Telefon</td>
-						<td>Michael</td>
-						<td><input type="text" name="ud_first" value=""></td>
+						<td><?php echo $_SESSION['phone']; ?></td>
+						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="button" name="" value="Edytuj">
+						</td>
 					  </tr>
 					  <tr>
 						<td>Imię</td>
-						<td>Michael</td>
-						<td><input type="text" name="ud_first" value=""></td>
+						<td><?php echo $_SESSION['name']; ?></td>
+						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="button" name="" value="Edytuj">
+						</td>
 					  </tr>
 					  <tr>
 						<td>Nazwisko</td>
-						<td>Michael</td>
-						<td><input type="text" name="ud_first" value=""></td>
+						<td><?php echo $_SESSION['surname']; ?></td>
+						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="button" name="" value="Edytuj">
+						</td>
 					  </tr>
 					</tbody>
 			</form>
