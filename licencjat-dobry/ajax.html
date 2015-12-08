@@ -1,95 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>	
-<head>
-   <script type="text/javascript" src="C:\Users\brzoza\Desktop\AjaxForm/jquery-1.11.0.min.js"></script> 
-</head>
-	<head>
-
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Simple Ajax Contact Form :: Wojtek1150.pl</title>
-		<meta name="description" content="Animated Calendar :: Wojtek1150.pl" />
-		<meta name="keywords" content="animowany kalendarz, bookblock, jquery" />
-		<meta name="author" content="Wojtek1150" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/default.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-	</head>
-
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 </head>
 
 <body>
 <div class="container">
-<header class="clearfix">
-				<span>Wojtek1150.pl</span>
-				<h1>Simple Ajax Contact Form</h1>
-				<nav>
-					<a href="http://wojtek1150.pl/poradniki/formularz-kontaktowy-bez-przeladowywania" class="icon-w" data-info="Wróć do artykułu">Wróć do artykułu</a>
-				</nav>
-			</header>
+
 <fieldset id="contact_form">
 <h2>Mój formularz kontaktowy</h2>
-    <div id="result"></div>
-    <label for="name"><span>Imię</span>
-    <input type="text" name="name" id="name" placeholder="Podaj swoje imię" />
+    <div id="result"></div> <!-- tu wyswietla bledy-->
+    <label for="login"><span>Imię</span>
+    <input type="text" name="login" id="login" placeholder="Podaj swoje imię" />
     </label>
     
-    <label for="email"><span>Email</span>
-    <input type="email" name="email" id="email" placeholder="Twój adres email" />
+    <label for="password"><span>Email</span>
+    <input type="password" name="password" id="password" placeholder="Twój adres email" />
     </label>
     
-    <label for="phone"><span>Telefon</span>
-    <input type="text" name="phone" id="phone" placeholder="Numer telefonu" />
-    </label>
-    
-    <label for="message"><span>Wiadomość</span>
-    <textarea name="message" id="message" placeholder="Wiadomość do przesłania"></textarea>
-    </label>
-    
-    <label><span>&nbsp;</span>
     <button class="submit_btn" id="submit_btn">Wyślij</button>
     </label>
 </fieldset>
 </div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#submit_btn").click(function() { 
         //Pobieramy dane
-        var user_name       = $('input[name=name]').val(); 
-        var user_email      = $('input[name=email]').val();
-        var user_phone      = $('input[name=phone]').val();
-        var user_message    = $('textarea[name=message]').val();
+        var user_login      = $('input[name=login]').val(); 
+        var user_password      = $('input[name=password]').val();
+
         
        //Prosta walidacja (kolorujemy na czerwono pole jeśli jest puste
         var proceed = true;
-        if(user_name==""){ 
+        if(user_login ==""){ 
             $('input[name=name]').css('border-color','red'); 
             proceed = false;
         }
-        if(user_email==""){ 
+        if(user_password==""){ 
             $('input[name=email]').css('border-color','red'); 
             proceed = false;
         }
-        if(user_phone=="") {    
-            $('input[name=phone]').css('border-color','red'); 
-            proceed = false;
-        }
-        if(user_message=="") {  
-            $('textarea[name=message]').css('border-color','red'); 
-            proceed = false;
-        }
+
 
         //wszystko w porządku idziemy dalej
         if(proceed) 
         {
             //Dane do wysłania
-            post_data = {'userName':user_name, 'userEmail':user_email, 'userPhone':user_phone, 'userMessage':user_message};
+            post_data = {'userLogin':user_login , 'userPassword':user_password};
             
             //Przesłanie danych poprzez AJAX
-            $.post('contact_me.php', post_data, function(response){  
+            $.post('contact_me2.php', post_data, function(response){  
 
                 //wczytanie danych zwrotnych JSON
 				if(response.type == 'error')
@@ -114,17 +77,10 @@ $(document).ready(function() {
         $("#contact_form input, #contact_form textarea").css('border-color',''); 
         $("#result").slideUp();
     });
+	
     
 });
 </script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
-  ga('create', 'UA-34088320-1', 'wojtek1150.pl');
-  ga('send', 'pageview');
-</script>
+
 </body>
 </html>

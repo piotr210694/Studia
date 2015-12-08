@@ -55,22 +55,125 @@
 
 
 <!-- Panel logowania -->
-<div id="dialog" title="Panel logowania">
-		<form action="php/zaloguj.php" method="post">
-		Login: <input type="text" name="login" /><br><br>
-		Hasło: <input type="password" name="password" /><br><br>
-		<input type="submit" value="Zaloguj się"><br>
-<?php
-	if(isset($_SESSION['blad'])){
-		echo $_SESSION['blad'];
-		// $message = "Błędny login lub hasło.";
-// echo "<script type='text/javascript'>alert('$message');</script>";
-	}
-?>
-		Nie masz konta? <a href="rejestracja.php">Zarejestruj się!</a>
-		</form>
+<!-- Usuniecie konta - MODAL -->
+ <style>
+  .modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 20px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+  </style>
+<div id="myModal" class="modal fade" role="dialog">
+  <fieldset id="contact_form" >
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" >
+        <p><button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" ><span class="glyphicon glyphicon-user">&nbsp;</span>Logowanie</h4>
+      </div>
+      <div class="modal-body" style="padding:30px 50px;">
+		<label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
+		<p><label><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login"/>
+		</label></p>
+		<label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
+		<p><label><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
+		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
+		</label></p>
+		<button id="submit_btn" class="submit_btn btn btn-success btn-block" >Zaloguj</button>
+   
+    </label>
+      </div>
+      <div class="modal-footer">
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+      </div>
+    </div>
+
+  </div>
+  </fieldset>
 </div>
 
+
+
+
+<fieldset id="contact_form">
+    <div id="result"></div> <!-- tu wyswietla bledy-->
+    <label for="login"><span>Imię</span>
+    <input type="text" name="login" id="login" placeholder="Podaj swoje imię" />
+    </label>
+    
+    <label for="password"><span>Email</span>
+    <input type="password" name="password" id="password" placeholder="Twój adres email" />
+    </label>
+    
+    <button class="submit_btn" id="submit_btn">Wyślij</button>
+    </label>
+</fieldset>
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#submit_btn").click(function() { 
+        //Pobieramy dane
+        var user_login      = $('input[name=login]').val(); 
+        var user_password      = $('input[name=password]').val();
+
+        
+       //Prosta walidacja (kolorujemy na czerwono pole jeśli jest puste
+        var proceed = true;
+        if(user_login ==""){ 
+            $('input[name=name]').css('border-color','red'); 
+            proceed = false;
+        }
+        if(user_password==""){ 
+            $('input[name=email]').css('border-color','red'); 
+            proceed = false;
+        }
+
+
+        //wszystko w porządku idziemy dalej
+        if(proceed) 
+        {
+            //Dane do wysłania
+            post_data = {'userLogin':user_login , 'userPassword':user_password};
+            
+            //Przesłanie danych poprzez AJAX
+            $.post('contact_me2.php', post_data, function(response){  
+
+                //wczytanie danych zwrotnych JSON
+				if(response.type == 'error')
+				{
+					output = '<div class="error">'+response.text+'</div>';
+				}else{
+				    output = '<div class="success">'+response.text+'</div>';
+					
+					//resetujemy wszystkie wartości
+					$('#contact_form input').val(''); 
+				}
+				
+				$("#result").hide().html(output).slideDown();
+            }, 'json');
+			
+        }
+		<?php  ?>
+    });
+    
+    //resetujemy kolorowanie po zaczęciu pisania
+    $("#contact_form input, #contact_form textarea").keyup(function() { 
+        $("#contact_form input, #contact_form textarea").css('border-color',''); 
+        $("#result").slideUp();
+    });
+	
+    
+});
+</script>
 
     <div class="container">
       <div class="row">
@@ -110,7 +213,7 @@
         </ul>
    </li>
    <li><a href='#'><span>Kursy</span></a></li>
-   <li><a id="opener" style="cursor:pointer;"><span>Zaloguj się</span></a></li>
+   <li><a id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
 </ul>
 
 	</div>

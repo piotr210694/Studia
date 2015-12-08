@@ -1,11 +1,26 @@
 <?php
 	session_start(); //start sesji
+
 	if ((!isset($_POST['login'])) || (!isset($_POST['password'])))
 	{
 		header('Location: ../index.php');
 		exit();
 	}
-
+if($_POST)
+{
+	//Sprawdzamy czy jest to rządanie Ajax, jeśli nie..
+ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+ 
+ //Kończymy skrypt wysyłając dane JSON
+ $output = json_encode(
+ array(
+ 'type'=>'error', 
+ 'text' => 'Rządanie musi przejść przez AJAX'
+ ));
+ 
+ die($output);
+ } 
+	
 	require_once "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 	
@@ -48,7 +63,7 @@
 		$polaczenie->close();
 	}
 	
-	
+}
 
 			
 
