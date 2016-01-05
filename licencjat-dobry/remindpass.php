@@ -63,8 +63,8 @@
     </label>
       </div>
       <div class="modal-footer">
-	      <p><a href="#">Zapomniałeś hasła? </a></p>
-          <p>Nie masz konta? <a href="#">Dołącz do nas</a></p>
+	      <p><a href="remindpass.php">Zapomniałeś hasła? </a></p>
+          <p>Nie masz konta? <a href="registration.php">Dołącz do nas</a></p>
 		  <p>Przejdź do <a href="admin/logowanie.php">panelu administratora</a></p>
       </div>
     </div>

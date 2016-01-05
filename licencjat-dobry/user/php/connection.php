@@ -19,9 +19,9 @@ while ($wiersz=mysql_fetch_array($ins)) {
 $_SESSION['id']=$wiersz['id'];
 $_SESSION['login']=$wiersz['login'];
 $_SESSION['email']=$wiersz['email'];
-$_SESSION['phone']=$wiersz['phone'];
-$_SESSION['name']=$wiersz['name'];
-$_SESSION['surname']=$wiersz['surname'];
+$_SESSION['phone']=$wiersz['telefon'];
+$_SESSION['name']=$wiersz['imie'];
+$_SESSION['surname']=$wiersz['nazwisko'];
 
 
 }
