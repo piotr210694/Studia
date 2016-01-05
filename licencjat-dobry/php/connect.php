@@ -6,6 +6,12 @@
 	$db_password = "root";
 	$db_name = "sysinf";
 
+	// $host = "userdb1";
+	// $db_user = "1066219_MqQ";
+	// $db_password = "QZ6hBU24ArcvPC";
+	// $db_name = "1066219_MqQ";
+	
+	
     // $mysql_server = "localhost"; 	// serwer
     // $mysql_admin = "root";			// nazwa admina
     // $mysql_pass = "root";			// hasło

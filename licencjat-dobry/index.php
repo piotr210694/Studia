@@ -26,49 +26,16 @@
 	<link rel="stylesheet" href="css/styles.css">
 	
 	<!-- LOGOWANIE -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	  <script>
-	  $(function dial() {
-		$( "#dialog" ).dialog({
-		  autoOpen: false,
-		  show: {
-			effect: "blind",
-			duration: 500
-		  },
-		  hide: {
-			effect: "explode",
-			duration: 500
-		  }
-		});
-	 
-		$( "#opener" ).click(function() {
-		  $( "#dialog" ).dialog( "open" );
-		});
-	  });
-	  </script>
+
+
 	  
   </head>
   
   <body>
-
-
 <!-- Panel logowania -->
-<!-- Usuniecie konta - MODAL -->
- <style>
-  .modal-header, h4, .close {
-      background-color: #5cb85c;
-      color:white !important;
-      text-align: center;
-      font-size: 20px;
-  }
-  .modal-footer {
-      background-color: #f9f9f9;
-  }
-  </style>
+  
 <div id="myModal" class="modal fade" role="dialog">
-  <fieldset id="contact_form" >
+  <form id="contact_form" action="php/zaloguj.php" method="post" >
   <div class="modal-dialog modal-sm">
     <!-- Modal content-->
     <div class="modal-content">
@@ -83,97 +50,33 @@
 		<label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
 		<p><label><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
 		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
+		<?php
+	if(isset($_SESSION['blad'])){
+		echo $_SESSION['blad'];
+		// $message = "Błędny login lub hasło.";
+// echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+?>
 		</label></p>
 		<button id="submit_btn" class="submit_btn btn btn-success btn-block" >Zaloguj</button>
    
     </label>
       </div>
       <div class="modal-footer">
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+	      <p><a href="remindpass.php">Zapomniałeś hasła? </a></p>
+          <p>Nie masz konta? <a href="#">Dołącz do nas</a></p>
+		  <p>Przejdź do <a href="admin/logowanie.php">panelu administratora</a></p>
       </div>
     </div>
 
   </div>
-  </fieldset>
+  </form>
 </div>
 
 
 
 
-<fieldset id="contact_form">
-    <div id="result"></div> <!-- tu wyswietla bledy-->
-    <label for="login"><span>Imię</span>
-    <input type="text" name="login" id="login" placeholder="Podaj swoje imię" />
-    </label>
-    
-    <label for="password"><span>Email</span>
-    <input type="password" name="password" id="password" placeholder="Twój adres email" />
-    </label>
-    
-    <button class="submit_btn" id="submit_btn">Wyślij</button>
-    </label>
-</fieldset>
 
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#submit_btn").click(function() { 
-        //Pobieramy dane
-        var user_login      = $('input[name=login]').val(); 
-        var user_password      = $('input[name=password]').val();
-
-        
-       //Prosta walidacja (kolorujemy na czerwono pole jeśli jest puste
-        var proceed = true;
-        if(user_login ==""){ 
-            $('input[name=name]').css('border-color','red'); 
-            proceed = false;
-        }
-        if(user_password==""){ 
-            $('input[name=email]').css('border-color','red'); 
-            proceed = false;
-        }
-
-
-        //wszystko w porządku idziemy dalej
-        if(proceed) 
-        {
-            //Dane do wysłania
-            post_data = {'userLogin':user_login , 'userPassword':user_password};
-            
-            //Przesłanie danych poprzez AJAX
-            $.post('contact_me2.php', post_data, function(response){  
-
-                //wczytanie danych zwrotnych JSON
-				if(response.type == 'error')
-				{
-					output = '<div class="error">'+response.text+'</div>';
-				}else{
-				    output = '<div class="success">'+response.text+'</div>';
-					
-					//resetujemy wszystkie wartości
-					$('#contact_form input').val(''); 
-				}
-				
-				$("#result").hide().html(output).slideDown();
-            }, 'json');
-			
-        }
-		<?php  ?>
-    });
-    
-    //resetujemy kolorowanie po zaczęciu pisania
-    $("#contact_form input, #contact_form textarea").keyup(function() { 
-        $("#contact_form input, #contact_form textarea").css('border-color',''); 
-        $("#result").slideUp();
-    });
-	
-    
-});
-</script>
 
     <div class="container">
       <div class="row">
@@ -213,7 +116,7 @@ $(document).ready(function() {
         </ul>
    </li>
    <li><a href='#'><span>Kursy</span></a></li>
-   <li><a id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
+   <li><a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
 </ul>
 
 	</div>

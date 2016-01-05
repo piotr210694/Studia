@@ -29,22 +29,33 @@
 			{
 				$ile_userow = $rezultat->num_rows;
 				if($ile_userow>0){	
-					$_SESSION['zalogowany'] = true; //uzytkownik jest zalogowany
+					$_SESSION['zalogowanyad'] = true; //uzytkownik jest zalogowany
 					
 					$wiersz = $rezultat->fetch_assoc(); //tablica asocjacyjna by moc wyciagnac z sql
 					//utworzenie globalnych zmiennych sesyjnych
 					$_SESSION['login'] = $wiersz['login'];
 					$_SESSION['id']= $wiersz['id'];
 					
-					//$user=$wiersz['login']; //wyciagniecie danego rekordu z tabeli
-					unset($_SESSION['blad']); //usuwa zmienna po poprawnym wykonaniu
+					$user=$wiersz['login']; //wyciagniecie danego rekordu z tabeli
+					$pass=$wiersz['password']; //wyciagniecie danego rekordu z tabeli
+					
+					if($user=="admin" and $pass=="!?admin15?16")
+					{
 					$rezultat->close();
-					header('Location: ../index2.php');
+					header('Location: ../admin/indexad.php');
+					unset($_SESSION['bladad']); //usuwa zmienna po poprawnym wykonaniu
+					}
+					else
+					{
+						unset($_SESSION['zalogowanyad'] );
+						$_SESSION['bladad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
+						header('Location: ../admin/logowanie.php');
+					}
 					
 				}
 				else{
-					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
-					header('Location: ../index.php');
+					$_SESSION['bladad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
+					header('Location: ../admin/logowanie.php');
 				}
 			}
 		$polaczenie->close();

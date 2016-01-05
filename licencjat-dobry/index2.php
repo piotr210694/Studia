@@ -68,8 +68,8 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Usuwanie konta</h4>
       </div>
@@ -96,7 +96,7 @@
     <div id='cssmenu' class="navbar-fixed-top">
 	<ul>
    <li><a href='index2.php'><span>Strona główna</span></a></li>
-   <li><a href='#'><span>Kontakt</span></a></li>
+   <li><a href='contact/kontaktlog.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
          <li class='has-sub'><a href='#'><span>Product 1</span></a>
@@ -130,7 +130,6 @@
 		<ul>
 			<li><a href='php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='user/manage.php'><span>Przeglądaj</span></a></li>
-			<li><a href='#'><span>Edytuj dane</span></a></li>
 			<li><a href='#'  data-toggle="modal" data-target="#myModal"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
