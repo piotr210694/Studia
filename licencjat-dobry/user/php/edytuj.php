@@ -7,13 +7,13 @@ $newphone = $_POST['ephone'];
 
 if($newlogin)
 {
-	$query="UPDATE user SET login='$newlogin' WHERE id='$id'";
+	$query="UPDATE uzytkownik SET login='$newlogin' WHERE id='$id'";
 	mysql_query($query);
 	header('Location: ../manage.php');
 }
 elseif($newphone)
 {
-	$query="UPDATE user SET telefon='$newphone' WHERE id='$id'";
+	$query="UPDATE uzytkownik SET telefon='$newphone' WHERE id='$id'";
 	mysql_query($query);
 	header('Location: ../manage.php');
 }

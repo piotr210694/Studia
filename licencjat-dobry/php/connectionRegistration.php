@@ -18,7 +18,7 @@ session_start();
 		$pass2 = $_POST['pass2'];
 		$email = $_POST['email'];
 		$date = date( 'Y-m-d' );
-$ins = @mysql_query("SELECT MAX(id) AS max FROM `user`") or die(mysql_error());
+$ins = @mysql_query("SELECT MAX(id) AS max FROM `uzytkownik`") or die(mysql_error());
 while ($wiersz=mysql_fetch_array($ins)) 
 {
 	$max_id = $wiersz['max']+1;

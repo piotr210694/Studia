@@ -15,7 +15,7 @@ session_start();
 
 	
 		$email = $_POST['email'];
-$ins = @mysql_query("SELECT * FROM `user` where `email` = '$email'") or die(mysql_error());
+$ins = @mysql_query("SELECT * FROM `uzytkownik` where `email` = '$email'") or die(mysql_error());
 while ($wiersz=mysql_fetch_array($ins)) 
 {
 $pass=$wiersz['password'];

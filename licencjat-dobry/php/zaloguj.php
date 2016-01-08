@@ -11,6 +11,7 @@
 	require_once "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 	
+	
 	if ($polaczenie->connect_errno!=0)
 	{
 		echo "Error: ".$polaczenie->connect_errno;
@@ -22,8 +23,10 @@
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8"); //zapobieganie wstrzykiwaniu sql
 		$password = htmlentities($password, ENT_QUOTES, "UTF-8");
 	
+	
+	
 		if ($rezultat = @$polaczenie->query( //jesli poprawnie wykonane zapytanie
-		sprintf("SELECT * FROM user WHERE login='%s' AND password='%s'", //zapobiegniecie wstrzykiwaniu sql
+		sprintf("SELECT * FROM uzytkownik WHERE login='%s' AND password='%s'", //zapobiegniecie wstrzykiwaniu sql
 		mysqli_real_escape_string($polaczenie,$login),
 		mysqli_real_escape_string($polaczenie,$password))))
 			{
@@ -35,6 +38,10 @@
 					//utworzenie globalnych zmiennych sesyjnych
 					$_SESSION['login'] = $wiersz['login'];
 					$_SESSION['id']= $wiersz['id'];
+					
+						
+						
+					
 					
 					//$user=$wiersz['login']; //wyciagniecie danego rekordu z tabeli
 					unset($_SESSION['blad']); //usuwa zmienna po poprawnym wykonaniu

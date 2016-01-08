@@ -7,6 +7,11 @@
 	}
 ?>
 
+<!-- Łaczymy się i wyciagamy dane-->	
+<?php 
+	include('php/connectMenu.php');
+?>
+
 <!doctype html>
 
 <html LANG="pl">
@@ -99,18 +104,14 @@
    <li><a href='contact/kontaktlog.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Product 1</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
-         <li class='has-sub'><a href='#'><span>Product 2</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
+	  	<?php 
+		$ileA=$_SESSION['ileA'];
+		$a=$_SESSION['a'];
+		// for($i=0; $i<$ileA; $i++)
+		// {
+			echo '<li><a href=""><span>'.'Sub Product'.'</span></a></li>';
+		// }
+		?>
       </ul>
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>

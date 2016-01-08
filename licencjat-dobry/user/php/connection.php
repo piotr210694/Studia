@@ -12,7 +12,7 @@
 		
 		
 		$id=$_SESSION['id'];
-$ins = @mysql_query("SELECT * FROM user where id=$id") or die(mysql_error());
+$ins = @mysql_query("SELECT * FROM uzytkownik where id=$id") or die(mysql_error());
 
 while ($wiersz=mysql_fetch_array($ins)) {
 

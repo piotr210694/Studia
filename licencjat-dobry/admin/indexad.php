@@ -2,7 +2,7 @@
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
-		header('Location: logowanie.php');
+		header('Location: ../logowanie.php');
 		exit();
 	}
 ?>
@@ -43,7 +43,7 @@
    <li><a href='indexad.php'>Strona główna</a></li>
    <li><a >Artykuły</a>
       <ul>
-         <li><a href='#'>Stwórz</a></li>
+         <li><a href='article/articleCreate.php'>Stwórz</a></li>
          <li><a href='#'>Przeglądaj</a></li>
       </ul>
    </li>

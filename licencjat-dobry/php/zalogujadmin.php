@@ -23,7 +23,7 @@
 		$password = htmlentities($password, ENT_QUOTES, "UTF-8");
 	
 		if ($rezultat = @$polaczenie->query( //jesli poprawnie wykonane zapytanie
-		sprintf("SELECT * FROM user WHERE login='%s' AND password='%s'", //zapobiegniecie wstrzykiwaniu sql
+		sprintf("SELECT * FROM uzytkownik WHERE login='%s' AND password='%s'", //zapobiegniecie wstrzykiwaniu sql
 		mysqli_real_escape_string($polaczenie,$login),
 		mysqli_real_escape_string($polaczenie,$password))))
 			{
