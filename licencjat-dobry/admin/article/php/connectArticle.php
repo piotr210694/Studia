@@ -25,8 +25,27 @@ if($wiersz>0)
 else
 {
 	$plik=fopen("../artykuly/$title.php", "w"); //utworzenie pliku
+	$plik=fopen("../artykuly/$title.php", "a+"); //otworzenie do zapisu
+		// dodanie początku pliku
+		$plik2 = fopen('../artykuly/startbegin.php','r');
+		$zawartosc = '';
+		while(!feof($plik2)) // przypisanie zawartości do zmiennej
+		{
+		   $linia = fgets($plik2);
+		   $zawartosc .= $linia;
+		}
+		fwrite($plik, $zawartosc); //zapisanie tresci POCZĄTKU
 	$tresc = $_POST['tresc']; 
 	fwrite($plik, $tresc); //zapisanie tresci
+	$plik2 = fopen('../artykuly/startend.php','r');
+		$zawartosc = '';
+		while(!feof($plik2)) // przypisanie zawartości do zmiennej
+		{
+		   $linia = fgets($plik2);
+		   $zawartosc .= $linia;
+		}
+		fwrite($plik, $zawartosc); //zapisanie tresci KONCA
+
 	$ins = @mysql_query("SELECT MAX(id_artykulu) AS max FROM `artykuly`") or die(mysql_error()); //ustalenie id dla artykulu
 while ($wiersz=mysql_fetch_array($ins)) 
 {
