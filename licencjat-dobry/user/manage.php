@@ -166,21 +166,24 @@
 						<td><?php  echo $_SESSION['login']; ?></td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="elogin" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >
+						<input type="text" name="elogin" placeholder="Podaj nowy login..." >
 						<input type="submit" name="" value="Edytuj">
 						</form>			
 					</td>
 					  </tr>
+					  
 					  <tr>
 						<td>Hasło</td>
 						<td>*******</td>
 						<td><input type="button" name="" value="Zmień hasło"></td>
 					  </tr>
+					  
 					  <tr>
 						<td>E-mail</td>
 						<td><?php echo $_SESSION['email']; ?></td>
 						<td><input type="text" name="email" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="submit" name="bemail" value="Edytuj">
 						</td>
+						</tr>
 						<?php
 						// error_reporting(E_ALL ^ E_NOTICE); 
 						// include('php/connection.php');
@@ -225,7 +228,7 @@
 		// }
 						
 						?>
-					  </tr>
+					  
 					  <tr>
 						<td>Telefon</td>
 						<td><?php echo $_SESSION['phone']; ?></td>

@@ -149,36 +149,22 @@
 				<div class="col-md-3"></div>
 				<div class="col-md-6" style="padding:20px">
 				
-				<form action="kontakt.php" method="post" role="form">
+				<form action="php/connectKontakt.php" method="post" role="form">
 				<div class="form-group"  >
 						<label for="email">Email</label>
-						<input type="email" class="form-control" name="email">
+						<input type="email" class="form-control" name="email" required>
 				</div>
 				<div class="form-group"  >
 						<label for="message">Treść</label>
-						<textarea type="text" class="form-control" rows="4" name="message"></textarea>
+						<textarea type="text" class="form-control" rows="4" name="message" required></textarea>
 				</div>
 						<button type="submit" class="btn btn-default">Wyślij!</button>
 						</form>			
-								<?php
-$email = $_POST['email'];
-$message = $_POST['message'];
-$message = wordwrap($message, 70); //funkcja dla wiadomości dłuższej niż 70 znakow
-	$header = 	"From: <$email>";
-	$header  .= "\r\n" . 'MIME-Version: 1.0' . "\r\n";
-    $header .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	$subject = "MESSAGE - Systemy informatyczne";
-	
-// Wyślij
-if($_POST['email'] AND $_POST['message'])
-{
-	mail('piotr210694@wp.pl', $subject, $message, $header);
-}
-
-
-	
-
-?>
+						<?php 
+							if(isset($_SESSION['komunikatKON']))
+							echo $_SESSION['komunikatKON'];		
+						?>
+								
 				</div>                
 				<div class="col-md-3"></div>
 				

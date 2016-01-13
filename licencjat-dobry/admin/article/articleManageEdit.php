@@ -11,6 +11,9 @@
 	include('php/connectKategoria.php');
 ?>
 
+
+
+
 <!doctype html>
 
 <html LANG="pl">
@@ -88,42 +91,43 @@
 				<div class="col-md-6">
 				
 
-	<form action="php/connectArticle.php" method="post" role="form">
+	<form action="php/connectArticleEdit.php" method="post" role="form">
+	<!--
 	<div class="form-group">
       <label for="sel1">Wybierz kategorię:</label>
       <select class="form-control" id="sel1" name="idK">
 	        <?php 
-			$ileK=$_SESSION['ileK'];
-			for($i=0; $i<$ileK; $i++)
-			{
-				echo '<option value="';
-				echo $idActive=$_SESSION['idK'][$i];
-				echo '">';
-				echo $_SESSION['tytulK'][$i];
-				echo '</option>';			
+			// $ileK=$_SESSION['ileK'];
+			// for($i=0; $i<$ileK; $i++)
+			// {
+				// echo '<option value="';
+				// echo $idActive=$_SESSION['idK'][$i];
+				// echo '">';
+				// echo $_SESSION['tytulK'][$i];
+				// echo '</option>';			
 
-			}
+			// }
 
 			?>  
       </select>
-	  
 	  <br>
+	  -->
 	  <div class="form-group"  >
 		<label >Tytuł</label>
-		<input  type="text" class="form-control" name="title" value="" placeholder="Podaj tytuł artykułu" required>
+		<input  type="text" class="form-control" name="title" value="<?php echo $_SESSION['titleArty'] ?>" placeholder="Podaj tytuł artykułu" required>
 		</div>
 		
 		<div class="form-group"  >
-						<label for="tresc">Treść</label>
-						<textarea type="text" class="form-control" rows="7" name="tresc" placeholder="Podaj tekst dokumentu php" required></textarea>
+			<label for="tresc">Treść</label>
+			<textarea type="text" class="form-control" rows="7" name="tresc" value="" placeholder="Podaj tekst dokumentu php" required><?php echo $_SESSION['trescA']; ?></textarea>
 		</div>
 		
-		<button type="submit" class="btn btn-success pull-left btn-block">Stwórz</button>
+		<button type="submit" class="btn btn-success pull-left btn-block">Edytuj</button>
 	</form>	
 	
 	<?php 
-	if(isset($_SESSION['komunikatAC']))
-	echo $_SESSION['komunikatAC'];
+	if(isset($_SESSION['komunikatAME']))
+	echo $_SESSION['komunikatAME'];
 	?>
 		
 		

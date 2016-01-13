@@ -104,13 +104,16 @@
    <li><a href='contact/kontaktlog.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-	  	<?php 
+	  		<?php 
 		$ileA=$_SESSION['ileA'];
-		$a=$_SESSION['a'];
-		// for($i=0; $i<$ileA; $i++)
-		// {
-			echo '<li><a href=""><span>'.'Sub Product'.'</span></a></li>';
-		// }
+		for($i=0; $i<$ileA; $i++)
+		{
+			echo '<li><a href="';
+			echo $_SESSION['linkA'][$i];
+			echo '"><span>';
+			echo $_SESSION["tytulA"][$i];
+			echo '</span></a></li>';	
+		}
 		?>
       </ul>
    </li>

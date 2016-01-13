@@ -11,6 +11,9 @@
 	include('php/connectKategoria.php');
 ?>
 
+
+
+
 <!doctype html>
 
 <html LANG="pl">
@@ -82,55 +85,60 @@
 
 
 
+
     <div class="container-fluid" style="padding:20px">
             <div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 				
 
-	<form action="php/connectArticle.php" method="post" role="form">
+	<form action="php/connectDelete.php" method="post" role="form">
 	<div class="form-group">
-      <label for="sel1">Wybierz kategorię:</label>
-      <select class="form-control" id="sel1" name="idK">
+      <label for="sel1">Wybierz tytuł artykułu:</label>
+      <p><select class="form-control" id="sel1" name="help">
 	        <?php 
-			$ileK=$_SESSION['ileK'];
-			for($i=0; $i<$ileK; $i++)
+			$ileArt=$_SESSION['ileArt'];
+			for($i=0; $i<$ileArt; $i++)
 			{
 				echo '<option value="';
-				echo $idActive=$_SESSION['idK'][$i];
+				echo $idActive=$_SESSION['idArt'][$i];
 				echo '">';
-				echo $_SESSION['tytulK'][$i];
+				echo $_SESSION['tytulArt'][$i];
 				echo '</option>';			
 
 			}
-
+			
 			?>  
-      </select>
-	  
-	  <br>
-	  <div class="form-group"  >
-		<label >Tytuł</label>
-		<input  type="text" class="form-control" name="title" value="" placeholder="Podaj tytuł artykułu" required>
-		</div>
+      </select></p>
+			<p><button type="submit" name="akcja" value="Edytuj" class="btn btn-success pull-left btn-block">EDYTUJ</button>
 		
-		<div class="form-group"  >
-						<label for="tresc">Treść</label>
-						<textarea type="text" class="form-control" rows="7" name="tresc" placeholder="Podaj tekst dokumentu php" required></textarea>
-		</div>
-		
-		<button type="submit" class="btn btn-success pull-left btn-block">Stwórz</button>
-	</form>	
-	
-	<?php 
-	if(isset($_SESSION['komunikatAC']))
-	echo $_SESSION['komunikatAC'];
-	?>
-		
-		
-		
-	 </div>
-	 
+			<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal" class="btn btn-danger pull-left btn-block"  >USUŃ</button>
+			</p>
+			</div>
+			 <!-- Usuniecie artykulu - MODAL -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie artykułu</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć arykuł?</p>
+      </div>
+      <div class="modal-footer">
+		<input type="submit" name="akcja" value="Usun" class="btn btn-default" >
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</form>
+ 
   
 
 				</div>

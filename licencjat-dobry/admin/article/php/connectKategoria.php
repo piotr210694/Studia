@@ -1,6 +1,5 @@
  <?php
-
- // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
+	 // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
 		// or die('Brak połączenia z serwerem MySQL');
 	// $db = @mysql_select_db('1066219_MqQ', $connection)
 		// or die('Nie mogę połączyć się z bazą danych');
@@ -10,7 +9,6 @@
 		or die('Brak połączenia z serwerem MySQL');
 	$db = @mysql_select_db('sysinf', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
-
 		
 //szukamy ile jest kategorii
 $zapytanie = mysql_query("SELECT * FROM `kategoria`") or die(mysql_error());

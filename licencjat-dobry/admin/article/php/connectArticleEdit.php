@@ -1,28 +1,20 @@
-  <?php
+   <?php
 	 // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
 		// or die('Brak połączenia z serwerem MySQL');
 	// $db = @mysql_select_db('1066219_MqQ', $connection)
 		// or die('Nie mogę połączyć się z bazą danych');
 
-
+session_start();
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
 	$db = @mysql_select_db('sysinf', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
+
 		
-session_start();		
 
-	//szukamy ile jest kategorii
 $title = $_POST['title'];
-$ins = @mysql_query("SELECT * FROM `artykuly` where `tytul` = '$title'") or die(mysql_error());
-$wiersz=mysql_fetch_array($ins);
-
-if($wiersz>0)
-{
-	echo "blad";
-}
-else
-{
+$id = $_SESSION['iDA'];
+	unlink("../artykuly/$title.php");
 	$plik=fopen("../artykuly/$title.php", "w"); //utworzenie pliku
 	$plik=fopen("../artykuly/$title.php", "a+"); //otworzenie do zapisu
 		// dodanie początku pliku
@@ -45,29 +37,22 @@ else
 		}
 		fwrite($plik, $zawartosc); //zapisanie tresci KONCA
 
-	$ins = @mysql_query("SELECT MAX(id_artykulu) AS max FROM `artykuly`") or die(mysql_error()); //ustalenie id dla artykulu
-while ($wiersz=mysql_fetch_array($ins)) 
-{
-	$max_id = $wiersz['max']+1;
-}
-	$idK = $_POST['idK']; // id KATEGORII
-	$link = "admin/article/artykuly/$title.php";
 	
-	$date = date( 'Y-m-d' );
+	$link = "admin/article/artykuly/$title.php";
 	if($_POST['title'] AND $_POST['tresc'])
 	{
-		$ins = @mysql_query("INSERT INTO `artykuly` (`id_artykulu`, `id_kategorii`, `tytul`, `tresc`, `link`, `data`) VALUES ('$max_id', '$idK', '$title', '$tresc', '$link', '$date')") or die(mysql_error());
-		unset($_SESSION['komunikatAC']);
-		$_SESSION['komunikatAC']='<span style="color:green">Artykuł </span>'.$title.'<span style="color:green"> został poprawnie dodany!'.'</span>';
-		header('Location: ../articleCreate.php');
+		$ins = @mysql_query("UPDATE `artykuly` SET `tytul`='$title', `tresc`='$tresc', `link`='$link' WHERE `id_artykulu` = $id") or die(mysql_error());
+		unset($_SESSION['komunikatAME']);
+		$_SESSION['komunikatAME']='<span style="color:green">Artykuł </span>'.$title.'<span style="color:green"> został poprawnie edytowany!'.'</span>';
+		header('Location: ../articleManageEdit.php');
 	}
 	else
 	{
-		unset($_SESSION['komunikatAC']);
-		$_SESSION['komunikatAC']='<span style="color:red">Wystąpił błąd!'.'</span>';
-		header('Location: ../articleCreate.php');
+		unset($_SESSION['komunikatAME']);
+		$_SESSION['komunikatAME']='<span style="color:red">Wystąpił błąd!'.'</span>';
+		header('Location: ../articleManageEdit.php');
 	}
-}
 
+	
 
 ?>
