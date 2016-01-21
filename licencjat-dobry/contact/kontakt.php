@@ -2,7 +2,7 @@
 	session_start(); //start sesji
 	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy:
 	{
-		header('Location: index2.php');
+		header('Location: kontaktlog.php');
 		exit(); //dajemy exit by od razu przekierowalo i nie wykonywalo tego co pod spodem
 	}
 ?>

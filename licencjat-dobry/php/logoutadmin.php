@@ -4,6 +4,6 @@
 	
 	session_unset();
 	
-	header('Location: ../admin/indexad.php');
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>

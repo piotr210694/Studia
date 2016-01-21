@@ -1,15 +1,12 @@
 <?php
 	session_start(); //start sesji
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy:
-	{
-		header('Location: ../../../index2.php');
-		exit(); //dajemy exit by od razu przekierowalo i nie wykonywalo tego co pod spodem
-	}
 ?>
 
 <?php 
 	include('../../../php/connectMenu.php');
 ?>
+
+
 
 <!doctype html>
 
@@ -39,7 +36,7 @@
 <!-- Panel logowania -->
   
 <div id="myModal" class="modal fade" role="dialog">
-  <form id="contact_form" action="php/zaloguj.php" method="post" >
+  <form id="contact_form" action="../../../php/zaloguj.php" method="post" >
   <div class="modal-dialog modal-sm">
     <!-- Modal content-->
     <div class="modal-content">
@@ -78,7 +75,28 @@
 </div>
 
 
+<!-- Usuniecie konta - MODAL -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie konta</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć konto?</p>
+      </div>
+      <div class="modal-footer">
+		<form action="user/php/delete.php" >
+		<input type="submit" value="Usuń" class="btn btn-default" >
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
@@ -125,7 +143,23 @@
         </ul>
    </li>
    <li><a href='#'><span>Kursy</span></a></li>
-   <li><a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
+   	<?php 
+			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
+			{
+				echo  '<li class="last active has-sub"><a><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVQ4jaWSr04DQRCHR1YgKoAgECUYDG+AWEXuz0x3llCPqMABCQkIEhJ4BAQCUX/H7UxCArwAIBAXNALBAyCQiMPQAO1drweT/NTu983sZgBKiq5oFtWek/AjCueo7iJKooWyu2Nlkt4MeudRuBjJbXjdm6sVoLApgQsULkiYawWkbq9KgMLH00xwOkFwVi/I7GblEzLbrxWEwssofFciyCO1q7UCAADybg2F337A75HvBlPBLNymS1oJs43FSHgLfXc7EO4Ewh0WbleCZmBasfDusDOpvSFvD2Nv91FdisIfX2dHZmBaY11R+HnC74/m9ddmktqDBvBwqU4AAGDdu3kUvm8qQG+fKKElILX9xvB3dgDVPvxDkAOqS2Phl78E1aWf25ZmvHtqCpEAAAAASUVORK5CYII="/></span></a>';
+				echo '<ul>';
+					echo '<li><a href="../../../php/logout.php"><span>Wyloguj się</span></a></li>';
+					echo '<li><a href="../../../user/manage.php"><span>Przeglądaj</span></a></li>';
+					echo '<li><a href="#"  data-toggle="modal" data-target="#myModal2"><span>Usuń konto</span></a></li>';
+				echo '</ul>';
+			echo '</li>';
+			}
+			else
+			{
+				echo '<li><a id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>';
+			}
+			?>
+     
 </ul>
 
 	</div>

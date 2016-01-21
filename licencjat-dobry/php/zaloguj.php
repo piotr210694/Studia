@@ -46,12 +46,12 @@
 					//$user=$wiersz['login']; //wyciagniecie danego rekordu z tabeli
 					unset($_SESSION['blad']); //usuwa zmienna po poprawnym wykonaniu
 					$rezultat->close();
-					header('Location: ../index2.php');
+					header('Location: ' . $_SERVER['HTTP_REFERER']);
 					
 				}
 				else{
 					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
-					header('Location: ../index.php');
+					header('Location: ' . $_SERVER['HTTP_REFERER']);
 				}
 			}
 		$polaczenie->close();

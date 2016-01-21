@@ -2,7 +2,7 @@
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowany'])) //jesli nie ma zmiennej zalogowany
 	{
-		header('Location: ../.../index.php');
+		header('Location: ../index.php');
 		exit();
 	}
 ?>

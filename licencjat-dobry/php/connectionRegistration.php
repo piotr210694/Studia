@@ -1,16 +1,16 @@
 <?php
 session_start();
 
- $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
-		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('1066219_MqQ', $connection)
-		or die('Nie mogę połączyć się z bazą danych');
-
-
-	 // $connection = @mysql_connect('localhost', 'root', 'root')
+ // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
 		// or die('Brak połączenia z serwerem MySQL');
-	// $db = @mysql_select_db('sysinf', $connection)
+	// $db = @mysql_select_db('1066219_MqQ', $connection)
 		// or die('Nie mogę połączyć się z bazą danych');
+
+
+	 $connection = @mysql_connect('localhost', 'root', 'root')
+		or die('Brak połączenia z serwerem MySQL');
+	$db = @mysql_select_db('sysinf', $connection)
+		or die('Nie mogę połączyć się z bazą danych');
 
 		
 		$login = $_POST['login'];
@@ -25,7 +25,7 @@ while ($wiersz=mysql_fetch_array($ins))
 }
 if(($_POST['login'] AND $_POST['pass'] AND $_POST['pass2'] AND $_POST['email']) AND ($_POST['pass']==$_POST['pass2']))
 {
-	$ins = @mysql_query("INSERT INTO `user` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`) VALUES ('$max_id', '$login', '$pass', '$email', NULL, NULL, NULL, '$date');") or die(mysql_error());
+	$ins = @mysql_query("INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`) VALUES ('$max_id', '$login', '$pass', '$email', NULL, NULL, NULL, '$date');") or die(mysql_error());
 	unset($_SESSION['komunikatB']);
 	$_SESSION['komunikatA'] = 'Witaj '.$login.'! '.'<br>'.'<span style="color:green">Operacja zakładania konta przebiegła pomyślnie!</span>'.'<br>'.'Teraz możesz zalogować się do naszego serwisu.';
 	header('Location: ../registration.php');

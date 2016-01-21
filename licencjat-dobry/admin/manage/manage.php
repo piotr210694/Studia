@@ -103,9 +103,9 @@
 						<td><?php  echo $_SESSION['login']; ?></td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="elogin" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >
+						<input type="text" name="elogin" placeholder="Podaj nowy login..." >
 						<input type="submit" name="" value="Edytuj">
-						</form>			
+						</form>					
 					</td>
 					  </tr>
 					  <tr>
@@ -114,9 +114,15 @@
 						<td><input type="button" name="" value="Zmień hasło"></td>
 					  </tr>
 					  <tr>
+					  
 						<td>E-mail</td>
-						<td><?php echo $_SESSION['email']; ?></td>
-						<td><input type="text" name="email" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="submit" name="bemail" value="Edytuj">
+						<td><?php echo $_SESSION['email']; ?>
+						</td>
+					<td>
+						<form action="php/edytuj.php" method="post">
+						<input type="email" name="eemail" placeholder="Podaj nowy e-mail..." >
+						<input type="submit" name="" value="Edytuj">
+						</form>
 						</td>
 						<?php
 						// error_reporting(E_ALL ^ E_NOTICE); 
@@ -162,28 +168,39 @@
 		// }
 						
 						?>
-					  </tr>
 					  <tr>
 						<td>Telefon</td>
-						<td><?php echo $_SESSION['phone']; ?></td>
-						<td>
+						
+						<td><?php echo $_SESSION['phone']; ?>
+						</td>
+					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="ephone" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >
+						<input type="tel" name="ephone" placeholder="Podaj nowy nr telefonu...">
 						<input type="submit" name="" value="Edytuj">
 						</form>	
-						</td>
+					</td>
 					  </tr>
 					  <tr>
 						<td>Imię</td>
-						<td><?php echo $_SESSION['name']; ?></td>
-						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="button" name="" value="Edytuj">
+						
+						<td><?php echo $_SESSION['name']; ?>
 						</td>
+					<td>
+						<form action="php/edytuj.php" method="post">
+						<input type="text" name="ename" placeholder="Podaj nowe imię...">
+						<input type="submit" name="" value="Edytuj">
+					</td>
 					  </tr>
+					  
 					  <tr>
+					  
 						<td>Nazwisko</td>
+						
 						<td><?php echo $_SESSION['surname']; ?></td>
-						<td><input type="text" name="ud_first" value="Podaj nowy login..." onfocus="if(this.value=='' || this.value == 'Podaj nowy login...') this.value=''" onblur="if(this.value == '') {this.value=this.defaultValue}" onkeyup="keyUp();" >&nbsp;<input type="button" name="" value="Edytuj">
-						</td>
+					<td>
+						<input type="text" name="esurname" placeholder="Podaj nowe nazwisko...">
+						<input type="submit" name="" value="Edytuj">
+					</td>
 					  </tr>
 					</tbody>
 		
