@@ -7,7 +7,7 @@
 
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 		
 session_start();		
@@ -57,6 +57,13 @@ while ($wiersz=mysql_fetch_array($ins))
 	if($_POST['title'] AND $_POST['tresc'])
 	{
 		$ins = @mysql_query("INSERT INTO `artykuly` (`id_artykulu`, `id_kategorii`, `tytul`, `tresc`, `link`, `data`) VALUES ('$max_id', '$idK', '$title', '$tresc', '$link', '$date')") or die(mysql_error());
+		
+		$ins = @mysql_query("SELECT MAX(id) AS max FROM `kategoria-artykul`") or die(mysql_error()); //ustalenie id dla artykulu
+		while ($wiersz=mysql_fetch_array($ins)) 
+		{
+			$mid = $wiersz['max']+1;
+		}
+		$ins = @mysql_query("INSERT INTO `kategoria-artykul` (`id`, `id_artykulu`, `id_kategorii`) VALUES ('$mid', '$max_id', '$idK');") or die(mysql_error());
 		unset($_SESSION['komunikatAC']);
 		$_SESSION['komunikatAC']='<span style="color:green">Artykuł </span>'.$title.'<span style="color:green"> został poprawnie dodany!'.'</span>';
 		header('Location: ../articleCreate.php');

@@ -2,7 +2,7 @@
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowany'])) //jesli nie ma zmiennej zalogowany
 	{
-		header('Location: ../index.php');
+		header('Location: kontakt.php');
 		exit();
 	}
 ?>
@@ -101,21 +101,20 @@
     <div id='cssmenu' class="navbar-fixed-top">
 	<ul>
    <li><a href='../index2.php'><span>Strona główna</span></a></li>
-   <li><a href='kontaktlog.php'><span>Kontakt</span></a></li>
+ <li><a href='kontakt.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Product 1</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
-         <li class='has-sub'><a href='#'><span>Product 2</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
+	  	<?php 
+		$ileA=$_SESSION['ileA'];
+		for($i=0; $i<$ileA; $i++)
+		{
+			echo '<li><a href="../';
+			echo $_SESSION['linkA'][$i];
+			echo '"><span>';
+			echo $_SESSION["tytulA"][$i];
+			echo '</span></a></li>';	
+		}
+		?>
       </ul>
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
@@ -130,7 +129,7 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='#'><span>Kursy</span></a></li>
+   <li><a href='../kursy.php'><span>Kursy</span></a></li>
    <li class='last active has-sub' ><a><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVQ4jaWSr04DQRCHR1YgKoAgECUYDG+AWEXuz0x3llCPqMABCQkIEhJ4BAQCUX/H7UxCArwAIBAXNALBAyCQiMPQAO1drweT/NTu983sZgBKiq5oFtWek/AjCueo7iJKooWyu2Nlkt4MeudRuBjJbXjdm6sVoLApgQsULkiYawWkbq9KgMLH00xwOkFwVi/I7GblEzLbrxWEwssofFciyCO1q7UCAADybg2F337A75HvBlPBLNymS1oJs43FSHgLfXc7EO4Ewh0WbleCZmBasfDusDOpvSFvD2Nv91FdisIfX2dHZmBaY11R+HnC74/m9ddmktqDBvBwqU4AAGDdu3kUvm8qQG+fKKElILX9xvB3dgDVPvxDkAOqS2Phl78E1aWf25ZmvHtqCpEAAAAASUVORK5CYII="/></span></a>
 		<ul>
 			<li><a href='../php/logout.php'><span>Wyloguj się</span></a></li>

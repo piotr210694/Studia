@@ -7,7 +7,7 @@
 
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 		
 //szukamy ile jest kategorii

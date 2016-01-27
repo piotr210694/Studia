@@ -8,11 +8,12 @@ session_start();
 
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 		$url = $_SESSION['url'];
 		$link = str_replace("/licencjat-dobry/", '', $url);
 		$link = str_replace("%20",' ', $link);
+		
 		
 	
 	if($_POST['komentarz'])
@@ -41,6 +42,13 @@ session_start();
 		// echo $idU;
 		
 		$zapytanie = @mysql_query("INSERT INTO `komentarz` (`ID_komentarza`, `ID_artykulu`, `tresc`, `data`, `ID_uzytkownika`) VALUES ('$idK', '$idA', '$tresc', '$date', '$idU')") or die(mysql_error());
+		
+		$ins = @mysql_query("SELECT MAX(id) AS max FROM `komentarz-artykul`") or die(mysql_error());
+		while ($wiersz=mysql_fetch_array($ins)) 
+		{
+			$mid = $wiersz['max']+1;
+		}
+		$zapytanie = @mysql_query("INSERT INTO `komentarz-artykul` (`id`, `id_komentarza`, `id_artykulu`, `id_uzytkownika`) VALUES ('$mid', '$idK', '$idA', '$idU')") or die(mysql_error());
 		header("Location: ../../artykuly/$title.php");
 	}
 	else

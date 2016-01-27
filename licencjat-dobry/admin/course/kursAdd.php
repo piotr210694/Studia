@@ -1,4 +1,4 @@
-<?php
+ <?php
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
@@ -6,11 +6,6 @@
 		exit();
 	}
 ?>
-
-<?php 
-	include('php/connectKategoria.php');
-?>
-
 
 
 
@@ -50,8 +45,8 @@
    <li><a href='../indexad.php'>Strona główna</a></li>
    <li><a >Artykuły</a>
       <ul>
-         <li><a href='articleCreate.php'>Stwórz</a></li>
-         <li><a href='articleManageKat.php'>Przeglądaj</a></li>
+         <li><a href='../article/articleCreate.php'>Stwórz</a></li>
+         <li><a href='../article/articleManageKat.php'>Przeglądaj</a></li>
       </ul>
    </li>
     <li><a >Samouczki</a>
@@ -68,8 +63,8 @@
    </li>
     <li><a >Kursy</a>
       <ul>
-         <li><a href='../course/kursAdd.php'>Stwórz</a></li>
-         <li><a href='../course/kursView.php'>Przeglądaj</a></li>
+         <li><a href='kursAdd.php'>Stwórz</a></li>
+         <li><a href='kursView.php'>Przeglądaj</a></li>
       </ul>
    </li>
     <li><a href="">Przeglądaj konta</a></li>
@@ -85,60 +80,50 @@
 
 
 
-
     <div class="container-fluid" style="padding:20px">
             <div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 				
 
-	<form action="php/connectDelete.php" method="post" role="form">
+	<form action="php/connectCourseAdd.php" method="post" role="form">
 	<div class="form-group">
-      <label for="sel1">Wybierz tytuł artykułu:</label>
-      <p><select class="form-control" id="sel1" name="help">
-	        <?php 
-			$ileArt=$_SESSION['ileArt'];
-			for($i=0; $i<$ileArt; $i++)
-			{
-				echo '<option value="';
-				echo $idActive=$_SESSION['idArt'][$i];
-				echo '">';
-				echo $_SESSION['tytulArt'][$i];
-				echo '</option>';			
-
-			}
-			
-			?>  
-      </select></p>
-			<p><button type="submit" name="akcja" value="Edytuj" class="btn btn-success pull-left btn-block">EDYTUJ</button>
+	  
+	  <br>
+	  <div class="form-group"  >
+		<label for="sel1">Nazwa kursu:</label>
+		<input  type="text" class="form-control" name="name" value="" placeholder="Podaj nazwę kursu" required>
+		</div>
 		
-			<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal" class="btn btn-danger pull-left btn-block"  >USUŃ</button>
-			</p>
-			</div>
-			 <!-- Usuniecie artykulu - MODAL -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+		<div class="form-group"  >
+						<label for="tresc">Cena:</label>
+						<input  type="text" class="form-control" name="price" value="" placeholder="Podaj cenę kursu" required>
+		</div>
+		
+		<div class="form-group"  >
+		     <label for="sel1">Wybierz stan kursu:</label>
+      <select class="form-control" id="stan" name="stan">
+<option value="0">Aktywny</option>
+<option value="1">Nieaktywny</option>
+      </select>
+		</div>
+		
+		<button type="submit" class="btn btn-success pull-left btn-block">Stwórz</button>
+	</form>	
+	
+	
+	<?php 
+		if(isset($_SESSION['komAdd']))
+		{
+			echo $_SESSION['komAdd'];
+		}
+	?>
+		
+		
+		
+	 </div>
+	 
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie artykułu</h4>
-      </div>
-      <div class="modal-body">
-        <p>Czy na pewno chcesz usunąć arykuł?</p>
-      </div>
-      <div class="modal-footer">
-		<input type="submit" name="akcja" value="Usuń" class="btn btn-default" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-</form>
- 
   
 
 				</div>

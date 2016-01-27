@@ -66,8 +66,8 @@
    </li>
     <li><a >Kursy</a>
       <ul>
-         <li><a href='#'>Stwórz</a></li>
-         <li><a href='#'>Przeglądaj</a></li>
+         <li><a href='../course/kursAdd.php'>Stwórz</a></li>
+         <li><a href='../course/kursView.php'>Przeglądaj</a></li>
       </ul>
    </li>
     <li><a href="">Przeglądaj konta</a></li>
@@ -102,16 +102,22 @@
 						
 						<td><?php  echo $_SESSION['login']; ?></td>
 					<td>
+						<span style="color:red">Nie można edytować!</span>
+						<!--
 						<form action="php/edytuj.php" method="post">
 						<input type="text" name="elogin" placeholder="Podaj nowy login..." >
 						<input type="submit" name="" value="Edytuj">
-						</form>					
+						</form>			
+						-->
 					</td>
 					  </tr>
 					  <tr>
 						<td>Hasło</td>
 						<td>*******</td>
+						<td><span style="color:red">Nie można edytować!</span></td>
+						<!--
 						<td><input type="button" name="" value="Zmień hasło"></td>
+						-->
 					  </tr>
 					  <tr>
 					  

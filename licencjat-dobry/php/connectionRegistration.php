@@ -9,7 +9,7 @@ session_start();
 
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 
 		
@@ -18,26 +18,59 @@ session_start();
 		$pass2 = $_POST['pass2'];
 		$email = $_POST['email'];
 		$date = date( 'Y-m-d' );
-$ins = @mysql_query("SELECT MAX(id) AS max FROM `uzytkownik`") or die(mysql_error());
+/* wyszukiwanie id */
+		$ins = @mysql_query("SELECT MAX(id) AS max FROM `uzytkownik`") or die(mysql_error());
 while ($wiersz=mysql_fetch_array($ins)) 
 {
 	$max_id = $wiersz['max']+1;
 }
-if(($_POST['login'] AND $_POST['pass'] AND $_POST['pass2'] AND $_POST['email']) AND ($_POST['pass']==$_POST['pass2']))
+/* sprawdzanie loginu */
+		$ins = @mysql_query("SELECT login FROM `uzytkownik` WHERE login='$login'") or die(mysql_error());
+while ($wiersz=mysql_fetch_array($ins)) 
+{
+	$loginspr = $wiersz['login'];
+}
+/* sprawdzanie emaila */
+		$ins = @mysql_query("SELECT email FROM `uzytkownik` WHERE email='$email'") or die(mysql_error());
+while ($wiersz=mysql_fetch_array($ins)) 
+{
+	$emailspr = $wiersz['email'];
+}
+
+if($_POST['login'] AND $_POST['pass'] AND $_POST['pass2'] AND ($_POST['email']!=$emailspr) AND ($_POST['login']!=$loginspr) AND ($_POST['pass']==$_POST['pass2']))
 {
 	$ins = @mysql_query("INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`) VALUES ('$max_id', '$login', '$pass', '$email', NULL, NULL, NULL, '$date');") or die(mysql_error());
 	unset($_SESSION['komunikatB']);
 	$_SESSION['komunikatA'] = 'Witaj '.$login.'! '.'<br>'.'<span style="color:green">Operacja zakładania konta przebiegła pomyślnie!</span>'.'<br>'.'Teraz możesz zalogować się do naszego serwisu.';
 	header('Location: ../registration.php');
 }
+
+elseif($_POST['login']==$loginspr)
+{
+	unset($_SESSION['komunikatA']);
+	$_SESSION['komunikatB']='<span style="color:red">Podany login jest już w bazie!</span>'.'<br>'.'Popraw to!';
+	header('Location: ../registration.php');
+}
+
+
 elseif($_POST['pass']!=$_POST['pass2'])
 {
 	unset($_SESSION['komunikatA']);
 	$_SESSION['komunikatB']='<span style="color:red">Hasła nie są identyczne!</span>'.'<br>'.'Popraw to!';
 	header('Location: ../registration.php');
+	
 }
+elseif($_POST['email']==$emailspr)
+{
+	unset($_SESSION['komunikatA']);
+	$_SESSION['komunikatB']='<span style="color:red">Podany e-mail jest już w bazie!</span>'.'<br>'.'Popraw to!';
+	header('Location: ../registration.php');
+}
+
+
 if(!isset($_POST['login']))
 {
+	
 	header('Location: ../registration.php');
 }
 

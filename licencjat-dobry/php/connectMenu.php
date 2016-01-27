@@ -8,7 +8,7 @@
 
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 
 
@@ -30,6 +30,7 @@ for($i=0;$i<$ileA;$i++)
     $tytuly[$i]=$wiersz['tytul']; //stworzenie tablicy tytuly[]
 	$linki[$i]=$wiersz['link']; //stworzenie tablicy linki[]
 }
+error_reporting(E_ALL ^ E_NOTICE); 
 $_SESSION['tytulA']=$tytuly; //stworzenie zmiennej sesyjnej tablicowej
 $_SESSION['linkA']=$linki; 
 ?>

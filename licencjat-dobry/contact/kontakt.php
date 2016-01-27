@@ -109,18 +109,17 @@
    <li><a href='kontakt.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Product 1</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
-         <li class='has-sub'><a href='#'><span>Product 2</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
+	  	<?php 
+		$ileA=$_SESSION['ileA'];
+		for($i=0; $i<$ileA; $i++)
+		{
+			echo '<li><a href="../';
+			echo $_SESSION['linkA'][$i];
+			echo '"><span>';
+			echo $_SESSION["tytulA"][$i];
+			echo '</span></a></li>';	
+		}
+		?>
       </ul>
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
@@ -135,7 +134,7 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='#'><span>Kursy</span></a></li>
+   <li><a href='../kursy.php'><span>Kursy</span></a></li>
     <li><a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
 </ul>
 

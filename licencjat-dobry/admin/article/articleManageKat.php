@@ -68,8 +68,8 @@
    </li>
     <li><a >Kursy</a>
       <ul>
-         <li><a href='#'>Stwórz</a></li>
-         <li><a href='#'>Przeglądaj</a></li>
+         <li><a href='../course/kursAdd.php'>Stwórz</a></li>
+         <li><a href='../course/kursView.php'>Przeglądaj</a></li>
       </ul>
    </li>
     <li><a href="">Przeglądaj konta</a></li>

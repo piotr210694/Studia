@@ -102,21 +102,20 @@
     <div id='cssmenu' class="navbar-fixed-top">
 	<ul>
    <li><a href='../index2.php'><span>Strona główna</span></a></li>
-   <li><a href='../contact/kontaktlog.php'><span>Kontakt</span></a></li>
+  <li><a href='../contact/kontakt.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-         <li class='has-sub'><a href='#'><span>Product 1</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
-         <li class='has-sub'><a href='#'><span>Product 2</span></a>
-            <ul>
-               <li><a href='#'><span>Sub Product</span></a></li>
-               <li class='last'><a href='#'><span>Sub Product</span></a></li>
-            </ul>
-         </li>
+	  	<?php 
+		$ileA=$_SESSION['ileA'];
+		for($i=0; $i<$ileA; $i++)
+		{
+			echo '<li><a href="../';
+			echo $_SESSION['linkA'][$i];
+			echo '"><span>';
+			echo $_SESSION["tytulA"][$i];
+			echo '</span></a></li>';	
+		}
+		?>
       </ul>
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
@@ -131,7 +130,7 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='#'><span>Kursy</span></a></li>
+   <li><a href='../kursy.php'><span>Kursy</span></a></li>
    <li class='last active has-sub' ><a><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVQ4jaWSr04DQRCHR1YgKoAgECUYDG+AWEXuz0x3llCPqMABCQkIEhJ4BAQCUX/H7UxCArwAIBAXNALBAyCQiMPQAO1drweT/NTu983sZgBKiq5oFtWek/AjCueo7iJKooWyu2Nlkt4MeudRuBjJbXjdm6sVoLApgQsULkiYawWkbq9KgMLH00xwOkFwVi/I7GblEzLbrxWEwssofFciyCO1q7UCAADybg2F337A75HvBlPBLNymS1oJs43FSHgLfXc7EO4Ewh0WbleCZmBasfDusDOpvSFvD2Nv91FdisIfX2dHZmBaY11R+HnC74/m9ddmktqDBvBwqU4AAGDdu3kUvm8qQG+fKKElILX9xvB3dgDVPvxDkAOqS2Phl78E1aWf25ZmvHtqCpEAAAAASUVORK5CYII="/></span></a>
 		<ul>
 			<li><a href='../php/logout.php'><span>Wyloguj się</span></a></li>
@@ -166,7 +165,7 @@
 						<td><?php  echo $_SESSION['login']; ?></td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="elogin" placeholder="Podaj nowy login..." >
+						<input type="text" name="elogin" placeholder="Podaj nowy login..." required>
 						<input type="submit" name="" value="Edytuj">
 						</form>			
 					</td>
@@ -175,7 +174,15 @@
 					  <tr>
 						<td>Hasło</td>
 						<td>*******</td>
-						<td><input type="button" name="" value="Zmień hasło"></td>
+					<td>
+						<form action="php/edytuj.php" method="post">
+						<input type="password" name="epass" placeholder="Podaj nowe hasło" required>
+						<br>
+						<input type="password" name="epassp" placeholder="Powtórz hasło" required>
+						<input type="submit" name="" value="Edytuj">
+						</form>	
+					</td>
+					
 					  </tr>
 					  
 					  <tr>
@@ -185,7 +192,7 @@
 						</td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="eemail" placeholder="Podaj nowy e-mail..." >
+						<input type="text" name="eemail" placeholder="Podaj nowy e-mail..." required>
 						<input type="submit" name="" value="Edytuj">
 						</form>
 						</td>
@@ -242,7 +249,7 @@
 						</td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="ephone" placeholder="Podaj nowy nr telefonu...">
+						<input type="number" name="ephone" placeholder="Podaj nr telefonu..." required>
 						<input type="submit" name="" value="Edytuj">
 						</form>	
 					</td>
@@ -255,8 +262,9 @@
 						</td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="text" name="ename" placeholder="Podaj nowe imię...">
+						<input type="text" name="ename" placeholder="Podaj nowe imię..." required>
 						<input type="submit" name="" value="Edytuj">
+						</form>
 					</td>
 					  </tr>
 					  <tr>
@@ -265,13 +273,21 @@
 						
 						<td><?php echo $_SESSION['surname']; ?></td>
 					<td>
-						<input type="text" name="esurname" placeholder="Podaj nowe nazwisko...">
+						<form action="php/edytuj.php" method="post">
+						<input type="text" name="esurname" placeholder="Podaj nowe nazwisko..."required>
 						<input type="submit" name="" value="Edytuj">
+						</form>
 					</td>
 					  </tr>
 					</tbody>
-		
+
 				</table>
+					<?php 
+							if(isset($_SESSION['komunikat']))
+							{
+								echo $_SESSION['komunikat'];
+							}							
+						?>
 				</div>
 				<div class="col-md-3"></div>
             </div>

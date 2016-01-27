@@ -124,7 +124,7 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='#'><span>Kursy</span></a></li>
+   <li><a href='kursy.php'><span>Kursy</span></a></li>
    <li><a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
 </ul>
 
@@ -136,7 +136,7 @@
 			<div class="container-fluid" >
             <div class="row">
 				<div class="col-md-12">
-				<h1>Tekst naglowka</h1> 
+				<h1>Witaj na naszej stronie!</h1> 
 				
 				<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
 			

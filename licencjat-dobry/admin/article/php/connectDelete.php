@@ -7,14 +7,16 @@
 session_start();
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 		
 
 	
 if ($_POST['akcja'] == 'Edytuj') 
 {
-	$id=$_POST['help'];;
+	$id=$_POST['help'];
+	$_SESSION['idART']=$id;
+	
 	$_SESSION['iDA']=$_POST['help'];
 	$zapytanie = mysql_query("SELECT * FROM `artykuly` WHERE id_artykulu='$id'") or die(mysql_error());
 	while($wiersz = @mysql_fetch_assoc($zapytanie))
@@ -26,19 +28,25 @@ if ($_POST['akcja'] == 'Edytuj')
 	header('Location: ../ArticleManageEdit.php');
 } 
 
-if ($_POST['akcja'] == 'Usun') 
+if ($_POST['akcja'] == 'Usuń') 
 {
     $id=$_POST['help'];
 	$zapytanie = mysql_query("SELECT * FROM `artykuly` WHERE id_artykulu='$id'") or die(mysql_error());
 	while($wiersz = @mysql_fetch_assoc($zapytanie))
 {
-	$title=$wiersz['tytul'];
+	$idK = $wiersz['id_kategorii'];
+	$title = $wiersz['tytul'];
+
 }
-		
+		$ins1="DELETE FROM `komentarz` WHERE id_artykulu=$id";
 		$ins="DELETE FROM `artykuly` WHERE id_artykulu=$id";
+		if(mysql_query($ins1)){
 		if(mysql_query($ins)){
+			$ins2 = mysql_query("DELETE FROM `kategoria-artykul` WHERE id_artykulu='$id' AND id_kategorii='$idK'");
+			$ins3 = mysql_query("DELETE FROM `komentarz-artykul` WHERE id_artykulu='$id'");
 			unlink("../artykuly/$title.php");
 			header('Location: ../../indexad.php');
+		}
 		}
 		else{
 			echo 'Blad: '.mysql_error();

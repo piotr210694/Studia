@@ -4,7 +4,7 @@
 	$host = "localhost";
 	$db_user = "root";
 	$db_password = "root";
-	$db_name = "sysinf";
+	$db_name = "sysinf2";
 
 	// $host = "userdb1";
 	// $db_user = "1066219_MqQ";

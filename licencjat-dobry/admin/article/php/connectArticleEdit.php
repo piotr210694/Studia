@@ -7,7 +7,7 @@
 session_start();
 	 $connection = @mysql_connect('localhost', 'root', 'root')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf', $connection)
+	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 
 		
@@ -36,6 +36,7 @@ $id = $_SESSION['iDA'];
 		   $zawartosc .= $linia;
 		}
 		fwrite($plik, $zawartosc); //zapisanie tresci KONCA
+
 
 	
 	$link = "admin/article/artykuly/$title.php";
