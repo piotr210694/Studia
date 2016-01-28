@@ -144,10 +144,10 @@
 						echo '<div class="modal-content">';
 						echo '<div class="modal-header">';
 						echo '<button type="button" class="close" data-dismiss="modal">&times;</button>';
-						echo '<h4 class="modal-title">Usuwanie artykułu</h4>';
+						echo '<h4 class="modal-title">Usuwanie kursu</h4>';
 						echo '</div>';
 						echo '<div class="modal-body">';
-						echo '<p>Czy na pewno chcesz usunąć arykuł?</p>';
+						echo '<p>Czy na pewno chcesz usunąć kurs?</p>';
 						echo '</div>';
 						echo '<div class="modal-footer">';
 						echo '<input ';
