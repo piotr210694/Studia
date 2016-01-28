@@ -2,7 +2,12 @@
 
 	session_start();
 	
-	session_unset();
+	// unset($_SESSION['zalogowany']);
+	// if(!isset($_SESSION['zalogowanyad']))
+	// {
+		session_unset();
+	// }
+
 	
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 

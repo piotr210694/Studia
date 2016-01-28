@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Sty 2016, 19:00
+-- Czas generowania: 28 Sty 2016, 09:47
 -- Wersja serwera: 5.6.21
 -- Wersja PHP: 5.6.8
 
@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `artykuly` (
 
 INSERT INTO `artykuly` (`id_artykulu`, `id_kategorii`, `tytul`, `tresc`, `link`, `data`) VALUES
 (1, 1, 'Pierwszy test', '<h1> Pierwszy test </h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus eleifend nulla, non accumsan urna varius eget. Fusce sem risus, hendrerit id dolor non, ornare vestibulum libero. In mauris urna, tincidunt non semper sit amet, mattis sit amet metus. Vivamus ac varius sapien. Fusce lobortis eros eros, vitae suscipit leo condimentum sit amet. Sed commodo pulvinar dui sit amet gravida. Nam eu urna quis orci tempus sodales.<p>\r\n\r\n<p>Mauris non ante cursus, auctor purus id, condimentum lacus. Mauris bibendum lobortis nunc in ullamcorper. Fusce tempor cursus quam, porttitor varius nisi imperdiet vitae. Vestibulum suscipit ullamcorper metus, a maximus nisi aliquam ut. Suspendisse vel est viverra, pharetra ex et, luctus mauris. Aenean quis arcu turpis. Etiam eget interdum leo, sit amet rutrum ante. Integer eget ipsum vulputate, porttitor purus ut, maximus nisi. Suspendisse sit amet odio arcu. Praesent facilisis pellentesque ultrices.<p>\r\n\r\n<p>Cras elementum laoreet arcu, bibendum imperdiet nibh sollicitudin non. Duis hendrerit non enim eu egestas. Nam nec neque lorem. Suspendisse in condimentum elit. Pellentesque luctus ultrices turpis. Nullam sit amet dignissim erat, a eleifend massa. In hac habitasse platea dictumst. Etiam ut erat vel sapien interdum bibendum. Mauris nec eros eget elit cursus venenatis.<p>\r\n\r\n<p>Nam tincidunt, ligula eget congue feugiat, lorem sapien tristique purus, non mattis lorem neque et neque. Nunc quis turpis tortor. Ut euismod ultricies varius. Etiam eget purus congue, laoreet metus sit amet, dictum ante. Duis quis rhoncus dolor. Proin eu pretium quam, vel pharetra elit. Nullam nec convallis nisi, tincidunt volutpat metus. Maecenas placerat quis enim non pellentesque. Nulla gravida tincidunt egestas. Phasellus vehicula dolor nibh. Nulla facilisi. Proin accumsan pretium tincidunt. Duis ut tellus euismod, sollicitudin enim in, lobortis lorem.<p>\r\n\r\n<p>Nulla posuere ligula sit amet leo imperdiet consectetur. Donec vel efficitur turpis, non tempor libero. Duis id laoreet lectus. Curabitur quis purus bibendum, dapibus lectus quis, ultricies mi. Morbi ac tortor nec erat feugiat blandit ut eget risus. Nullam ut ligula dignissim dui vestibulum blandit sed vitae leo. Curabitur rhoncus libero sit amet turpis faucibus, vel sollicitudin ipsum tristique. Aenean id sem justo. Aliquam auctor vel lorem ut porttitor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec a sodales mauris. Phasellus placerat, erat id gravida commodo, urna enim dictum magna, nec semper ligula magna quis magna.<p> \r\n\r\n<p>Nam tincidunt, ligula eget congue feugiat, lorem sapien tristique purus, non mattis lorem neque et neque. Nunc quis turpis tortor. Ut euismod ultricies varius. Etiam eget purus congue, laoreet metus sit amet, dictum ante. Duis quis rhoncus dolor. Proin eu pretium quam, vel pharetra elit. Nullam nec convallis nisi, tincidunt volutpat metus. Maecenas placerat quis enim non pellentesque. Nulla gravida tincidunt egestas. Phasellus vehicula dolor nibh. Nulla facilisi. Proin accumsan pretium tincidunt. Duis ut tellus euismod, sollicitudin enim in, lobortis lorem.<p>\r\n\r\n<p>Nulla posuere ligula sit amet leo imperdiet consectetur. Donec vel efficitur turpis, non tempor libero. Duis id laoreet lectus. Curabitur quis purus bibendum, dapibus lectus quis, ultricies mi. Morbi ac tortor nec erat feugiat blandit ut eget risus. Nullam ut ligula dignissim dui vestibulum blandit sed vitae leo. Curabitur rhoncus libero sit amet turpis faucibus, vel sollicitudin ipsum tristique. Aenean id sem justo. Aliquam auctor vel lorem ut porttitor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec a sodales mauris. Phasellus placerat, erat id gravida commodo, urna enim dictum magna, nec semper ligula magna quis magna.<p> ', 'admin/article/artykuly/Pierwszy test.php', '2016-01-25'),
-(2, 1, 'nowy artykul', '<h1> nagÅ‚Ã³wek h1 </h1>\r\n<p> tresc <p>', 'admin/article/artykuly/nowy artykul.php', '2016-01-26');
+(3, 1, 'nowy3', 'asdsad', 'admin/article/artykuly/nowy3.php', '2016-01-28'),
+(4, 1, 'nowy4', 'dsfsdf', 'admin/article/artykuly/nowy4.php', '2016-01-28');
 
 -- --------------------------------------------------------
 
@@ -79,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `kategoria` (
 --
 
 INSERT INTO `kategoria` (`id_kategorii`, `nazwa`) VALUES
+(2, 'Druga kategoria'),
 (1, 'Pierwsza kategoria');
 
 -- --------------------------------------------------------
@@ -99,7 +101,8 @@ CREATE TABLE IF NOT EXISTS `kategoria-artykul` (
 
 INSERT INTO `kategoria-artykul` (`id`, `id_artykulu`, `id_kategorii`) VALUES
 (1, 1, 1),
-(2, 2, 1);
+(3, 3, 1),
+(4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -115,6 +118,13 @@ CREATE TABLE IF NOT EXISTS `komentarz` (
   `ID_uzytkownika` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `komentarz`
+--
+
+INSERT INTO `komentarz` (`ID_komentarza`, `ID_artykulu`, `tresc`, `data`, `ID_uzytkownika`) VALUES
+(1, 4, 'fsdfs', '2016-01-28 00:04:39', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +137,13 @@ CREATE TABLE IF NOT EXISTS `komentarz-artykul` (
   `id_artykulu` int(15) NOT NULL,
   `id_uzytkownika` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `komentarz-artykul`
+--
+
+INSERT INTO `komentarz-artykul` (`id`, `id_komentarza`, `id_artykulu`, `id_uzytkownika`) VALUES
+(1, 1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -146,7 +163,8 @@ CREATE TABLE IF NOT EXISTS `kurs` (
 --
 
 INSERT INTO `kurs` (`id_kursu`, `nazwa`, `cena`, `stan`) VALUES
-(1, 'nowy1', 12, 0);
+(2, 'kurs2', 124, 0),
+(3, 'kursik', 124, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`) VALUES
-(1, 'admin', '!?admin15?16', 'piotr210694@wp.pl', NULL, NULL, NULL, '2016-01-24'),
+(1, 'admin', '!?admin15?16', 'piotr210694@wp.pl', 343443, 'adam', 'Kowalski', '2016-01-24'),
 (2, 'brzoska', 'brzoska', 'brzo@mail.ff', 5454554, NULL, NULL, '2016-01-24');
 
 --

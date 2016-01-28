@@ -1,4 +1,5 @@
 <?php	
+
 	 // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
 		// or die('Brak połączenia z serwerem MySQL');
 	// $db = @mysql_select_db('1066219_MqQ', $connection)

@@ -181,7 +181,7 @@
 						</td>
 					<td>
 						<form action="php/edytuj.php" method="post">
-						<input type="tel" name="ephone" placeholder="Podaj nowy nr telefonu...">
+						<input type="number" name="ephone" placeholder="Podaj nowy nr telefonu...">
 						<input type="submit" name="" value="Edytuj">
 						</form>	
 					</td>
@@ -211,6 +211,12 @@
 					</tbody>
 		
 				</table>
+				<?php 
+							if(isset($_SESSION['komunikat']))
+							{
+								echo $_SESSION['komunikat'];
+							}							
+						?>
 				</div>
 				<div class="col-md-3"></div>
             </div>

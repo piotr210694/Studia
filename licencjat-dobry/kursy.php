@@ -6,9 +6,6 @@
 	include('php/connectMenu.php');
 ?>
 
-<?php 
-	include('user/php/connection.php');
-?>
 
 <!doctype html>
 
@@ -199,6 +196,8 @@
 				$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 				include('admin/article/php/comment/showKom.php'); //sciagamy dane komentarzy
 				include('php/connectKursy1.php');
+				include('user/php/connection.php');
+
 
 				
 				//Form do komentarzy

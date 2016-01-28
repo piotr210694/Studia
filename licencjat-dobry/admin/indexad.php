@@ -47,7 +47,7 @@
          <li><a href='article/articleManageKat.php'>Przeglądaj</a></li>
       </ul>
    </li>
-    <li><a >Samouczki</a>
+    <li ><a >Samouczki</a>
       <ul>
          <li><a href='#'>Stwórz</a></li>
          <li><a href='#'>Przeglądaj</a></li>
