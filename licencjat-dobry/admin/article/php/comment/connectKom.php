@@ -6,12 +6,22 @@ session_start();
 		// or die('Nie mogę połączyć się z bazą danych');
 
 
-	 $connection = @mysql_connect('localhost', 'root', 'root')
+	 // $connection = @mysql_connect('localhost', 'root', 'root')
+		// or die('Brak połączenia z serwerem MySQL');
+	// $db = @mysql_select_db('sysinf2', $connection)
+		// or die('Nie mogę połączyć się z bazą danych');
+		
+		 $connection = @mysql_connect('mysql.cba.pl', 'piotr210694', '!?BazaIO!')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf2', $connection)
+	$db = @mysql_select_db('sysinf_cba_pl', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
+		
+		
+		
+		
 		$url = $_SESSION['url'];
-		$link = str_replace("/licencjat-dobry/", '', $url);
+		$link = substr($url, 0 -1); // /licencjat-dobry/
+		// $link = str_replace("/", ' ', $url); // /licencjat-dobry/
 		$link = str_replace("%20",' ', $link);
 		
 		
@@ -49,7 +59,11 @@ session_start();
 			$mid = $wiersz['max']+1;
 		}
 		$zapytanie = @mysql_query("INSERT INTO `komentarz-artykul` (`id`, `id_komentarza`, `id_artykulu`, `id_uzytkownika`) VALUES ('$mid', '$idK', '$idA', '$idU')") or die(mysql_error());
-		header("Location: ../../artykuly/$title.php");
+		echo $title;
+		echo $idA;
+		echo $link;
+	
+		// header("Location: ../../artykuly/$title.php");
 	}
 	else
 	{

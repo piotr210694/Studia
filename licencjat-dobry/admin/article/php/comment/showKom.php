@@ -4,14 +4,21 @@
 	// $db = @mysql_select_db('1066219_MqQ', $connection)
 		// or die('Nie mogę połączyć się z bazą danych');
 
-
-
-	 $connection = @mysql_connect('localhost', 'root', 'root')
+	 // $connection = @mysql_connect('localhost', 'root', 'root')
+		// or die('Brak połączenia z serwerem MySQL');
+	// $db = @mysql_select_db('sysinf2', $connection)
+		// or die('Nie mogę połączyć się z bazą danych');
+		
+		 $connection = @mysql_connect('mysql.cba.pl', 'piotr210694', '!?BazaIO!')
 		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf2', $connection)
+	$db = @mysql_select_db('sysinf_cba_pl', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
+		
+		
+		
+		
 		$url = $_SESSION['url'];
-		$link = str_replace("/licencjat-dobry/", '', $url);
+		//$link = str_replace("/licencjat-dobry/", '', $url);
 		$link = str_replace("%20",' ', $link);
 	
 		//Znalezienie artykulu w jakim sie znajdujemy

@@ -13,6 +13,12 @@
 		or die('Nie mogę połączyć się z bazą danych');
 		
 		
+		 // $connection = @mysql_connect('mysql.cba.pl', 'piotr210694', '!?BazaIO!')
+		// or die('Brak połączenia z serwerem MySQL');
+	// $db = @mysql_select_db('sysinf_cba_pl', $connection)
+		// or die('Nie mogę połączyć się z bazą danych');
+		
+		
 //tworzenie zmiennych tablicowych
 $zapytanie = mysql_query("SELECT * FROM `kurs`") or die(mysql_error());
 $maxid1 = mysql_num_rows($zapytanie);

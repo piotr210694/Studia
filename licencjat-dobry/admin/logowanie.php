@@ -50,11 +50,11 @@
         <h4 class="modal-title" ><span class="glyphicon glyphicon-user">&nbsp;</span>Logowanie</h4>
       </div>
       <div class="modal-body" style="padding:30px 50px;">
-		<label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
-		<p><label><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login"/>
+		<p><label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
+		<label class="label"><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login"/>
 		</label></p>
-		<label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
-		<p><label><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
+		<p><label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
+		<label class="label"><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
 		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
 		<?php
 	if(isset($_SESSION['bladad'])){

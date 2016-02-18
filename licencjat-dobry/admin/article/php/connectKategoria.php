@@ -10,6 +10,11 @@
 	$db = @mysql_select_db('sysinf2', $connection)
 		or die('Nie mogę połączyć się z bazą danych');
 		
+		 // $connection = @mysql_connect('mysql.cba.pl', 'piotr210694', '!?BazaIO!')
+		// or die('Brak połączenia z serwerem MySQL');
+	// $db = @mysql_select_db('sysinf_cba_pl', $connection)
+		// or die('Nie mogę połączyć się z bazą danych');
+		
 //szukamy ile jest kategorii
 $zapytanie = mysql_query("SELECT * FROM `kategoria`") or die(mysql_error());
 $ileK = mysql_num_rows($zapytanie);

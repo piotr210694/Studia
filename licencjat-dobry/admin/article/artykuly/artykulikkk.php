@@ -169,7 +169,8 @@
 			
 			<div class="container-fluid" >
             <div class="row">
-				<div class="col-md-12"><h1> tresc naglowka </h1></div> 
+				<div class="col-md-12"><h1>tytul<h1>
+<p>siema</p></div> 
             </div>
 			<hr>
 			</div>

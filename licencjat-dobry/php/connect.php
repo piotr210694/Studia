@@ -11,6 +11,12 @@
 	// $db_password = "QZ6hBU24ArcvPC";
 	// $db_name = "1066219_MqQ";
 	
+	// $host = "mysql.cba.pl";
+	// $db_user = "piotr210694";
+	// $db_password = "!?BazaIO!";
+	// $db_name = "sysinf_cba_pl";
+	
+	
 	
     // $mysql_server = "localhost"; 	// serwer
     // $mysql_admin = "root";			// nazwa admina
