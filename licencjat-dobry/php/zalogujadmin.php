@@ -29,7 +29,7 @@
 			{
 				$ile_userow = $rezultat->num_rows;
 				if($ile_userow>0){	
-					$_SESSION['zalogowanyad'] = true; //uzytkownik jest zalogowany
+					
 					
 					$wiersz = $rezultat->fetch_assoc(); //tablica asocjacyjna by moc wyciagnac z sql
 					//utworzenie globalnych zmiennych sesyjnych
@@ -41,9 +41,11 @@
 					
 					if($user=="admin" and $pass=="!?admin15?16")
 					{
-					$rezultat->close();
-					header('Location: ../admin/indexad.php');
-					unset($_SESSION['bladad']); //usuwa zmienna po poprawnym wykonaniu
+						$_SESSION['zalogowany'] = true; //uzytkownik jest zalogowany
+						$_SESSION['zalogowanyad'] = true; //uzytkownik jest zalogowany
+						$rezultat->close();
+						header('Location: ../admin/indexad.php');
+						unset($_SESSION['bladad']); //usuwa zmienna po poprawnym wykonaniu
 					}
 					else
 					{

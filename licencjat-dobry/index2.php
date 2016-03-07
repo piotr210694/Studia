@@ -16,60 +16,46 @@
 
 <html LANG="pl">
   
-  <head>
-	<meta charset="UTF-8" />
-    <title>New Page</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<title>PSI - Projektuj z pomysłem</title>
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" href="01.png" type="image/png" sizes="16x16">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- 
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+		<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+		-->
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
 	
-	<!-- MENU -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="js/script.js"></script>
-	<link rel="stylesheet" href="css/styles.css">
+		<!-- MENU -->
+		<!--
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		-->
+		<script src="js/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="js/script.js"></script>
+		<link rel="stylesheet" href="css/styles.css">
 	
-	<!-- LOGOWANIE -->
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#dialog" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 500
-      },
-      hide: {
-        effect: "explode",
-        duration: 500
-      }
-    });
- 
-    $( "#opener" ).click(function() {
-      $( "#dialog" ).dialog( "open" );
-    });
-  });
-  </script>
-  </head>
+		<!-- LOGOWANIE -->
+		<!--
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		-->
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/jquery-ui.js"></script>
+	</head>
   
-  <body>
-
-
-<!-- Panel logowania -->
-<div id="dialog" title="Panel logowania">
-		<form action="php/zaloguj.php" method="post">
-		Login: <input type="text" name="login" /><br><br>
-		Hasło: <input type="password" name="password" /><br><br>
-		<input type="submit" value="Zaloguj się"><br>
-		Nie masz konta? <a href="rejestracja.php">Zarejestruj się!</a>
-		</form>
-</div>
+  
+	<body>
 
 <!-- Usuniecie konta - MODAL -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -83,7 +69,7 @@
       </div>
       <div class="modal-footer">
 		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-default" >
+		<input type="submit" value="Usuń" class="btn btn-danger" >
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
     </div>
@@ -104,18 +90,43 @@
    <li><a href='contact/kontaktlog.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-	  		<?php 
-		$ileA=$_SESSION['ileA'];
-		for($i=0; $i<$ileA; $i++)
+	  	<?php 
+		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="';
-			echo $_SESSION['linkA'][$i];
-			echo '"><span>';
-			echo $_SESSION["tytulA"][$i];
-			echo '</span></a></li>';	
+			echo '<li><a href="">'.$kategoria[$i].'</a>';
+			echo '<ul>';
+			if($ileA[$i]<4)
+			{
+				for($j=0; $j<$ileA[$i]; $j++)
+				{
+					echo '<li><a href="';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+			}
+			else
+			{
+				for($j=0; $j<3; $j++)
+				{
+					echo '<li><a href="';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+				echo '<li class="last" ><a href="';
+				echo "";
+				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				echo '</li>';
+			}
+			
+			echo '</ul>';
+			echo '</li>';
 		}
 		?>
+		
       </ul>
+	 
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
 		<ul>
@@ -134,7 +145,7 @@
 		<ul>
 			<li><a href='php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='user/manage.php'><span>Przeglądaj</span></a></li>
-			<li><a href='#'  data-toggle="modal" data-target="#myModal"><span>Usuń konto</span></a></li>
+			<li><a href='#'  data-toggle="modal" data-target="#myModal3"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
 </ul>
@@ -144,9 +155,9 @@
 			</div>
 			
 			
-			<div class="container-fluid" >
+			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 ">
 				<h1><?php echo '<span style="color:blue">'.$_SESSION['login'].'</span>'.', witaj na naszej stronie!'; ?></h1> 
 				<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
 			
@@ -164,33 +175,47 @@
 			
 				<p>Fusce quis vehicula purus, ut fermentum quam. Suspendisse cursus dui ac est convallis, sit amet egestas lorem sodales. Praesent nec nunc mattis, hendrerit mauris quis, dignissim nisi. Pellentesque semper faucibus urna vel tempus. Suspendisse egestas lacus ornare ligula mattis, et pulvinar urna sodales. Suspendisse tristique eget lacus sit amet dapibus. Nam quis imperdiet velit. Vestibulum consectetur rutrum tortor, sit amet fringilla nisi rhoncus id. Aenean sit amet odio elit. Nulla orci quam, eleifend quis sapien sed, vestibulum elementum urna. Sed dapibus ligula vitae turpis bibendum, in tempus magna bibendum. Aenean ut purus diam. Praesent porta velit ut dui fringilla egestas. Donec dignissim non sapien at imperdiet. Quisque bibendum massa ligula, vel elementum eros iaculis quis. Maecenas velit nisl, imperdiet vitae dui sed, convallis placerat enim.</p>
 				
-				<div>
-<form enctype="multipart/form-data" action="index.php" method="POST">
-<input type="hidden" name="MAX_FILE_SIZE" value="50000" />
-<input name="plik" type="file" />
-<input type="submit" value="Wyślij plik" />
-</form>
-</div>
 
-<?php
-$plik_tmp = $_FILES['plik']['tmp_name'];
-$plik_nazwa = $_FILES['plik']['name'];
-$plik_rozmiar = $_FILES['plik']['size'];
-
-if(is_uploaded_file($plik_tmp)) {
-     move_uploaded_file($plik_tmp, "$plik_nazwa");
-    echo "Plik: <strong>$plik_nazwa</strong> o rozmiarze 
-    <strong>$plik_rozmiar bajtów</strong> został przesłany na serwer!";
-}
-?> 
 				</div>
+
             </div>
           </div>
         </div>
-      </div>
-    </div>
 	
-    
-  </body>
+      </div>
+	  
+	 
+	  
+	  
+    </div>
+				
+	<div class = "navbar footer navbar-fixed-bottom " >
+		<hr style=" height: 5px; border: 0; color:black;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+
+		 <div class="container" >
+		 <div class="row">
+				<div class="col-md-12 " ">
+				<p class="text-center" style=" color:black;">************************** ...Tu będzie stopka...**************************</p>
+				</div>
+		</div>
+		</div>
+	</div>
+   
+<?php 
+	if(isset($_SESSION['zalogowanyad']))
+	{
+		echo '<div class="okno">';
+		echo	'<a href="admin/indexad.php">';
+		echo		'<div class=text>';
+		echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
+		echo			'Panel administratora';
+		echo		'</div>';
+		echo	'</a>';
+		echo '</div>';
+	}
+?>
+
+	
+  </body><script type="text/javascript">document.getElementsByTagName("div")[0].style.display = "none"; </script>
 
 </html>

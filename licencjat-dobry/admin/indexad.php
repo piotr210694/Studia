@@ -11,88 +11,77 @@
 
 <html LANG="pl">
   
-  <head>
-	<meta charset="UTF-8" />
-    <title>New Page</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-	
-	<!-- MENU INNE -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="js/script.js"></script>
-	<link rel="stylesheet" href="css/styles.css">
-	
-
-
-	  
-  </head>
+	<head>
+		<?php 
+			include('head.php');
+		?> 
+		
+		
+	</head>
   
-  <body>
+	<body>
+
+
+ <div class="okno">
+	<a href="../index.php">
+		<div class=text>
+			<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			Strona główna
+		</div>
+	</a>
+ </div>
 
 
  <div class="container">
-      <div class="row">
-        <div class="col-md-12">      
-            <div class="container">
-<!-- MENU -->
-    <div id='cssmenu' class="navbar-fixed-top">
-<ul>
-   <li><a href='indexad.php'>Strona główna</a></li>
-   <li><a >Artykuły</a>
-      <ul>
-         <li><a href='article/articleCreate.php'>Stwórz</a></li>
-         <li><a href='article/articleManageKat.php'>Przeglądaj</a></li>
-      </ul>
-   </li>
-    <li ><a >Samouczki</a>
-      <ul>
-         <li><a href='#'>Stwórz</a></li>
-         <li><a href='#'>Przeglądaj</a></li>
-      </ul>
-   </li>
-    <li><a >Quizy</a>
-      <ul>
-         <li><a href='#'>Stwórz</a></li>
-         <li><a href='#'>Przeglądaj</a></li>
-      </ul>
-   </li>
-    <li><a >Kursy</a>
-      <ul>
-         <li><a href='course/kursAdd.php'>Stwórz</a></li>
-         <li><a href='course/kursView.php'>Przeglądaj</a></li>
-      </ul>
-   </li>
-    <li><a href="">Przeglądaj konta</a></li>
-    <li><a >Twoje konto</a>
-      <ul>
-         <li><a href='../php/logoutadmin.php'>Wyloguj się</a></li>
-         <li><a href='manage/manage.php'>Przeglądaj</a></li>
-      </ul>
-   </li>
-</ul>
-</div>
-<!-- KONIEC MENU -->
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>Artykuły</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="article/articleCreate.php">Stwórz</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="article/articleManageKat.php">Przeglądaj</a>
+                                    </td>
+                                </tr>
+                           </table>
+                        </div>
+                    </div>
+                </div>
 
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">      
-			
-			
-			
-		
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a  href="../php/logoutadmin.php"><span class="glyphicon glyphicon-off text-danger">
+                            </span>Wyloguj</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+
+<div class="col-sm-9 col-md-9 panel-primary" >
+            <div class="well">
+                <h1> Witaj w panelu administratora!</h1>
+            </div>
+        </div>
     </div>
-	 </div>
-        </div>
-      </div>
+</div>
  
-	
+
     
   </body>
 

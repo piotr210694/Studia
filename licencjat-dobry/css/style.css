@@ -1,12 +1,81 @@
 /* Make something awesome! */
 body{
 	margin: 0px !important;
-	padding:50px;
+}
+
+.wys
+{
+	margin-top: 50px;
 }
 
 p{
 	text-align:justify;
 }
+
+/* Wysrodkowanie w pionie zawartosci tabeli */
+/*td
+{
+	vertical-align:middle !important;
+}
+*/
+
+/* Kolorowanie walidacji HTML 5 */
+/*
+input:invalid {
+  background-color: #ffdddd;
+}
+
+input:valid {
+  background-color: #7EF77E;
+}
+
+input:required {
+  border-color: #800000;
+  border-width: 1px;
+}
+*/
+
+#formularz label{
+	font-size: 5px;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+ 
+
+ 
+#formularz div{
+ margin-top: 1em; 
+}
+ 
+#formularz div input{
+ width: 170px;
+}
+ 
+textarea{
+ vertical-align: top;
+ height: 5em;
+ width: 170px; 
+}
+ 
+input.invalid, textarea.invalid{
+    border: 2px solid red;
+}
+ 
+input.valid, textarea.valid{
+    border: 2px solid green;
+}
+ 
+.blad {
+ color: red; 
+}
+ 
+.ok {
+ color: green; 
+}
+
+/* ****************************************************** */
+
 
 /* KOLORY LINKOW z DIALOGU*/
 #dialog a:link
@@ -25,14 +94,81 @@ p{
 	}
 	
 /* MENU LOGOWANIA*/
-	 .modal-header, h4, .close {
+/* , h4, .close */
+ .modal-header{
       background-color: #5cb85c;
       color:white !important;
       text-align: center;
       font-size: 20px;
   }
+  
+  /* Zmiana hasła */
+  #myModal2 .modal-header{
+      background-color: #428bca;
+      color:white !important;
+      text-align: center;
+      font-size: 20px;
+  }
+  
+  /* Usuniecie*/
+    #myModal3 .modal-header{
+      background-color: #d9534f;
+      color:white !important;
+      text-align: center;
+      font-size: 20px;
+  }
+  
   .modal-footer {
       background-color: #f9f9f9;
   }
 
+  /* Nadpisanie control label - potrzebne przy manage.php wyrowanie ikon*/
+.control-label {
+    text-align: left !important;
+}
 
+/* Nadpisanie bootstrap - stopk nie FIXED*/
+.navbar-fixed-bottom
+{
+	position: relative !important;
+	bottom: 5px !important;
+}
+		
+		.okno
+		{
+			z-index: 999999;
+			position: fixed;
+			width: 225px;
+			top: 50%;
+			left: -102px;
+			border-width: 2px 2px 2px 2px;
+			border-style: solid;
+			border-color: #285e8e;
+			transform: rotate(-90deg);
+			text-align: center;
+			background-color: #3276b1;
+			border-radius: 0 0 10px 10px;
+			opacity: 0.5;
+		}
+		
+		.text
+		{
+			color: #dddddd;
+			padding: 5px 0 3px 0px;
+		}
+		
+		.ikona
+		{
+			transform: rotate(-270deg);
+			color: #285e8e;
+		}
+		
+		.okno:hover
+		{
+			opacity: 0.9;
+		}
+		
+		.okno a:hover 
+		{
+			text-decoration: none !important;
+		}	

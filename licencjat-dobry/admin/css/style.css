@@ -1,3 +1,4 @@
+/*
 body
 {
 	margin: 0px !important;
@@ -5,6 +6,7 @@ body
 	color: gray;
 	background-color: gray; !important
 }
+*/
 
 /* KOLORY LINKOW z DIALOGU*/
 #dialog a:link
@@ -23,6 +25,7 @@ body
 	}
 	
 /* MENU LOGOWANIA*/
+/*
 	 .modal-header, h4, .close {
       background-color: #5cb85c;
       color:white !important;
@@ -32,4 +35,46 @@ body
   .modal-footer {
       background-color: #f9f9f9;
   }
+  */
+  
+  /* Panel do przejscia na strone glowna*/
+  .okno
+		{
+			position: fixed;
+			z-index: 99999;
+			width: 200px;
+			top: 50%;
+			right: -88px;
+			border-width: 2px 2px 2px 2px;
+			border-style: solid;
+			border-color: #4cae4c;
+			text-align: center;
+			background-color: #5cb85c;
+			border-radius: 0 0 10px 10px;
+			transform: rotate(-270deg);
+			opacity: 0.5;
+		}
+		
+		.text
+		{
+			color: #e8e8e8;
+			padding: 5px 0 3px 0px;
+		}
+		
+		.ikona
+		{
+			text-align: right;
+			transform: rotate(-270deg);
+			color: #4cae4c;
+		}
+		
+		.okno:hover
+		{
+			opacity: 0.9;
+		}
+		
+		.okno a:hover 
+		{
+			text-decoration: none !important;
+		}	
   

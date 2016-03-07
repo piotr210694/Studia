@@ -76,7 +76,7 @@
 
 
 <!-- Usuniecie konta - MODAL -->
-<div id="myModal2" class="modal fade" role="dialog">
+<div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -90,7 +90,7 @@
       </div>
       <div class="modal-footer">
 		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-default" >
+		<input type="submit" value="Usuń" class="btn btn-danger" >
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
     </div>
@@ -118,14 +118,37 @@
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
 	  	<?php 
-		$ileA=$_SESSION['ileA'];
-		for($i=0; $i<$ileA; $i++)
+		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="../../../';
-			echo $_SESSION['linkA'][$i];
-			echo '"><span>';
-			echo $_SESSION["tytulA"][$i];
-			echo '</span></a></li>';	
+			echo '<li><a href="">'.$kategoria[$i].'</a>';
+			echo '<ul>';
+			if($ileA[$i]<4)
+			{
+				for($j=0; $j<$ileA[$i]; $j++)
+				{
+					echo '<li><a href="../../../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+			}
+			else
+			{
+				for($j=0; $j<3; $j++)
+				{
+					echo '<li><a href="../../../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+				echo '<li class="last" ><a href="../../../';
+				echo "";
+				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				echo '</li>';
+			}
+			
+			echo '</ul>';
+			echo '</li>';
 		}
 		?>
       </ul>
@@ -150,7 +173,7 @@
 				echo '<ul>';
 					echo '<li><a href="../../../php/logout.php"><span>Wyloguj się</span></a></li>';
 					echo '<li><a href="../../../user/manage.php"><span>Przeglądaj</span></a></li>';
-					echo '<li><a href="#"  data-toggle="modal" data-target="#myModal2"><span>Usuń konto</span></a></li>';
+					echo '<li><a href="#"  data-toggle="modal" data-target="#myModal3"><span>Usuń konto</span></a></li>';
 				echo '</ul>';
 			echo '</li>';
 			}
@@ -167,6 +190,6 @@
 			</div>
 			
 			
-			<div class="container-fluid" >
+			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-12">

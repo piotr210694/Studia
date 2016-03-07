@@ -7,57 +7,66 @@
 	}
 ?>
 
+<?php 
+	include('../php/connectMenu.php');
+?>
+
 <!doctype html>
 
 <html LANG="pl">
   
-  <head>
-	<meta charset="UTF-8" />
-    <title>New Page</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<head>
+		<title>PSI - Projektuj z pomysłem</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" href="../01.png" type="image/png" sizes="16x16">
+		<link rel="stylesheet" href="../css/style.css">
+		
+		<!-- 
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+		<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+		-->
+		<link rel="stylesheet" href="../css/bootstrap-3.1.1/dist/css/bootstrap.css">
+
+		
+		<script src="../js/jquery.min.js" type="text/javascript"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+		
+		<!-- MENU -->
+		<!--
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
+		-->
+		<script src="../js/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="../js/jquery.form-validator.min.js" type="text/javascript"></script>
+		<script src="../js/script.js"></script>
+		<link rel="stylesheet" href="../css/styles.css">
 	
-	<!-- MENU -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="../js/script.js"></script>
-	<link rel="stylesheet" href="../css/styles.css">
+	<!-- WALIDACJA FORMULARZA -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- <script src="js/walidacja.js"></script> --> <!-- Nasz skrypt z walidacją -->
 	
-	<!-- LOGOWANIE -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	  <script>
-	  $(function dial() {
-		$( "#dialog" ).dialog({
-		  autoOpen: false,
-		  show: {
-			effect: "blind",
-			duration: 500
-		  },
-		  hide: {
-			effect: "explode",
-			duration: 500
-		  }
-		});
-	 
-		$( "#opener" ).click(function() {
-		  $( "#dialog" ).dialog( "open" );
-		});
-	  });
-	  </script>
-	  
-  </head>
+	  function post()
+		{
+			  var login = $('#login').val();
+			  var password = $('#password').val();
+			
+			
+			$.post('../php/zaloguj.php', {login:login, password:password},
+			function(data)
+			{
+				$('#result').html(data);
+			});
+		}
+		</script>
+	</head>
   
-  <body>
-
-
+	<body>
 <!-- Panel logowania -->
-  
 <div id="myModal" class="modal fade" role="dialog">
-  <form id="contact_form" action="../php/zaloguj.php" method="post" >
+  <form id="contact_form" action="php/zaloguj.php" method="post" >
   <div class="modal-dialog modal-sm">
     <!-- Modal content-->
     <div class="modal-content">
@@ -66,21 +75,15 @@
         <h4 class="modal-title" ><span class="glyphicon glyphicon-user">&nbsp;</span>Logowanie</h4>
       </div>
       <div class="modal-body" style="padding:30px 50px;">
-		<label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
-		<p><label><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login"/>
+		<p><label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
+		<label class="label"><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login" onkeydown = "if (event.keyCode == 13)	post();" />
 		</label></p>
-		<label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
-		<p><label><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
+		<p><label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
+		<label class="label"><input class="form-control" type="password" name="password" id="password" onkeydown = "if (event.keyCode == 13)	post();"  placeholder="Podaj hasło" />
+
+		</label></p>
+		<input id="submit_btn" class="submit_btn btn btn-success btn-block" value="Zaloguj" onclick="post();" onkeydown = "if (event.keyCode == 13)	post();" >
 		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
-		<?php
-	if(isset($_SESSION['blad'])){
-		echo $_SESSION['blad'];
-		// $message = "Błędny login lub hasło.";
-// echo "<script type='text/javascript'>alert('$message');</script>";
-	}
-?>
-		</label></p>
-		<button id="submit_btn" class="submit_btn btn btn-success btn-block" >Zaloguj</button>
    
     </label>
       </div>
@@ -98,6 +101,7 @@
 
 
 
+
     <div class="container">
       <div class="row">
         <div class="col-md-12">      
@@ -110,14 +114,37 @@
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
 	  	<?php 
-		$ileA=$_SESSION['ileA'];
-		for($i=0; $i<$ileA; $i++)
+		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="../';
-			echo $_SESSION['linkA'][$i];
-			echo '"><span>';
-			echo $_SESSION["tytulA"][$i];
-			echo '</span></a></li>';	
+			echo '<li><a href="">'.$kategoria[$i].'</a>';
+			echo '<ul>';
+			if($ileA[$i]<$ile+1)
+			{
+				for($j=0; $j<$ileA[$i]; $j++)
+				{
+					echo '<li><a href="../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+			}
+			else
+			{
+				for($j=0; $j<$ile; $j++)
+				{
+					echo '<li><a href="../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+				echo '<li class="last" ><a href="';
+				echo "";
+				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				echo '</li>';
+			}
+			
+			echo '</ul>';
+			echo '</li>';
 		}
 		?>
       </ul>
@@ -143,7 +170,7 @@
 			</div>
 			
 			
-			<div class="container-fluid" >
+			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6" style="padding:20px">
@@ -157,7 +184,7 @@
 						<label for="message">Treść</label>
 						<textarea type="text" class="form-control" rows="4" name="message" required></textarea>
 				</div>
-						<button type="submit" class="btn btn-default">Wyślij!</button>
+						<button type="submit" class="btn btn-primary btn-block">Wyślij!</button>
 						</form>			
 						<?php 
 							if(isset($_SESSION['komunikatKON']))
@@ -175,7 +202,7 @@
 	</div>
 	</div>
     
-  </body>
+  </body><script type="text/javascript">document.getElementsByTagName("div")[0].style.display = "none"; </script>
 
 </html>
 

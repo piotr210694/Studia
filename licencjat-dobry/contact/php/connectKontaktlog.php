@@ -13,7 +13,7 @@ if($_POST['email'] AND $_POST['message'])
 {
 	mail('piotr210694@wp.pl', $subject, $message, $header);
 	unset($_SESSION['komunikatKON']);
-	$_SESSION['komunikatKONlog'] = '<span style="color:green">E-mail został wysłany poprawnie!</span>';
+	$_SESSION['komunikatKONlog'] = '<br><div class="alert alert-success"><strong>Sukces!</strong> E-mail został wysłany!</div>';
 	header('Location: ../kontaktlog.php');
 }
 else

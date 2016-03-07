@@ -1,21 +1,11 @@
 <?php
 session_start();
 
- // $connection = @mysql_connect('userdb1', '1066219_MqQ', 'QZ6hBU24ArcvPC')
-		// or die('Brak połączenia z serwerem MySQL');
-	// $db = @mysql_select_db('1066219_MqQ', $connection)
-		// or die('Nie mogę połączyć się z bazą danych');
-
-
-	 $connection = @mysql_connect('localhost', 'root', 'root')
-		or die('Brak połączenia z serwerem MySQL');
-	$db = @mysql_select_db('sysinf2', $connection)
-		or die('Nie mogę połączyć się z bazą danych');
-
-		 // $connection = @mysql_connect('mysql.cba.pl', 'piotr210694', '!?BazaIO!')
-		// or die('Brak połączenia z serwerem MySQL');
-	// $db = @mysql_select_db('sysinf_cba_pl', $connection)
-		// or die('Nie mogę połączyć się z bazą danych');
+	//Nawiązujemy połączenie z bazą
+	require_once "connect.php"; //wymaga pliku w kodzie
+	$connection = @mysql_connect($host, $db_user, $db_password) or die('Brak połączenia z serwerem MySQL');
+	$db = @mysql_select_db($db_name, $connection) or die('Nie mogę połączyć się z bazą danych');
+	//*****************************
 
 	
 		$email = $_POST['email'];
@@ -41,14 +31,14 @@ if($_POST['email'] AND $_POST['email']==$bazamail)
 {
 	mail($email, $subject, $message, $header);
 		unset($_SESSION['bladremind']);
-	$_SESSION['komunikatremind'] = '<span style="color:green">Operacja odzyskiwania hasła przebiegła pomyślnie!</span>'.'<br>'.'Na podany adres e-mail została wysłana wiadomość z danymi potrzebnymi do zalogowania.';
+	$_SESSION['komunikatremind'] = '<span style="color:green">Operacja odzyskiwania hasła przebiegła pomyślnie!</span>'.'<br>'.'Na podany adres e-mail została wysłana wiadomość z danymi potrzebnymi do zalogowania. '.'<a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Zaloguj się</a>';
 	header('Location: ../remindpass.php');
 
 }
 else
 {
 	unset($_SESSION['komunikatremind']);
-	$_SESSION['bladremind'] = '<span style="color:red">Tego adresu e-mail nie ma w naszej bazie! </span>'.'<a href="">Załóż konto</a>';
+	$_SESSION['bladremind'] = '<span style="color:red">Tego adresu e-mail nie ma w naszej bazie! </span>'.'<a href="registration.php">Załóż konto</a>';
 	header('Location: ../remindpass.php');
 }
 	

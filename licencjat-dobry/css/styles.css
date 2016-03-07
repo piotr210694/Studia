@@ -21,6 +21,17 @@
   box-sizing: border-box;
   text-align: left;
 }
+
+/* Nadpisanie ostatniego elementu - pokaz więcej */
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li .last  a,
+#cssmenu  #menu-button  {
+ 
+  text-align: center;
+}
+
+
 #cssmenu:after,
 #cssmenu > ul:after {
   content: ".";
@@ -141,6 +152,12 @@
   font-weight: 400;
   background: #333333;
 }
+/* Nadpisanie dla .last POKAZ WIECEJ */
+#cssmenu ul ul li .last a {
+  color: #333333;
+  background: #dddddd;
+}
+
 #cssmenu ul ul li:last-child > a,
 #cssmenu ul ul li.last-item > a {
   border-bottom: 0;

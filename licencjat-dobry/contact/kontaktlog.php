@@ -9,67 +9,51 @@
 
 <!-- Łaczymy się i wyciagamy dane-->	
 <?php 
-	include('../user/php/connection.php');
+	include('../php/viewManage.php');
+	include('../php/connectMenu.php');
 ?>
 
 <!doctype html>
 
 <html LANG="pl">
   
-  <head>
-	<meta charset="UTF-8" />
-    <title>New Page</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+	<head>
+		<title>PSI - Projektuj z pomysłem</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" href="../01.png" type="image/png" sizes="16x16">
+		<link rel="stylesheet" href="../css/style.css">
+		
+		<!-- 
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+		<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+		-->
+		<link rel="stylesheet" href="../css/bootstrap-3.1.1/dist/css/bootstrap.css">
+
+		
+		<script src="../js/jquery.min.js" type="text/javascript"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+		
+		<!-- MENU -->
+		<!--
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
+		-->
+		<script src="../js/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="../js/jquery.form-validator.min.js" type="text/javascript"></script>
+		<script src="../js/script.js"></script>
+		<link rel="stylesheet" href="../css/styles.css">
 	
-	<!-- MENU -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="../js/script.js"></script>
-	<link rel="stylesheet" href="../css/styles.css">
+	<!-- WALIDACJA FORMULARZA -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- <script src="js/walidacja.js"></script> --> <!-- Nasz skrypt z walidacją -->
 	
-	<!-- LOGOWANIE -->
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#dialog" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 500
-      },
-      hide: {
-        effect: "explode",
-        duration: 500
-      }
-    });
- 
-    $( "#opener" ).click(function() {
-      $( "#dialog" ).dialog( "open" );
-    });
-  });
-  </script>
-  </head>
+	</head>
   
   <body>
-
-
-<!-- Panel logowania -->
-<div id="dialog" title="Panel logowania">
-		<form action="php/zaloguj.php" method="post">
-		Login: <input type="text" name="login" /><br><br>
-		Hasło: <input type="password" name="password" /><br><br>
-		<input type="submit" value="Zaloguj się"><br>
-		Nie masz konta? <a href="rejestracja.php">Zarejestruj się!</a>
-		</form>
-</div>
-
 <!-- Usuniecie konta - MODAL -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -83,7 +67,7 @@
       </div>
       <div class="modal-footer">
 		<form action="../user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-default" >
+		<input type="submit" value="Usuń" class="btn btn-danger" >
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
     </div>
@@ -105,14 +89,37 @@
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
 	  	<?php 
-		$ileA=$_SESSION['ileA'];
-		for($i=0; $i<$ileA; $i++)
+		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="../';
-			echo $_SESSION['linkA'][$i];
-			echo '"><span>';
-			echo $_SESSION["tytulA"][$i];
-			echo '</span></a></li>';	
+			echo '<li><a href="">'.$kategoria[$i].'</a>';
+			echo '<ul>';
+			if($ileA[$i]<$ile+1)
+			{
+				for($j=0; $j<$ileA[$i]; $j++)
+				{
+					echo '<li><a href="../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+			}
+			else
+			{
+				for($j=0; $j<$ile; $j++)
+				{
+					echo '<li><a href="../';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+				echo '<li class="last" ><a href="';
+				echo "";
+				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				echo '</li>';
+			}
+			
+			echo '</ul>';
+			echo '</li>';
 		}
 		?>
       </ul>
@@ -134,7 +141,7 @@
 		<ul>
 			<li><a href='../php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='../user/manage.php'><span>Przeglądaj</span></a></li>
-			<li><a href='#'  data-toggle="modal" data-target="#myModal"><span>Usuń konto</span></a></li>
+			<li><a href='#'  data-toggle="modal" data-target="#myModal3"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
 </ul>
@@ -144,7 +151,7 @@
 			</div>
 			
 			
-						<div class="container-fluid" >
+						<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6" style="padding:20px">
@@ -152,13 +159,13 @@
 				<form action="php/connectKontaktlog.php" method="post" role="form">
 				<div class="form-group"  >
 						<label for="email">Email</label>
-						<input type="email" class="form-control" name="email" value="<?php echo $_SESSION['email']; ?>" required>
+						<input type="email" class="form-control" name="email" value="<?php echo $email; ?>" required>
 				</div>
 				<div class="form-group"  >
 						<label for="message">Treść</label>
 						<textarea type="text" class="form-control" rows="4" name="message" required></textarea>
 				</div>
-						<button type="submit" class="btn btn-default">Wyślij!</button>
+						<button type="submit" class="btn btn-primary btn-block">Wyślij!</button>
 						</form>			
 						<?php 
 							if(isset($_SESSION['komunikatKONlog']))
@@ -174,8 +181,22 @@
 		</div>
 	</div>
 	</div>
-	
+
+
+	<?php 
+	if(isset($_SESSION['zalogowanyad']))
+	{
+		echo '<div class="okno">';
+		echo	'<a href="admin/indexad.php">';
+		echo		'<div class=text>';
+		echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
+		echo			'Panel administratora';
+		echo		'</div>';
+		echo	'</a>';
+		echo '</div>';
+	}
+	?>	
     
-  </body>
+	</body><script type="text/javascript">document.getElementsByTagName("div")[0].style.display = "none"; </script>
 
 </html>

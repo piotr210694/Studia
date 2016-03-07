@@ -15,29 +15,45 @@
 
 <html LANG="pl">
   
-  <head>
-	<meta charset="UTF-8" />
-    <title>New Page</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-	
-	<!-- MENU -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="js/script.js"></script>
-	<link rel="stylesheet" href="css/styles.css">
-	
-	<!-- LOGOWANIE -->
+	<head>
+		<meta charset="UTF-8" />
+		<title>PSI - Projektuj z pomysłem</title>
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" href="01.png" type="image/png" sizes="16x16">
+		<link rel="stylesheet" href="css/style.css">
+		
+		<!-- 
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+		<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+		-->
+		<link rel="stylesheet" href="css/bootstrap-3.1.1/dist/css/bootstrap.css">
 
-
-	  
-  </head>
+		
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		
+		<!-- MENU -->
+		<!--
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
+		-->
+		<script src="js/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="js/jquery.form-validator.min.js" type="text/javascript"></script>
+		<script src="js/script.js"></script>
+		<link rel="stylesheet" href="css/styles.css">
+	
+	<!-- WALIDACJA FORMULARZA -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- <script src="js/walidacja.js"></script> --> <!-- Nasz skrypt z walidacją -->
+	
+	<!-- Walidacja okna modalnego logowania -->
+	<script src="js/walidacjaModLog.js"></script>
+	
+	</head>
   
-  <body>
+  <body >
 <!-- Panel logowania -->
-  
 <div id="myModal" class="modal fade" role="dialog">
   <form id="contact_form" action="php/zaloguj.php" method="post" >
   <div class="modal-dialog modal-sm">
@@ -49,20 +65,14 @@
       </div>
       <div class="modal-body" style="padding:30px 50px;">
 		<p><label for="login"><span class="glyphicon glyphicon-user"></span> Login</label>
-		<label class="label"><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login"/>
+		<label class="label"><input class="form-control" type="text" name="login" id="login" placeholder="Podaj login" onkeydown = "if (event.keyCode == 13)	post();" />
 		</label></p>
 		<p><label for="passwordw"><span class="glyphicon glyphicon-eye-open"></span> Hasło</label>		
-		<label class="label"><input class="form-control" type="password" name="password" id="password" placeholder="Podaj hasło" />
-		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
-		<?php
-	if(isset($_SESSION['blad'])){
-		echo $_SESSION['blad'];
-		// $message = "Błędny login lub hasło.";
-// echo "<script type='text/javascript'>alert('$message');</script>";
-	}
-?>
+		<label class="label"><input class="form-control" type="password" name="password" id="password" onkeydown = "if (event.keyCode == 13)	post();"  placeholder="Podaj hasło" />
+
 		</label></p>
-		<button id="submit_btn" class="submit_btn btn btn-success btn-block" >Zaloguj</button>
+		<input id="submit_btn" class="submit_btn btn btn-success btn-block" value="Zaloguj" onclick="post();" onkeydown = "if (event.keyCode == 13)	post();" >
+		<p><div id="result"></div></p> <!-- tu wyswietla bledy-->
    
     </label>
       </div>
@@ -100,14 +110,37 @@
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
 	  	<?php 
-		$ileA=$_SESSION['ileA'];
-		for($i=0; $i<$ileA; $i++)
+		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="';
-			echo $_SESSION['linkA'][$i];
-			echo '"><span>';
-			echo $_SESSION["tytulA"][$i];
-			echo '</span></a></li>';	
+			echo '<li><a href="">'.$kategoria[$i].'</a>';
+			echo '<ul>';
+			if($ileA[$i]<$ile+1)
+			{
+				for($j=0; $j<$ileA[$i]; $j++)
+				{
+					echo '<li><a href="';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+			}
+			else
+			{
+				for($j=0; $j<$ile; $j++)
+				{
+					echo '<li><a href="';
+					echo $linki[$i][$j];
+					echo '">'.$tytuly[$i][$j].'</a>';
+					echo '</li>';
+				}
+				echo '<li class="last" ><a href="';
+				echo "";
+				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				echo '</li>';
+			}
+			
+			echo '</ul>';
+			echo '</li>';
 		}
 		?>
       </ul>
@@ -132,8 +165,7 @@
 <!-- KONIEC MENU-->
 			</div>
 			
-			
-			<div class="container-fluid" >
+			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-12">
 				<h1>Witaj na naszej stronie!</h1> 
@@ -154,25 +186,7 @@
 			
 				<p>Fusce quis vehicula purus, ut fermentum quam. Suspendisse cursus dui ac est convallis, sit amet egestas lorem sodales. Praesent nec nunc mattis, hendrerit mauris quis, dignissim nisi. Pellentesque semper faucibus urna vel tempus. Suspendisse egestas lacus ornare ligula mattis, et pulvinar urna sodales. Suspendisse tristique eget lacus sit amet dapibus. Nam quis imperdiet velit. Vestibulum consectetur rutrum tortor, sit amet fringilla nisi rhoncus id. Aenean sit amet odio elit. Nulla orci quam, eleifend quis sapien sed, vestibulum elementum urna. Sed dapibus ligula vitae turpis bibendum, in tempus magna bibendum. Aenean ut purus diam. Praesent porta velit ut dui fringilla egestas. Donec dignissim non sapien at imperdiet. Quisque bibendum massa ligula, vel elementum eros iaculis quis. Maecenas velit nisl, imperdiet vitae dui sed, convallis placerat enim.</p>
 				
-				<div>
-<form enctype="multipart/form-data" action="index.php" method="POST">
-<input type="hidden" name="MAX_FILE_SIZE" value="50000" />
-<input name="plik" type="file" />
-<input type="submit" value="Wyślij plik" />
-</form>
-</div>
 
-<?php
-$plik_tmp = $_FILES['plik']['tmp_name'];
-$plik_nazwa = $_FILES['plik']['name'];
-$plik_rozmiar = $_FILES['plik']['size'];
-
-if(is_uploaded_file($plik_tmp)) {
-     move_uploaded_file($plik_tmp, "$plik_nazwa");
-    echo "Plik: <strong>$plik_nazwa</strong> o rozmiarze 
-    <strong>$plik_rozmiar bajtów</strong> został przesłany na serwer!";
-}
-?> 
 				</div>
             </div>
           </div>
@@ -181,6 +195,6 @@ if(is_uploaded_file($plik_tmp)) {
     </div>
 	
     
-  </body>
+  </body><script type="text/javascript">document.getElementsByTagName("div")[0].style.display = "none"; </script>
 
 </html>
