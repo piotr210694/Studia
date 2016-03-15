@@ -615,7 +615,7 @@ $(document).ready(function() {
 	if(isset($_SESSION['zalogowanyad']))
 	{
 		echo '<div class="okno">';
-		echo	'<a href="admin/indexad.php">';
+		echo	'<a href="../admin/indexad.php">';
 		echo		'<div class=text>';
 		echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
 		echo			'Panel administratora';

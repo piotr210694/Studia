@@ -3,21 +3,35 @@
 			<hr>
 			</div>
 			
+<!-- SKRYPT DO POKAZANIA/UKRYCIA -->
+			<script>
+			$(document).ready(function()
+			{
+				$('.ukryte').hide();
+				$(function () {
+					$('.kliknij').click(function () {
+					$(this).next('div').slideToggle();
+				
+					$(this).parent().siblings().children().next().slideUp();
+				 
+						 return false;
+					 });
+				 });
+			});
+			</script>
 			<?php 
 			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
 			{
 				$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 				include('../php/comment/showKom.php'); //sciagamy dane komentarzy
-				
-
-				
+		
 				//Form do komentarzy
 									echo '<div class="container" >';
 				echo '<div class="row">';
 
 				echo '<div class="col-md-6" style="padding:20px; clear: left;">';
 				echo '<h3 style="">Komentarze: (';
-				echo $_SESSION['ileKom'];
+				echo $ileK;
 				echo ')</h3>';
 				echo '<form action="../php/comment/connectKom.php".php" method="post" role="form">';
 				echo '<div class="form-group"  >';
@@ -39,23 +53,74 @@
 				echo '<div class="col-md-6" style="padding:20px; clear: left;">';
 				//Panele z bootstrap
 				echo '<div class="panel-group">';
-				
-				for($i=0; $i<$_SESSION['ileKom']; $i++)
+				if($ileK <= $ogranicz)
 				{
-					echo '<div class="panel panel-primary">';
-					echo '<div class="panel-heading">';
-						echo '<div  class="text-right" >';
-						if(isset($_SESSION['data'])){echo $_SESSION['data'][$i];}
+					for($i=0; $i<$ileK; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div  class="text-right" >';
+							if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
 						echo '</div>';
-						echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
-						echo $_SESSION['loginKom'][$i];
-						echo '</span></strong> napisał:</div>';
-					echo '</div>';
-					echo '<div class="panel-body">';
-					if(isset($_SESSION['tresc'])){echo $_SESSION['tresc'][$i];}
-					echo '</div>';
-					echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
 				}
+				else
+				{
+					for($i=0; $i<$ogranicz; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div  class="text-right" >';
+							if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
+					
+					
+					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
+					echo '<div class="panel-heading text-center " style="cursor: pointer;">';
+					echo '***POKAŻ WSZYSTKIE KOMENTARZE***';
+					echo '</div>';
+					echo '</div>';
+					
+					
+					/////////////UKRYTE
+					echo '<div class="ukryte">';
+					for($ogranicz; $i<$ileK; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div  class="text-right" >';
+							if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
+					echo '</div>';
+					/////////////////////////
+				}
+
 				
 				echo '</div>';
 				echo '</div>';

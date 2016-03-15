@@ -7,27 +7,24 @@ session_start();
 	$db = @mysql_select_db($db_name, $connection) or die('Nie mogę połączyć się z bazą danych');
 	//*****************************
 		
-		
+		//DO LOKALNEGO
 		$url = $_SESSION['url'];
-		//$link = substr($url, 0 -1); // /licencjat-dobry/
-		$link = str_replace("/licencjat-dobry/", ' ', $url); // /licencjat-dobry/
-		$link = str_replace("php/comment/", ' ', $link); // /licencjat-dobry/
+		$link = str_replace("/licencjat-dobry/", '', $url); // /licencjat-dobry/
 		$link = str_replace("%20",' ', $link);
-		echo $link;
 		
+		//DO STRONY
+		// $url = $_SESSION['url'];
+		// $link = substr($url, 1); 
+		// $link = str_replace("%20",' ', $link);
+		//*****************************
 	
 	if($_POST['komentarz'])
 	{		
-$link2 = $link;
-		
-		$ins = @mysql_query("SELECT * FROM artykuly WHERE link='$link2'") or die(mysql_error());
+		$ins = @mysql_query("SELECT * FROM artykuly WHERE link = '$link'") or die(mysql_error());
 		while($wiersz = mysql_fetch_array($ins))
 		{
-			
 			$idA = $wiersz['id_artykulu'];
 			$title = $wiersz['tytul'];
-		echo $title;
-		echo $idA;
 		}
 		
 		$ins = @mysql_query("SELECT MAX(id_komentarza) AS max FROM `komentarz`") or die(mysql_error());
@@ -54,11 +51,7 @@ $link2 = $link;
 			$mid = $wiersz['max']+1;
 		}
 		$zapytanie = @mysql_query("INSERT INTO `komentarz-artykul` (`id`, `id_komentarza`, `id_artykulu`, `id_uzytkownika`) VALUES ('$mid', '$idK', '$idA', '$idU')") or die(mysql_error());
-
-		
-		
-	
-		// header("Location: ../../artykuly/$title.php");
+		header("Location: ../../artykuly/$title.php");
 	}
 	else
 	{

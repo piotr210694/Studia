@@ -53,7 +53,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="article/articleManageKat.php">Przeglądaj</a>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="article/articleManage.php">Przeglądaj</a>
                                     </td>
                                 </tr>
                            </table>

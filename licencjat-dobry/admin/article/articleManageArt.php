@@ -7,8 +7,9 @@
 	}
 ?>
 
-<?php 
+<?php 	
 	include('php/connectKategoria.php');
+	
 ?>
 
 
@@ -97,15 +98,13 @@
       <label for="sel1">Wybierz tytuł artykułu:</label>
       <p><select class="form-control" id="sel1" name="help">
 	        <?php 
-			$ileArt=$_SESSION['ileArt'];
-			for($i=0; $i<$ileArt; $i++)
+			for($i = 0; $i < $ileArt; $i++)
 			{
 				echo '<option value="';
-				echo $idActive=$_SESSION['idArt'][$i];
+				echo $idActive = $idArt[$i][$i];
 				echo '">';
-				echo $_SESSION['tytulArt'][$i];
+				echo $tytulArt[$i];
 				echo '</option>';			
-
 			}
 			
 			?>  

@@ -93,35 +93,41 @@
 	  	<?php 
 		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="">'.$kategoria[$i].'</a>';
-			echo '<ul>';
-			if($ileA[$i]<4)
-			{
-				for($j=0; $j<$ileA[$i]; $j++)
-				{
-					echo '<li><a href="';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
-					echo '</li>';
-				}
-			}
+			if($ileA[$i] == 0){}
 			else
 			{
-				for($j=0; $j<3; $j++)
-				{
-					echo '<li><a href="';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
-					echo '</li>';
-				}
-				echo '<li class="last" ><a href="';
-				echo "";
-				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
-				echo '</li>';
-			}
-			
-			echo '</ul>';
-			echo '</li>';
+				echo '<li><a href="">'.$kategoria[$i].'</a>';
+				echo '<ul>';
+					if($ileA[$i]<4)
+					{
+						for($j=0; $j<$ileA[$i]; $j++)
+						{
+							echo '<li><a href="';
+							echo $linki[$i][$j];
+							echo '">'.$tytuly[$i][$j].'</a>';
+							echo '</li>';
+						}
+						echo '</ul>';
+						echo '</li>';
+					}
+					else
+					{
+						for($j=0; $j<3; $j++)
+						{
+							echo '<li><a href="';
+							echo $linki[$i][$j];
+							echo '">'.$tytuly[$i][$j].'</a>';
+							echo '</li>';
+						}
+						echo '<li class="last" ><a href="';
+						echo "";
+						echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+						echo '</li>';
+						echo '</ul>';
+						echo '</li>';
+					}
+
+			}	
 		}
 		?>
 		

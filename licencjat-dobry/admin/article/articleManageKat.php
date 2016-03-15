@@ -92,20 +92,39 @@
 
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
+
+					        <div class="bfh-selectbox">
+                            <input type="hidden" name="selectbox3" value="">
+                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+                                <span class="bfh-selectbox-option input-medium">Select Registrant(s)</span>
+                                <b class="caret"></b>
+                            </a>
+							
+
+                            <div class="bfh-selectbox-options">
+                                <input type="text" class="bfh-selectbox-filter">
+                                <ul role="options" class="members">
+                                     <li class="reg-select" data-name="Annie Agency" data-uid="001"><a tabindex='-1' data-option='Annie Agency'>Annie Agency</a></li>
+                                     <li class="reg-select" data-name="Dan Dogooder" data-uid="002"><a tabindex='-1' data-option='Dan Dogooder'>Don Dogooder</a></li>
+                                     <li class="reg-select" data-name="Frank Family" data-uid="003"><a tabindex='-1' data-option='Frank Family'>Frank Family</a></li>
+                                     <li class="reg-select" data-name="Mary Member" data-uid="004"><a tabindex='-1' data-option='mary member'>Mary Member</a></li>
+                                </ul>
+                            </div>
+                        </div>            
+            <div class="regs"></div>
+
 						<form action="php/connectManageKat.php" method="post" role="form">
 							<div class="form-group">
 							<label for="sel1">Wybierz kategorię:</label>
 							<p><select class="form-control" id="sel1" name="idK">
 								<?php 
-								$ileK=$_SESSION['ileK'];
 								for($i=0; $i<$ileK; $i++)
 								{
 									echo '<option value="';
-									echo $idActive=$_SESSION['idK'][$i];
+									echo $idActive = $idK[$i];
 									echo '">';
-									echo $_SESSION['tytulK'][$i];
+									echo $tytulK[$i];
 									echo '</option>';			
-
 								}
 								?>  
 							</select></p>
