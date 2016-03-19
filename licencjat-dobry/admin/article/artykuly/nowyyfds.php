@@ -199,7 +199,8 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">fsdfsd</div> 
+				<div class="col-md-12"><h1>tytul</h1>
+No czo ta</div> 
             </div>
 			<hr>
 			</div>

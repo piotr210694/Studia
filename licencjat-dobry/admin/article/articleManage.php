@@ -43,6 +43,16 @@
 			
 		});
 		
+
+		var y = "";
+		$(document).ready(function() 
+		{
+			$('#akcja').click(function() {
+
+				y = $('#tresc').val();
+			});
+		});
+		
 			//po nacisnieciu przycisku wysylamy te dane do pliku php
 			function post()
 			{
@@ -53,6 +63,21 @@
 					$('#result').html(data);
 				});
 			}
+			
+			//po nacisnieciu przycisku wysylamy te dane do pliku php
+			function post4()
+			{
+				var x = document.getElementsByName("title")[0].value;
+				// var y = document.getElementsByName("tresc")[0].innerHTML;
+				var z = document.getElementsByName("idOld")[0].value;
+				$.post('php/test3.php', {x:x, y:y, z:z},
+				function(data)
+				{
+					$('#result4').html(data);
+				});
+				// alert(y);
+			}
+			
 		</script>
 	
 			<!-- wydarzenia okienka -->
@@ -139,6 +164,30 @@
   </div>
 </div>
 
+<!-- Edycja artykulu - MODAL -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edycja artykułu</h4>
+      </div>
+		  <div class="modal-body">
+					<div id="result3"></div>
+					<div id="result4"></div>
+		  </div>
+      <div class="modal-footer">
+		<!--<input type="submit" value="Zapisz zmiany" class="btn btn-primary">-->
+		 <button onclick="post4()" id="akcja" name="akcja" value="Edytuj"  class="btn btn-primary" >Zapisz zmiany</button> 
+       <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
 							<div class="form-group">
@@ -163,9 +212,7 @@
 							<div id="result">
 
 							</div>
-							<div id="result3">
 
-							</div>
 							
 					</div>
 				</div>

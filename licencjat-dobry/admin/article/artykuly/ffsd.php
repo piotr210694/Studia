@@ -199,7 +199,7 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">fsdfsd</div> 
+				<div class="col-md-12">fsdf</div> 
             </div>
 			<hr>
 			</div>
@@ -211,14 +211,16 @@
 				$('.ukryte').hide();
 				$(function () {
 					$('.kliknij').click(function () {
-					$('.ukryte').slideToggle();
+					
 					var tmp = $("#hoho").text();
 					if (tmp === "***POKAŻ WSZYSTKIE KOMENTARZE***")
 					{
+						$('.ukryte').slideToggle();
 						$("#hoho").text("***UKRYJ KOMENTARZE***");
 					}
 					else if(tmp === "***UKRYJ KOMENTARZE***")
 					{
+						$('.ukryte').slideToggle();
 						$("#hoho").text("***POKAŻ WSZYSTKIE KOMENTARZE***");
 					}
 					$('.ukryte').parent().siblings().children().next().slideUp();
@@ -280,18 +282,6 @@
 						echo '</div>';
 						echo '</div>';
 					}
-					
-					echo '</div>';
-				
-				
-				
-				
-				echo '</div>';
-				echo '<div class="col-md-3">';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-	
 				}
 				else
 				{
@@ -336,8 +326,10 @@
 					}
 					echo '</div>';
 					/////////////////////////
-					echo '</div>';
+				}
+
 				
+				echo '</div>';
 				
 					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
 					echo '<div class="panel-heading text-center " id="hoho" style="cursor: pointer;">';
@@ -350,11 +342,7 @@
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
-					
-				}
-
-				
-				
+	
 
 			}
 			else

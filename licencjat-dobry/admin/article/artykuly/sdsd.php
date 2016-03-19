@@ -199,7 +199,7 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">fsdfsd</div> 
+				<div class="col-md-12">sdsd</div> 
             </div>
 			<hr>
 			</div>
@@ -280,18 +280,6 @@
 						echo '</div>';
 						echo '</div>';
 					}
-					
-					echo '</div>';
-				
-				
-				
-				
-				echo '</div>';
-				echo '<div class="col-md-3">';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-	
 				}
 				else
 				{
@@ -336,10 +324,12 @@
 					}
 					echo '</div>';
 					/////////////////////////
-					echo '</div>';
+				}
+
 				
+				echo '</div>';
 				
-					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
+					echo '<div class="panel panel-primary kliknij ukryte " style="  margin-bottom: 10px;">';
 					echo '<div class="panel-heading text-center " id="hoho" style="cursor: pointer;">';
 					echo '***POKAŻ WSZYSTKIE KOMENTARZE***';
 					echo '</div>';
@@ -350,11 +340,7 @@
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
-					
-				}
-
-				
-				
+	
 
 			}
 			else

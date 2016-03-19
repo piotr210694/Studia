@@ -597,10 +597,8 @@ $(document).ready(function() {
 	
 	</div>
 	
-					
-	<div class = "navbar footer navbar-fixed-bottom " >
-		<hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-
+	<footer >
+		<div class = "linia"><hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"></div>
 		 <div class="container" >
 		 <div class="row">
 				<div class="col-md-12 ">
@@ -608,7 +606,7 @@ $(document).ready(function() {
 				</div>
 		</div>
 		</div>
-	</div>
+	</footer>
 
 	
 	<?php 

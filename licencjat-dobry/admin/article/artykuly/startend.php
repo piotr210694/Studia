@@ -10,10 +10,18 @@
 				$('.ukryte').hide();
 				$(function () {
 					$('.kliknij').click(function () {
-					$(this).next('div').slideToggle();
-				
-					$(this).parent().siblings().children().next().slideUp();
-				 
+					$('.ukryte').slideToggle();
+					var tmp = $("#hoho").text();
+					if (tmp === "***POKAŻ WSZYSTKIE KOMENTARZE***")
+					{
+						$("#hoho").text("***UKRYJ KOMENTARZE***");
+					}
+					else if(tmp === "***UKRYJ KOMENTARZE***")
+					{
+						$("#hoho").text("***POKAŻ WSZYSTKIE KOMENTARZE***");
+					}
+					$('.ukryte').parent().siblings().children().next().slideUp();
+
 						 return false;
 					 });
 				 });
@@ -71,6 +79,18 @@
 						echo '</div>';
 						echo '</div>';
 					}
+					
+					echo '</div>';
+				
+				
+				
+				
+				echo '</div>';
+				echo '<div class="col-md-3">';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+	
 				}
 				else
 				{
@@ -92,15 +112,11 @@
 					}
 					
 					
-					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
-					echo '<div class="panel-heading text-center " style="cursor: pointer;">';
-					echo '***POKAŻ WSZYSTKIE KOMENTARZE***';
-					echo '</div>';
-					echo '</div>';
+					
 					
 					
 					/////////////UKRYTE
-					echo '<div class="ukryte">';
+					echo '<div class="ukryte"  style="  margin-top: 5px;">';
 					for($ogranicz; $i<$ileK; $i++)
 					{
 						echo '<div class="panel panel-primary">';
@@ -119,16 +135,25 @@
 					}
 					echo '</div>';
 					/////////////////////////
-				}
-
+					echo '</div>';
 				
-				echo '</div>';
+				
+					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
+					echo '<div class="panel-heading text-center " id="hoho" style="cursor: pointer;">';
+					echo '***POKAŻ WSZYSTKIE KOMENTARZE***';
+					echo '</div>';
+					echo '</div>';
+				
 				echo '</div>';
 				echo '<div class="col-md-3">';
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
-	
+					
+				}
+
+				
+				
 
 			}
 			else
@@ -142,6 +167,8 @@
 				echo '</div>';
 			}
 			?>
+
+			
 
 			
 			

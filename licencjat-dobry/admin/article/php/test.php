@@ -35,7 +35,7 @@
 					echo '</option>';			
 				}		
 		echo '  </select></p>';
-		echo '		<p><button onclick="post3()" name="akcja" value="Edytuj" class="btn btn-success pull-left btn-block">EDYTUJ</button>';	
+		echo '		<p><button onclick="post3()"  name="akcja" value="Edytuj" class="btn btn-primary pull-left btn-block" data-toggle="modal" data-target="#myModal2">EDYTUJ</button>';	
 		echo '		<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal3" class="btn btn-danger pull-left btn-block">USUŃ</button><br><br><br>';
 		echo '		</p>';
 		echo '		</div>';
@@ -73,7 +73,7 @@
 					echo '</option>';			
 				}
 		echo '  </select></p>';
-		echo '		<p><button onclick="post3()" name="akcja" value="Edytuj" class="btn btn-success pull-left btn-block">EDYTUJ</button>';
+		echo '		<p><button onclick="post3()"  name="akcja" value="Edytuj" class="btn btn-primary pull-left btn-block" data-toggle="modal" data-target="#myModal2">EDYTUJ</button>';
 			
 		echo '		<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal3" class="btn btn-danger pull-left btn-block"  >USUŃ</button><br><br><br>';
 		echo '		</p>';

@@ -195,17 +195,16 @@
 	  
     </div>
 				
-	<div class = "navbar footer navbar-fixed-bottom " >
-		<hr style=" height: 5px; border: 0; color:black;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-
+	<footer >
+		<hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
 		 <div class="container" >
 		 <div class="row">
-				<div class="col-md-12 " ">
+				<div class="col-md-12 ">
 				<p class="text-center" style=" color:black;">************************** ...Tu będzie stopka...**************************</p>
 				</div>
 		</div>
 		</div>
-	</div>
+	</footer>
    
 <?php 
 	if(isset($_SESSION['zalogowanyad']))
