@@ -322,7 +322,7 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">tekst</div> 
+				<div class="col-md-12">ewrwe</div> 
             </div>
 			<hr>
 			</div>

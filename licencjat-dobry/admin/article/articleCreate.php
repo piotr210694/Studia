@@ -135,6 +135,11 @@
 												<span class="glyphicon glyphicon-file text-info"></span><a href="articleManage.php">Przeglądaj</a>
 											</td>
 										</tr>
+										<tr>
+											<td>
+												<span class="glyphicon glyphicon-list-alt text-info"></span><a href="articleCategory.php">Kategorie</a>
+											</td>
+										</tr>
 									</table>
 								</div>
 							</div>

@@ -90,47 +90,45 @@
    <li><a href='contact/kontaktlog.php'><span>Kontakt</span></a></li>
    <li class='active has-sub'><a><span>Artykuły</span></a>
       <ul>
-	  	<?php 
+	  <?php 
 		for($i=0; $i<$ileK; $i++)
 		{
-			if($ileA[$i] == 0){}
+			if($ileA[$i] == 0){ continue;}
 			else
 			{
 				echo '<li><a href="">'.$kategoria[$i].'</a>';
 				echo '<ul>';
-					if($ileA[$i]<4)
+				if($ileA[$i]<$ile+1)
+				{
+					for($j=0; $j<$ileA[$i]; $j++)
 					{
-						for($j=0; $j<$ileA[$i]; $j++)
-						{
-							echo '<li><a href="';
-							echo $linki[$i][$j];
-							echo '">'.$tytuly[$i][$j].'</a>';
-							echo '</li>';
-						}
-						echo '</ul>';
+						echo '<li><a href="';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
 						echo '</li>';
 					}
-					else
+				}
+				else
+				{
+					for($j=0; $j<$ile; $j++)
 					{
-						for($j=0; $j<3; $j++)
-						{
-							echo '<li><a href="';
-							echo $linki[$i][$j];
-							echo '">'.$tytuly[$i][$j].'</a>';
-							echo '</li>';
-						}
-						echo '<li class="last" ><a href="';
-						echo "";
-						echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
-						echo '</li>';
-						echo '</ul>';
+						echo '<li><a href="';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
 						echo '</li>';
 					}
-
-			}	
+					echo '<li class="last" ><a href="admin/article/article.php';
+					echo "";
+					echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+					echo '</li>';
+				}
+				
+				echo '</ul>';
+				echo '</li>';
+			}
 		}
 		?>
-		
+	  	
       </ul>
 	 
    </li>

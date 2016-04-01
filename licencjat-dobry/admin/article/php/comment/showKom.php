@@ -40,8 +40,8 @@ $wiersz = @mysql_fetch_assoc($zapytanie);
     $tresc[$i] = $wiersz['tresc']; //stworzenie tablicy tytuly[]
 	$idU[$i] = $wiersz['ID_uzytkownika'];
 	$data[$i] = $wiersz['data'];
-
-	
+	$dataEdit[$i] = $wiersz['data_edycji'];
+	$idKom[$i] = $wiersz['ID_komentarza'];	
 }
 // error_reporting(E_ALL ^ E_NOTICE); //nie pokazuje bledow TUTAJ MOZNA ZROBIC ZE JESLI NIE MA ICH TO WYSWIETLI KOMUNIKAT - brak komenatrzy!
 // $_SESSION['tresc'] = $tresc; 

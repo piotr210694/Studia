@@ -1,4 +1,4 @@
-<?php
+ <?php
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
@@ -9,6 +9,10 @@
 
 <?php 
 	include('php/connectKategoria.php');
+?>
+
+<?php 
+	include('php/viewCategory.php');
 ?>
 
 <!doctype html>
@@ -30,56 +34,61 @@
 		<script src="../js/script.js"></script>
 		<link rel="stylesheet" href="../css/styles.css">
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		
 		<!-- Do wybrania kategorii -->
 		<script>
-		//Szukamy jakie value ma zaznaczony select
-		var regName = "";
-
+		var valUsun = "";
+		var valEdytuj = "";
 		$(document).ready(function()
 		{
-			$(".reg-select").click(function(){
-				regName = $(this).val();
+			$(".usun").click(function(){
+				valUsun = $(this).val();
 			});
-			
-		});
-		
-
-		var y = "";
-		$(document).ready(function() 
-		{
-			$('#akcja').click(function() {
-
-				y = $('#tresc').val();
-				post4();
+			$(".edytuj").click(function(){
+				valEdytuj = $(this).val();
+				// var tab = new Array(
+				// <?php 
+				// echo "'";
+				// for($i=0; $i < $max_id; $i++)
+				// { 
+					// echo $kategoria2[$i]; 
+						// if($i == ($max_id - 1))
+						// {
+							// echo "'";
+						// }
+						// else
+						// {
+							// echo "','"; 
+						// }
+				// }
+					
+				// ?>);
+				$("#categorySet").val( $(this).attr('nazwa') );
+				
 			});
 		});
-		
-			//po nacisnieciu przycisku wysylamy te dane do pliku php
-			function post()
-			{
-				var val = regName;
-				$.post('php/test.php', {val:val},
-				function(data)
-				{
-					$('#result').html(data);
-				});
-			}
 			
-			//po nacisnieciu przycisku wysylamy te dane do pliku php
-			function post4()
+		function post()
+		{			
+			$.post('php/categoryManage.php', {valUsun:valUsun},
+			function(data)
 			{
-				var x = document.getElementsByName("title")[0].value;
-				// var y = document.getElementsByName("tresc")[0].innerHTML;
-				var z = document.getElementsByName("idOld")[0].value;
-				$.post('php/test3.php', {x:x, y:y, z:z},
-				function(data)
-				{
-					$('#result4').html(data);
-				});
-				// alert(y);
-			}
+				$('#result').html(data);
+			});
+		}		
+		
+		function post2()
+		{			
+			var nazwa = document.getElementsByName("kategoria")[0].value;
+			$.post('php/categoryManage.php', {valEdytuj:valEdytuj, nazwa:nazwa},
+			function(data)
+			{
+				$('#result2').html(data);
+			});
+		}
+		
+		
 			
 		</script>
 	
@@ -149,7 +158,7 @@
 				</div>
 				
 				
-<!-- Usuniecie artykulu - MODAL -->
+<!-- Usuniecie kategorii - MODAL -->
 <div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -157,14 +166,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie artykułu</h4>
+        <h4 class="modal-title">Usuwanie kategorii</h4>
       </div>
       <div class="modal-body">
-        <p>Czy na pewno chcesz usunąć artykuł?</p>
-		<div id="result2"></div>
+        <p>Czy na pewno chcesz usunąć wybraną kategorię?</p>
+		<div id="result"></div>
       </div>
       <div class="modal-footer">
-		<button  name="akcja" value="Usuń" onclick="post2()" class="btn btn-danger" >Usuń</button>
+		<button  name="akcja" value="Usuń" onclick="post()" class="btn btn-danger" >Usuń</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
     </div>
@@ -172,24 +181,29 @@
   </div>
 </div>
 
-<!-- Edycja artykulu - MODAL -->
+<!-- Zmiana nazwy kategorii - MODAL -->
 <div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edycja artykułu</h4>
+        <h4 class="modal-title">Zmiana nazwy kategorii</h4>
       </div>
-		  <div class="modal-body">
-					<div id="result3"></div>
-					<div id="result4"></div>
-		  </div>
+		<div class="modal-body">
+					<div class="form-horizontal" >
+						<div class="form-group has-feedback">
+							<div class="col-sm-12">
+							  <input type="text" class="form-control " id="categorySet" name="kategoria"  onkeydown = "if (event.keyCode == 13)	post2();">
+							</div>
+						</div>
+						<div id="result2"></div> <!-- Rezultat ECHO  -->
+					</div>
+      </div>
       <div class="modal-footer">
-		<!--<input type="submit" value="Zapisz zmiany" class="btn btn-primary">-->
-		 <button onclick="post4()" id="akcja" name="akcja" value="Edytuj"  class="btn btn-primary" >Zapisz zmiany</button> 
-       <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+		<button  name="akcja" onclick="post2()" class="btn btn-primary" >Zmień nazwę</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
     </div>
 
@@ -197,31 +211,44 @@
 </div>
 
 				<div class="col-sm-9 col-md-9">
-					<div class="well">	
-							<div class="form-group">
-							<label for="sel1">Wybierz kategorię:</label>
-							<p><select class="form-control" id="sel1" name="idK">
-								<?php 
-								
-								for($i=0; $i<$ileK; $i++)
-								{
-									echo '<option class = "reg-select" value="';
-									echo $idActive=$idK[$i];
-									echo '">';
-									echo $tytulK[$i];
-									echo '</option>';			
-								}
-								?>  
-							</select></p>
-							<button onclick="post();" class="btn btn-success pull-left btn-block">OK</button>
-							
-							<br>
-							</div>
-							<div id="result">
-
-							</div>
-
-							
+					<div class="well col-md-12">	
+					
+							<table class="table table-hover">
+								<thead>
+								  <tr>
+									<th>Kategoria</th>
+									<th>Ilość artykułów</th>
+									<th>Akcja</th>
+								  </tr>
+								</thead>
+						
+								<tbody>
+									<?php
+										for($i = 0; $i < $ileK; $i++)
+										{
+											echo '<tr>';
+											echo '	<td>';
+											echo 		$kategoria[$i];
+											echo '	</td>';
+											echo '	<td>';
+											echo 		$ileA[$i];
+											echo '	</td>';
+											echo '	<td>';
+											echo 		'<button  class="btn btn-primary btn-sm edytuj" data-toggle="modal" data-target="#myModal2" value="';
+											echo $idKat[$i];											
+											echo '" nazwa = "';
+											echo $kategoria[$i];
+											echo '"';
+											echo '>Zmień nazwę</button>&nbsp;<button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-danger btn-sm usun" value="';
+											echo $idKat[$i];
+											echo '">Usuń</button>';
+											echo '	</td>';
+											echo '</tr>';
+										}
+									?>
+								</tbody>
+					
+							</table>
 					</div>
 				</div>
 				

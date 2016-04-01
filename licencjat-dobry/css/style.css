@@ -1,6 +1,7 @@
 /* Make something awesome! */
 body{
 	margin: 0px !important;
+	/*padding:100px;*/
 }
 
 .wys
@@ -111,7 +112,7 @@ input.valid, textarea.valid{
   }
   
   /* Usuniecie*/
-    #myModal3 .modal-header{
+    #myModal3 .modal-header, #myModal4 .modal-header{
       background-color: #d9534f;
       color:white !important;
       text-align: center;
@@ -190,4 +191,40 @@ input.valid, textarea.valid{
 			min-height:100%;
 			position:relative;
 		}
+		
+		.white
+		{
+			background-color: white !important;
+		}
+
+		/* KOLOROWANIE IKONEK EDYCJI */
+		.pencil-icon:hover
+		{
+			color: #4acf4a;
+			cursor: pointer;
+			transform:scale(1.5); -webkit-transform:scale(1.5); -moz-transform:scale(1.5); -o-transform:scale(1.5);
+			/*font-size: 19px;*/
+		}
+		.trash-icon:hover
+		{
+			color: #f22c26;
+			cursor: pointer;
+			transform:scale(1.5); -webkit-transform:scale(1.5); -moz-transform:scale(1.5); -o-transform:scale(1.5);
+			/*font-size: 19px;		*/	
+		}
+		
+		/* Wyrownanie divow */
+		.align-div
+		{
+			padding-left: 0px !important;
+			padding-right: 0px !important;
+		}
+		
+		/* Kolor spana po edycji komentarza */
+		.commentEdit
+		{
+			color: #4acf4a;
+			font-weight: lighter;
+		}
+		
 		

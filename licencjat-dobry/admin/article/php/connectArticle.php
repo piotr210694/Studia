@@ -49,7 +49,7 @@ session_start();
 		$idK = $_POST['idK']; // id KATEGORII
 		$link = "admin/article/artykuly/$title.php";
 		
-		$date = date( 'Y-m-d' );
+		$date = date( 'Y-m-d H:i:s' );
 		if($_POST['title'] AND $_POST['tresc'])
 		{
 			$ins = @mysql_query("INSERT INTO `artykuly` (`id_artykulu`, `id_kategorii`, `tytul`, `tresc`, `link`, `data`) VALUES ('$max_id', '$idK', '$title', '$tresc', '$link', '$date')") or die(mysql_error());

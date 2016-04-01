@@ -43,7 +43,7 @@
                             </span>Artykuły</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -54,6 +54,31 @@
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-file text-info"></span><a href="article/articleManage.php">Przeglądaj</a>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-list-alt text-info"></span><a href="article/articleCategory.php">Kategorie</a>
+                                    </td>
+                                </tr>
+                           </table>
+                        </div>
+                    </div>
+                </div>
+				<!-- Quizy -->
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th-list">
+                            </span>Quizy</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="quizy/quizyCreate.php">Stwórz</a>
                                     </td>
                                 </tr>
                            </table>

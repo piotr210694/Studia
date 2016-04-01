@@ -98,4 +98,19 @@ body
       background-color: #f9f9f9;
   }
 
+  /*.well
+   {
+	background-color: #fbf8f8 !important;
+  }*/
   
+	/* Nadpisanie  - wysrodkowanie w pionie wierszy w tabeli*/
+	td
+	{
+		vertical-align: middle !important;
+	}
+	
+	.blad
+	{
+		background-color: red;
+	}
+ 

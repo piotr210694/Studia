@@ -91,35 +91,39 @@
 	  	<?php 
 		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="">'.$kategoria[$i].'</a>';
-			echo '<ul>';
-			if($ileA[$i]<$ile+1)
-			{
-				for($j=0; $j<$ileA[$i]; $j++)
-				{
-					echo '<li><a href="../';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
-					echo '</li>';
-				}
-			}
+			if($ileA[$i] == 0){ continue;}
 			else
 			{
-				for($j=0; $j<$ile; $j++)
+				echo '<li><a href="">'.$kategoria[$i].'</a>';
+				echo '<ul>';
+				if($ileA[$i]<$ile+1)
 				{
-					echo '<li><a href="../';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
+					for($j=0; $j<$ileA[$i]; $j++)
+					{
+						echo '<li><a href="../';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
+						echo '</li>';
+					}
+				}
+				else
+				{
+					for($j=0; $j<$ile; $j++)
+					{
+						echo '<li><a href="../';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
+						echo '</li>';
+					}
+					echo '<li class="last" ><a href="../admin/article/article.php';
+					echo "";
+					echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
 					echo '</li>';
 				}
-				echo '<li class="last" ><a href="';
-				echo "";
-				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				
+				echo '</ul>';
 				echo '</li>';
 			}
-			
-			echo '</ul>';
-			echo '</li>';
 		}
 		?>
       </ul>
@@ -187,7 +191,7 @@
 	if(isset($_SESSION['zalogowanyad']))
 	{
 		echo '<div class="okno">';
-		echo	'<a href="admin/indexad.php">';
+		echo	'<a href="../admin/indexad.php">';
 		echo		'<div class=text>';
 		echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
 		echo			'Panel administratora';

@@ -14,7 +14,8 @@
   
   <head>
 	<meta charset="UTF-8" />
-    <title>New Page</title>
+	<title>PSI - Projektuj z pomysłem</title>
+	<link rel="icon" href="../../../01.png" type="image/png" sizes="16x16">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -27,6 +28,9 @@
 	<link rel="stylesheet" href="../../../css/styles.css">
 	
 	<!-- LOGOWANIE -->
+	
+	<!-- wydarzenia okienka -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
 	
 	<script>
 	  function post()
@@ -43,6 +47,70 @@
 		}
 	</script>
 
+	<!-- SKRYPT DO POKAZANIA/UKRYCIA -->
+			<script>
+			$(document).ready(function()
+			{
+				$('.ukryte').hide();
+				$(function () {
+					$('.kliknij').click(function () {
+					$('.ukryte').slideToggle();
+					var tmp = $("#hoho").text();
+					if (tmp === "***POKAŻ WSZYSTKIE KOMENTARZE***")
+					{
+						$("#hoho").text("***UKRYJ KOMENTARZE***");
+					}
+					else if(tmp === "***UKRYJ KOMENTARZE***")
+					{
+						$("#hoho").text("***POKAŻ WSZYSTKIE KOMENTARZE***");
+					}
+					$('.ukryte').parent().siblings().children().next().slideUp();
+
+						 return false;
+					 });
+				 });
+			});
+			</script>
+
+			<!-- Zarządzanie komentarzami - USUWANIE I EDYCJA po ID -->
+			<script>
+			var del;
+			var edit;
+			var tresc;
+			$(document).ready(function()
+			{
+				$(".trash-icon").click(function()
+				{
+					del = $(this).attr('id');
+				});
+				$(".pencil-icon").click(function()
+				{
+					edit = $(this).attr('id');
+					tresc = $(this).attr('tmp');
+					$( "#trescEdit" ).val( tresc );
+				});
+				
+			});
+			
+			function postDel()
+			{		
+				$.post('../php/comment/commentManage.php', {del:del},
+				function(data)
+				{
+					$('#result2').html(data);
+				});
+			}
+			
+			function postEdit()
+			{		
+				var trescE = $( "#trescEdit" ).val();
+				$.post('../php/comment/commentManage.php', {edit:edit, trescE:trescE},
+				function(data)
+				{
+					$('#result3').html(data);
+				});
+			}
+			</script>
 	  
 	</head>
   
@@ -105,6 +173,57 @@
   </div>
 </div>
 
+<!-- Usuniecie komentarza - MODAL -->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie komentarza</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć komentarz?</p>
+		<div id="result2"></div>
+      </div>
+      <div class="modal-footer">
+		<button  name="akcja" value="Usuń" onclick="postDel()" class="btn btn-danger" >Usuń</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edycja komentarza - MODAL -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edycja komentarza</h4>
+      </div>
+      <div class="modal-body">
+					<div class="form-horizontal" >
+						<div class="form-group has-feedback">
+							<div class="col-sm-12">
+							  <input type="text" class="form-control " id="trescEdit"   onkeydown = "if (event.keyCode == 13)	postEdit();">
+							</div>
+						</div>
+						<div id="result3"></div> <!-- Rezultat ECHO  -->
+					</div>
+      </div>
+      <div class="modal-footer">
+		<button  name="akcja" value="Usuń" onclick="postEdit()" class="btn btn-primary" >Zapisz zmiany</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
     <div class="container">
@@ -127,35 +246,39 @@
 	  	<?php 
 		for($i=0; $i<$ileK; $i++)
 		{
-			echo '<li><a href="">'.$kategoria[$i].'</a>';
-			echo '<ul>';
-			if($ileA[$i]<4)
-			{
-				for($j=0; $j<$ileA[$i]; $j++)
-				{
-					echo '<li><a href="../../../';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
-					echo '</li>';
-				}
-			}
+			if($ileA[$i] == 0){ continue;}
 			else
 			{
-				for($j=0; $j<3; $j++)
+				echo '<li><a href="">'.$kategoria[$i].'</a>';
+				echo '<ul>';
+				if($ileA[$i]<$ile+1)
 				{
-					echo '<li><a href="../../../';
-					echo $linki[$i][$j];
-					echo '">'.$tytuly[$i][$j].'</a>';
+					for($j=0; $j<$ileA[$i]; $j++)
+					{
+						echo '<li><a href="../../../';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
+						echo '</li>';
+					}
+				}
+				else
+				{
+					for($j=0; $j<$ile; $j++)
+					{
+						echo '<li><a href="../../../';
+						echo $linki[$i][$j];
+						echo '">'.$tytuly[$i][$j].'</a>';
+						echo '</li>';
+					}
+					echo '<li class="last" ><a href="../';
+					echo "article.php";
+					echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
 					echo '</li>';
 				}
-				echo '<li class="last" ><a href="../../../';
-				echo "";
-				echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+				
+				echo '</ul>';
 				echo '</li>';
 			}
-			
-			echo '</ul>';
-			echo '</li>';
 		}
 		?>
       </ul>
