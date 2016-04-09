@@ -28,66 +28,8 @@
 		<script src="../js/script.js"></script>
 		<link rel="stylesheet" href="../css/styles.css">
 		
-		
-		<script>
-			//funkcja edycji danych
-			function post()
-			{
-				var kategoria = $('#kategoria').val();				
-				$.post('php/checkCategory.php', {kategoria:kategoria},
-				function(data)
-				{
-					$('#result').html(data);
-				});	
-			}
-			// $(document).ready(function(){
-				// $('#select').click(function(){
-					// var href = "php/connectKategoria2.php";
-					// $('#select').load(href);
-				// });
-			// });
-
-		</script>
-		
-		<!-- wydarzenia okienka -->
+		<!-- wydarzenia okienka i rozwijanie menu -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
-		<script>
-			$(document).ready(function(){			
-					$("#myModal2").on('hidden.bs.modal', function () 
-					{
-						window.setInterval(location.reload(true), 1); //odswiezenie strony
-					});
-			});
-		</script>
-		
-		<script>
-			$(document).ready(function(){
-					var y = 0;
-					// $( "#zawartosc" ).hide();
-					$('button').click(function() 
-					{
-						y = $('#ile').val();
-						//alert(y);
-						// $( "#zawartosc" ).show();
-						$.post('php/connectQuiz.php', {y:y},
-						function(data)
-						{
-							$('#zawartoscPHP').html(data);
-						});						
-					});
-					
-					
-			});
-			
-			function post()
-			{			
-				$.post('quizyCreate.php', {y:y},
-				function(data)
-				{
-					$('#zawartosc').html(data);
-				});
-			}	
-		</script>
 		
 		    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
@@ -101,6 +43,7 @@
              W momencie gdy klikniemy na przycisk "dodaj". Skrypt pobiera pierwszy element z div#elements, klonuje go dodaje na koniec div#elements ( metoda appendTo(element) ) a następnie znajduje wszystkie elementy input i czyści ich wartości.
           */
 				$('#elements').hide();
+				$('#opening').hide();
 				$('#create').click(function()
 				{
 					var x = $('#ile').val() - 1;
@@ -112,8 +55,9 @@
 					{
 						for(var i = 0; i < x; i++)
 						{
-							$('#elements .element:first').clone().appendTo($('#elements')).find('input').val('');  
+							$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');  
 						}
+						$('#opening').show(1000);
 						$('#elements').show(2000);
 						$('#create').remove();
 					}
@@ -121,31 +65,29 @@
 		  
 			  $('#add').click(function()
 			  {
-					$('#elements .element:first').clone().appendTo($('#elements')).find('input').val('');
+					$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');
 			  });
 			  
-			  					var cenaTab = [];
-					var pytaniaTab = [];
-					var optionTab = [];
 			  $('#save').click(function()
 			  {
-					$("input[name=cena[]]").each(function() 
+					var task = new Array();
+					$("textarea[name=task]").each(function() 
 					{
-						cenaTab.push($(this).val()); //dodanie do tablicy
+						task.push($(this).val()); //dodanie do tablicy
 					});
-					$("input[name=ask[]]").each(function() 
+					var myArrString = JSON.stringify(task);
+					task = myArrString;
+					// alert(myArrString);
+					// var myArr = JSON.parse(myArrString);
+					// alert(myArr[0]);
+					var titleTutorial = $('#titleTutorial').val();
+					var describeTutorial = $('#describeTutorial').val();
+					
+					$.post('php/postTutorial.php', {task:new Array(task), titleTutorial:titleTutorial, describeTutorial:describeTutorial},
+					function(data)
 					{
-						pytaniaTab.push($(this).val()); //dodanie do tablicy
-					});
-					$("input[name=optradio[]]").each(function() 
-					{
-						var tmp = $('input:radio[name=optradio[]]:checked').val();
-						//alert(tmp); //dodanie do tablicy
-					});
-
-					// alert(cenaTab[0] + " " + cenaTab[1]);
-					// alert(pytaniaTab[0] + " " + pytaniaTab[1]);
-					// alert(optionTab[0] + " " + optionTab[1]);
+						$('#result2').html(data);
+					});	
 			  });
 			  
 			    $('#elements .element a').live('click', function()
@@ -170,15 +112,24 @@
 					$('#elements .element:first #square').addClass("blad");
 				});
 				
+				function post()
+				{
+					
+				}
 				
-				//dzialania na oknie moodalnym
+				
+       });
+	   
+	    $(document).ready(function()
+		{
+			//dzialania na oknie moodalnym
 				var i = 0;
 					var tablica = new Array('elo', 'dwa', 'trzy');
-					tablica = pytaniaTab;
 					var dl_tab = tablica.length;
 					$('#back').hide();
 					$('#next').click(function()
 					{
+						alert("elo");
 						if(i==0)
 						{
 							$('#back').hide();
@@ -191,7 +142,7 @@
 						{
 							$('#back').show();
 						}
-						$('.modal-body').text(tablica[i]);
+						$('.modal-body-edit').text(tablica[i]);
 						i++;
 					});
 					$('#back').click(function()
@@ -207,10 +158,7 @@
 						i--;
 						$('.modal-body').text(tablica[i-1]);
 					});
-					$('#info').click(function()
-					{
-					});
-       });
+		});
     </script>
 
 
@@ -218,29 +166,7 @@
 	
 	</head>
   
-  <div id="myModal4" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content ">
-      <div class="modal-header modal-header  ">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie konta</h4>
-      </div>
-      <div class="modal-body">
-        <p>Czy na pewno chcesz usunąć konto?</p>
-      </div>
-      <div class="modal-footer">
-		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-danger" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-		<a  href="#" id="back"><span>Back</span></a>
-		<a href="#"  id="next"><span>Next</span></a>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <div id="myModal5" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -251,7 +177,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Usuwanie konta</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body modal-body-edit">
         <p>Drugie okno</p>
       </div>
       <div class="modal-footer">
@@ -381,41 +307,28 @@
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
 					<a href='#'  data-toggle="modal" data-target="#myModal4"><span>Link to open modal</span></a>
-					<button id="info">Info</button>
 						<input type="numb" id="ile" placeholder="podaj ilosc">
 <!---						<button>OK</button>
 						<div id="zawartosc" >
 							huehue
 						</div>
 						<div id="zawartoscPHP" ></div> -->
+	<div id="opening">
+		<input type="text" id="titleTutorial" placeholder="Podaj tytuł samouczka..."  ><br>
+		<textarea  id="describeTutorial" placeholder="Podaj opis samouczka..." ></textarea>
+	</div>
 	<button id="create">utwórz</button>	
 	<button id="add">dodaj</button>
     <div id="elements">
 		<div class="element">
-			<label>Pytanie<input type="text" name="ask[]"></label><br />
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>A: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>B: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>C: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>D: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-			  <a style="cursor: pointer;">usuń</a>
-       </div>
+			<label>Pytanie nr:<span id="countTask">1</span><br />
+			<textarea name="task"></textarea>
+			<a style="cursor: pointer;">usuń</a>
+		</div>
     </div>
 	<button id = "save">Zapisz</button>
 	
-	
-	<form id="myForm">
-<input type="radio" name="radioName" value="1" /> 1 <br />
-<input type="radio" name="radioName" value="2" /> 2 <br />
-<input type="radio" name="radioName" value="3" /> 3 <br />
-</form>
+	<div id="result2"></div>
 					</div>
 				</div>
 				

@@ -134,7 +134,7 @@
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
 		<ul>
-            <li><a href='#'><span>Sub Product</span></a></li>
+            <li><a href='admin/tutorial/samouczki/samouczekTest.php'><span>Test</span></a></li>
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>

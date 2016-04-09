@@ -34,7 +34,6 @@ for ($i=0; $i<$ileK; $i++)
 	}
 }
 
-
 //szukamy ile jest artykulow w bazie i zapisujemy wynik do zmiennej
 // $zapytanie = mysql_query("SELECT * FROM `artykuly`") or die(mysql_error());
 // $ileA = mysql_num_rows($zapytanie);

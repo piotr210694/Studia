@@ -85,6 +85,26 @@
                         </div>
                     </div>
                 </div>
+				<!-- Samouczki -->
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-book">
+                            </span>Samouczki</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="tutorial/tutorialCreate.php">Stwórz</a>
+                                    </td>
+                                </tr>
+                           </table>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
