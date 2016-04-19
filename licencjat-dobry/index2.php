@@ -134,8 +134,33 @@
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
 		<ul>
-            <li><a href='admin/tutorial/samouczki/samouczekTest.php'><span>Test</span></a></li>
-            <li class='last'><a href='#'><span>Sub Product</span></a></li>
+            <!-- <li><a href='admin/tutorial/samouczki/samouczekTest.php'><span>Test</span></a></li> -->
+            <?php
+				if($ileS < $doIluS + 1)
+				{
+					for($j = 0; $j < $ileS; $j++)
+					{
+						echo '<li><a href="';
+						echo $linkiS[$j];
+						echo '">'.$tytulyS[$j].'</a>';
+						echo '</li>';
+					}
+				}
+				else
+				{
+					for($j = 0; $j < $doIluS; $j++)
+					{
+						echo '<li><a href="';
+						echo $linkiS[$j];
+						echo '">'.$tytulyS[$j].'</a>';
+						echo '</li>';
+					}
+					echo '<li class="last" ><a href="admin/tutorial/tutorials.php';
+					echo "";
+					echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+					echo '</li>';
+				}
+			?>
         </ul>
    </li>
    <li class='active has-sub'><a><span>Quizy</span></a>
@@ -144,7 +169,6 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='kursy.php'><span>Kursy</span></a></li>
    <li class='last active has-sub' ><a><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVQ4jaWSr04DQRCHR1YgKoAgECUYDG+AWEXuz0x3llCPqMABCQkIEhJ4BAQCUX/H7UxCArwAIBAXNALBAyCQiMPQAO1drweT/NTu983sZgBKiq5oFtWek/AjCueo7iJKooWyu2Nlkt4MeudRuBjJbXjdm6sVoLApgQsULkiYawWkbq9KgMLH00xwOkFwVi/I7GblEzLbrxWEwssofFciyCO1q7UCAADybg2F337A75HvBlPBLNymS1oJs43FSHgLfXc7EO4Ewh0WbleCZmBasfDusDOpvSFvD2Nv91FdisIfX2dHZmBaY11R+HnC74/m9ddmktqDBvBwqU4AAGDdu3kUvm8qQG+fKKElILX9xvB3dgDVPvxDkAOqS2Phl78E1aWf25ZmvHtqCpEAAAAASUVORK5CYII="/></span></a>
 		<ul>
 			<li><a href='php/logout.php'><span>Wyloguj się</span></a></li>
@@ -162,7 +186,7 @@
 			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-12 ">
-				<h1><?php echo '<span style="color:blue">'.$_SESSION['login'].'</span>'.', witaj na naszej stronie!'; ?></h1> 
+				<h1><span style="color: green;"><?php echo $_SESSION['login']; ?></span>, witaj na naszej stronie!</h1> 
 				<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
 			
 				<p>Etiam condimentum sed lectus at laoreet. Fusce pellentesque porta purus a venenatis. Quisque erat augue, malesuada nec ultrices vitae, consequat sed metus. Donec at ipsum viverra mauris feugiat euismod. Morbi ultrices tellus libero, et gravida tortor laoreet eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi auctor interdum ornare. Praesent vel urna volutpat, accumsan erat at, pharetra urna. Pellentesque egestas sodales nibh vitae sodales. Suspendisse laoreet risus neque, viverra dictum leo condimentum vitae. Sed sem diam, blandit eu vestibulum in, tempor nec lacus. Nullam lacinia commodo elit, sed euismod leo. Suspendisse porttitor sem mi, fringilla viverra diam tincidunt ut.</p>
@@ -178,6 +202,7 @@
 				<p>In dui turpis, varius nec neque id, mollis cursus neque. Pellentesque eget laoreet nulla. Nam lectus ex, vehicula ut euismod et, rhoncus in lectus. Donec luctus, sapien a venenatis vulputate, sapien ante condimentum lectus, ut molestie enim velit vitae magna. Suspendisse varius neque pulvinar enim ornare, nec lobortis enim lobortis. Ut eu ex neque. Vestibulum feugiat ligula et arcu rhoncus, quis maximus mauris pellentesque. Vivamus fermentum ultrices lacus vel vulputate. Morbi ultrices dolor nulla, ac lobortis nisl vestibulum sed. Vestibulum iaculis, lectus eget condimentum sodales, lorem nulla fermentum tellus, volutpat congue lacus dolor et quam. Phasellus ac risus blandit nisi rutrum suscipit non eu mauris. Vestibulum fringilla non neque vitae vestibulum.</p>
 			
 				<p>Fusce quis vehicula purus, ut fermentum quam. Suspendisse cursus dui ac est convallis, sit amet egestas lorem sodales. Praesent nec nunc mattis, hendrerit mauris quis, dignissim nisi. Pellentesque semper faucibus urna vel tempus. Suspendisse egestas lacus ornare ligula mattis, et pulvinar urna sodales. Suspendisse tristique eget lacus sit amet dapibus. Nam quis imperdiet velit. Vestibulum consectetur rutrum tortor, sit amet fringilla nisi rhoncus id. Aenean sit amet odio elit. Nulla orci quam, eleifend quis sapien sed, vestibulum elementum urna. Sed dapibus ligula vitae turpis bibendum, in tempus magna bibendum. Aenean ut purus diam. Praesent porta velit ut dui fringilla egestas. Donec dignissim non sapien at imperdiet. Quisque bibendum massa ligula, vel elementum eros iaculis quis. Maecenas velit nisl, imperdiet vitae dui sed, convallis placerat enim.</p>
+				
 				
 
 				</div>

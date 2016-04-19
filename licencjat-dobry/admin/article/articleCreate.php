@@ -51,7 +51,19 @@
 
 		</script>
 		
-		<!-- wydarzenia okienka -->
+		
+		<!-- ODSWIEZENIE ZDJEC -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			$("#klik").click(function(){
+				$("#d1").load("php/showImages2.php");
+			});
+			
+			});
+		</script>
+		
+<!-- wydarzenia okienka -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
 		<script>
 			$(document).ready(function(){			
@@ -59,9 +71,36 @@
 					{
 						window.setInterval(location.reload(true), 1); //odswiezenie strony
 					});
+					
 			});
 		</script>
 		
+		<!-- akcja po nacisnieciu na kosz przy zdjeciu -->
+		<script>
+			$(document).ready(function()
+			{
+				$(".trash-icon").click(function(){
+					var tmp = $(this).attr("id");
+					$.post('php/deleteImage.php', {tmp:tmp},
+					function(data)
+					{
+						//$('#d2').html(data);
+						window.setInterval(location.reload(true), 1); //odswiezenie strony	
+					});					
+				});			
+			});
+		</script>
+		
+		<!--
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#myModal22").modal("show");
+			});
+		</script>
+		-->
+		
+
 	</head>
   
 	<body>
@@ -101,6 +140,56 @@
 				<form action="user/php/delete.php" >
 				<div  onclick="post();" class="btn btn-primary" >Dodaj</div>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+			  </div>
+			</div>
+
+		  </div>
+		</div>
+		
+		<!-- PANEL dodanie zdjec do artykulu -->
+		<div id="myModal22" class="modal fade" role="dialog">
+		  <div class="modal-dialog modal-lg">
+
+			<!-- Modal content-->
+			<div class="modal-content ">
+			  <div class="modal-header ">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Dodawanie zdjęć do artykułu</h4>
+			  </div>
+			  <div class="modal-body">
+					<div class="form-horizontal" >
+						<div class="form-group has-feedback">
+							<div class="col-sm-12">
+								<!-- <button id="klik">Odśwież</button><br> -->
+									<div id="d1">
+										<?php
+											if(!isset($_SESSION['idToPhotos']))
+											{
+												echo "Nie znaleziono id_artykułu. Skorzystaj z opcji PRZEGLĄDAJ.";
+											}
+											else
+											{
+												include('php/showImages.php');
+											}
+										?>
+									</div>
+									<div id="d2"></div>
+							</div>
+						</div>
+						<div id="result"></div> <!-- Rezultat ECHO  -->
+					</div>
+			  </div>
+			  <div class="modal-footer">
+				<FORM ACTION="php/uploadPhoto.php"  METHOD="POST" ENCTYPE="multipart/form-data">
+					<INPUT type="file"  name="zdjecie"  required>
+					<input type="submit" class="btn btn-primary" name="ok" value="Wyślij zdjęcie do bazy"/>
+				</FORM>
+				<?php
+					if(isset($_SESSION['bladDodania']))
+					{
+						echo $_SESSION['bladDodania'];
+					}
+				?>
 			  </div>
 			</div>
 
@@ -185,13 +274,24 @@
 							</div>
 							<button type="submit" class="btn btn-success pull-left btn-block">Stwórz</button>
 							<br>
+							
 						</form>	
 						<?php 
 							if(isset($_SESSION['komunikatAC']))
 							{
 								echo $_SESSION['komunikatAC'];
 							}
+							if(isset($_SESSION['dzialanie']))
+							{
+								//echo '  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>';
+								echo '<script>
+								$(document).ready(function(){
+									$("#myModal22").modal("show");
+								});
+							</script>';
+							}
 						?>
+						
 						</div>
 					</div>
 				</div>

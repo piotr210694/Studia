@@ -61,7 +61,8 @@ session_start();
 			}
 			$ins = @mysql_query("INSERT INTO `kategoria-artykul` (`id`, `id_artykulu`, `id_kategorii`) VALUES ('$mid', '$max_id', '$idK');") or die(mysql_error());
 			unset($_SESSION['komunikatAC']);
-			$_SESSION['komunikatAC']='<br><span style="color:green">Artykuł </span>'.'<a target="_blank" href="../../'.$link.'">'.$title.'</a>'.'<span style="color:green"> został poprawnie dodany!'.'</span>';
+			$_SESSION['komunikatAC']='<br><span style="color:green">Artykuł </span>'.'<a target="_blank" href="../../'.$link.'">'.$title.'</a>'.'<span style="color:green"> został poprawnie dodany!'.'</span>'.'<br>'.'Chcesz dodać zdjęcia do artykułu? <a href="#"  data-toggle="modal" data-target="#myModal22">Kliknij tutaj</a>';
+			$_SESSION['idToPhotos'] = $mid;
 			header('Location: ../articleCreate.php');
 		}
 		else

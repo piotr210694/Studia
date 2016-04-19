@@ -34,6 +34,18 @@ for ($i=0; $i<$ileK; $i++)
 	}
 }
 
+$doIluS = 5; //ograniczenie liczby samouczkow
+//Szukamy ile samouczkow jest w bazie
+$zapytanie = mysql_query("SELECT * FROM `samouczek` ORDER BY data DESC") or die(mysql_error());
+$ileS = mysql_num_rows($zapytanie);
+for($i = 0; $i < $ileS; $i++)
+{
+	$wiersz = @mysql_fetch_assoc($zapytanie);
+	$tytulyS[$i] = $wiersz['tytul']; //stworzenie tablicy tytuly[]
+	$linkiS[$i] = $wiersz['link']; //stworzenie tablicy linki[]
+}
+
+
 //szukamy ile jest artykulow w bazie i zapisujemy wynik do zmiennej
 // $zapytanie = mysql_query("SELECT * FROM `artykuly`") or die(mysql_error());
 // $ileA = mysql_num_rows($zapytanie);

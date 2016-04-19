@@ -4,7 +4,7 @@
 
 <?php 
 	include('../../../php/connectMenu.php');
-	include('connectTutorial.php');
+	include('../php/connectTutorial.php');
 ?>
 
 
@@ -112,18 +112,20 @@
 				});
 			}
 			
+			
+			/* Do samouczka */
 			var tablica = "";
 			tablica = '<?php echo $tab; ?>';
 			var myArr = eval(tablica);
 			function go()
-				{
+			{
 					// var tablica = new Array('hehe', 'hu');
 					
 					
 					// tablica.push(tab);
 					
 					alert(myArr[1]);
-				}
+			}
 						
 			$(document).ready(function()
 			{
@@ -132,12 +134,17 @@
 					// var tablica = new Array('elo', 'dwa', 'trzy');
 					// tablica = pytaniaTab;
 					// var dl_tab = tablica.length;
-					// $('#back').hide();
+					// $('#back').hide();					
 					var i = 0;
-					$('.modal-body-edit').text(myArr[0]);
 					var len = myArr.length;
+					
+					$('.modal-body-edit').text(myArr[0]); //wstawienie zawartosci z tablicy
+					$('#end').hide(); //przycisk ZAKONCZ ukryty
+					$('#back').hide(); //przycisk COFNIJ ukryty
+					
 					$('#next').click(function()
 					{
+						$('#back').show();
 						if(i != len - 1)
 						{
 							i++;
@@ -145,11 +152,24 @@
 						}
 						else
 						{
-							alert("koniec");
+							$('#end').show();
+							$('#next').hide();
 						}
 					});
-					// $('#back').click(function()
-					// {
+					
+					$('#back').click(function()
+					{
+						if(i != 0)
+						{
+							i--;
+							$('.modal-body-edit').text(myArr[i]);
+							$('#end').hide();
+							$('#next').show();
+						}
+						else
+						{
+							$('#back').hide();
+						}
 						// if(i==1)
 						// {
 							// $('#back').hide();
@@ -160,7 +180,7 @@
 						// }
 						// i--;
 						// $('.modal-body').text(tablica[i-1]);
-					// });
+					});
 		
 				
 			});
@@ -227,57 +247,6 @@
   </div>
 </div>
 
-<!-- Usuniecie komentarza - MODAL -->
-<div id="myModal4" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content ">
-      <div class="modal-header modal-header-danger ">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie komentarza</h4>
-      </div>
-      <div class="modal-body">
-        <p>Czy na pewno chcesz usunąć komentarz?</p>
-		<div id="result2"></div>
-      </div>
-      <div class="modal-footer">
-		<button  name="akcja" value="Usuń" onclick="postDel()" class="btn btn-danger" >Usuń</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Edycja komentarza - MODAL -->
-<div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content ">
-      <div class="modal-header modal-header-danger ">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edycja komentarza</h4>
-      </div>
-      <div class="modal-body">
-					<div class="form-horizontal" >
-						<div class="form-group has-feedback">
-							<div class="col-sm-12">
-							  <input type="text" class="form-control " id="trescEdit"   onkeydown = "if (event.keyCode == 13)	postEdit();">
-							</div>
-						</div>
-						<div id="result3"></div> <!-- Rezultat ECHO  -->
-					</div>
-      </div>
-      <div class="modal-footer">
-		<button  name="akcja" value="Usuń" onclick="postEdit()" class="btn btn-primary" >Zapisz zmiany</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <!-- MODAL SAMOUCZKA -->
   <div id="myModal5" class="modal fade" role="dialog">
@@ -289,14 +258,13 @@
         <h4 class="modal-title"><?php echo $tytul; ?></h4>
       </div>
       <div class="modal-body modal-body-edit">
-        <p>Czy na pewno chcesz usunąć konto?</p>
+		*** Brak danych ***
+		<!-- Zawartosc okienka -->
       </div>
       <div class="modal-footer">
-		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-danger" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
 		<a  href="#" id="back"><span>Back</span></a>
 		<a href="#"  id="next"><span>Next</span></a>
+		<a href="#"  id="end" data-dismiss="modal"><span>Zakończ</span></a>
       </div>
     </div>
 
@@ -400,10 +368,18 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12"><h1>Testowy samouczek</h1>
-</div> 
+				<div class="col-md-12">
+				<?php 
+					echo '<h1>';
+					echo $tytul;
+					echo '</h1>';
+					echo '<label>Opis samouczka: </label>';
+					echo '&nbsp';
+					echo $opis;
+					echo '<br>';
+				?>
+				</div> 
             </div>
-			<hr>
 			</div>
 			
 
@@ -428,24 +404,23 @@
 			{
 				$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 				
-				
-				echo '<label>Tytuł samouczka: </label>';
-				echo $tytul;
-				echo '<br>';
-				echo '<label>Opis samouczka: </label>';
-				echo $opis;
-				echo '<br>';
+				echo '<div class="container-fluid" >';
+				echo '<div class="row">';
+				echo '<div class="col-md-12" style="padding:20px;">';
 				echo '<a href="" data-toggle="modal" data-target="#myModal5">';
-				echo 'KLIK';
-				echo '</a><br>';
-				echo '<a href="" onclick="go()">Uruchom alert</a>';
+				echo 'Uruchom samouczek';
+				echo '</a>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+				//echo '<a href="" onclick="go()">Uruchom alert</a>';
 			}
 			else
 			{
 				echo '<div class="container-fluid" >';
 				echo '<div class="row">';
 				echo '<div class="col-md-12" style="padding:20px;">';
-				echo '<span style="color: #5CB85C;">Gość nie ma dostępu. Musisz się <a href="#" data-toggle="modal" data-target="#myModal">zalogować</a>!<span>';
+				echo '<span style="color: #5CB85C;">Gość nie ma dostępu do treści samouczka. Musisz się <a href="#" data-toggle="modal" data-target="#myModal">zalogować</a>!<span>';
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';

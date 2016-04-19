@@ -22,7 +22,8 @@
 		
 		echo '<script>var regArt = ""; $(document).ready(function() { $(".regArt-select").click(function(){ 	regArt = $(this).val();  	});	});'; //skrypt
 		echo 		'function post2() {	var val2 = regArt;	$.post("php/test2.php", {val2:val2},	function(data)	{ $("#result2").html(data);		});			}';
-		echo 		'function post3() {	var val3 = regArt;	$.post("php/test2.php", {val3:val3},	function(data)	{ $("#result3").html(data);		});			}</script>';
+		echo 		'function post3() {	var val3 = regArt;	$.post("php/test2.php", {val3:val3},	function(data)	{ $("#result3").html(data);		});			}';
+		echo 		'function post4() {	var val4 = regArt;	$.post("php/test4.php", {val4:val4},	function(data)	{ $("#result44").html(data);		});			}</script>';
 		echo '	<br><div class="form-group">';
 		echo ' <label for="sel1">Wybierz tytuł artykułu:</label>';
 		echo '  <p><select class="form-control" id="sel1" name="help">';
@@ -36,7 +37,8 @@
 				}		
 		echo '  </select></p>';
 		echo '		<p><button onclick="post3()"  name="akcja" value="Edytuj" class="btn btn-primary pull-left btn-block" data-toggle="modal" data-target="#myModal2">EDYTUJ</button>';	
-		echo '		<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal3" class="btn btn-danger pull-left btn-block">USUŃ</button><br><br><br>';
+		echo '		<button onclick="post4()" type="button" name="akcja" value="Galeria zdjęć" data-toggle="modal" data-target="#myModal22" class="btn btn-primary pull-left btn-block">GALERIA ZDJĘĆ</button>';
+		echo '		<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal3" class="btn btn-danger pull-left btn-block">USUŃ</button><br><br><br><br><br>';
 		echo '		</p>';
 		echo '		</div>';
 	}

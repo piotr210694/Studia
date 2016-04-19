@@ -153,7 +153,13 @@
   background: #333333;
 }
 /* Nadpisanie dla .last POKAZ WIECEJ */
-#cssmenu ul ul li .last a {
+#cssmenu ul ul li .last a  {
+  color: #333333;
+  background: #dddddd;
+}
+
+/* Kolorowanie POKAZ WIECEJ bez kategorii*/
+#cssmenu ul ul li.last > a{
   color: #333333;
   background: #dddddd;
 }

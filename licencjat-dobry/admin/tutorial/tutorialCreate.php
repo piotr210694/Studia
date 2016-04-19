@@ -44,28 +44,48 @@
           */
 				$('#elements').hide();
 				$('#opening').hide();
+				$('#add').hide();
+				$('#save').hide();
+				var x = 0; 
 				$('#create').click(function()
-				{
-					var x = $('#ile').val() - 1;
+				{	
+					x = $('#ile').val();
 					if(x > 30)
 					{
-						alert("nie przesadzajmy!");
+						alert("Zbyt wiele kroków! Maksymalna ilość to 30.");
+					}
+					else if(x == 0)
+					{
+						alert("Samouczek musi zawierać minimum 1 krok!");
+					}
+					else if(x < 0)
+					{
+						alert("Podałeś wartość ujemną!");
 					}
 					else
 					{
-						for(var i = 0; i < x; i++)
+						for(var i = 0; i < x - 1; i++)
 						{
-							$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');  
+							$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');
+							//$('#elements .element:first').clone().appendTo($('#elements')).find('#countTask').text(i+2);   
+							//$('#elements .element:first').appendTo($('#elements')).find('span').text(i+2);   
 						}
 						$('#opening').show(1000);
 						$('#elements').show(2000);
 						$('#create').remove();
+						$('#ile').hide();
+						$('#add').show();
+						$('#save').show(2000);
 					}
 				});
 		  
 			  $('#add').click(function()
 			  {
-					$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');
+					x++;
+					// var tmp = $('#countTask:last').text();
+					// alert(tmp);
+					$('#elements .element:first').clone().appendTo($('#elements')).find('span').text(tmp+1); 
+					//$('#elements .element:first').clone().appendTo($('#elements')).find('textarea').val('');
 			  });
 			  
 			  $('#save').click(function()
@@ -83,15 +103,17 @@
 					var titleTutorial = $('#titleTutorial').val();
 					var describeTutorial = $('#describeTutorial').val();
 					
-					$.post('php/postTutorial.php', {task:new Array(task), titleTutorial:titleTutorial, describeTutorial:describeTutorial},
+					$.post('php/postTutorial.php', {task:new Array(task), titleTutorial:titleTutorial, describeTutorial:describeTutorial, x:x},
 					function(data)
 					{
 						$('#result2').html(data);
 					});	
 			  });
 			  
+			  
 			    $('#elements .element a').live('click', function()
 				{
+					x--;
 					var parent = $(this).parent();
 					if($('#elements .element').index(parent) > 0)
 					{
@@ -106,16 +128,7 @@
 					}
 
 				});
-				
-				$('#square').click(function()
-				{
-					$('#elements .element:first #square').addClass("blad");
-				});
-				
-				function post()
-				{
-					
-				}
+			
 				
 				
        });
@@ -306,27 +319,27 @@
 
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
-					<a href='#'  data-toggle="modal" data-target="#myModal4"><span>Link to open modal</span></a>
-						<input type="numb" id="ile" placeholder="podaj ilosc">
+						<p><input class="form-control" type="number"  min="1" id="ile" placeholder="Podaj ilość kroków..."><p>
 <!---						<button>OK</button>
 						<div id="zawartosc" >
 							huehue
 						</div>
 						<div id="zawartoscPHP" ></div> -->
 	<div id="opening">
-		<input type="text" id="titleTutorial" placeholder="Podaj tytuł samouczka..."  ><br>
-		<textarea  id="describeTutorial" placeholder="Podaj opis samouczka..." ></textarea>
+		<p><input class="form-control" type="text" id="titleTutorial" placeholder="Podaj tytuł samouczka..."  ></p>
+		<p><textarea class="form-control" id="describeTutorial" placeholder="Podaj opis samouczka..." ></textarea></p>
 	</div>
-	<button id="create">utwórz</button>	
-	<button id="add">dodaj</button>
+	<p><button type="button" class="btn btn-success" id="create">Utwórz</button></p>
+	<p><button type="button" class="btn btn-success" id="add">Dodaj</button></p>
     <div id="elements">
 		<div class="element">
-			<label>Pytanie nr:<span id="countTask">1</span><br />
-			<textarea name="task"></textarea>
+			<b>Krok nr:<span id="countTask" >1</span></b><br><div class="line-break">&nbsp;</div>
+			<textarea class="form-control" id="tx1" name="task" placeholder="Tutaj wpisz treść..."></textarea>
 			<a style="cursor: pointer;">usuń</a>
+			<hr>
 		</div>
     </div>
-	<button id = "save">Zapisz</button>
+	<button type="button" class="btn btn-block btn-success" id="save">Zapisz</button>
 	
 	<div id="result2"></div>
 					</div>

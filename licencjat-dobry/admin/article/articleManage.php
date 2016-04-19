@@ -8,6 +8,7 @@
 ?>
 
 <?php 
+	$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 	include('php/connectKategoria.php');
 ?>
 
@@ -82,6 +83,13 @@
 			}
 			
 		</script>
+		
+		<?php if(isset($_SESSION['ONphoto']))
+		{ 
+
+		}
+		?>
+	
 	
 			<!-- wydarzenia okienka -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
@@ -190,6 +198,36 @@
 		<!--<input type="submit" value="Zapisz zmiany" class="btn btn-primary">-->
 		 <button onclick="post4()" id="akcja" name="akcja" value="Edytuj"  class="btn btn-primary" >Zapisz zmiany</button> 
        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Galeria zdjec - MODAL -->
+<div id="myModal22" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Galeria zdjęć</h4>
+      </div>
+		  <div class="modal-body">
+					<div id="result44"></div>
+		  </div>
+      <div class="modal-footer">
+				<FORM ACTION="php/uploadPhotoExist.php"  METHOD="POST" ENCTYPE="multipart/form-data">
+					<INPUT type="file"  name="zdjecie"  required>
+					<input type="submit" class="btn btn-primary" name="ok" value="Wyślij zdjęcie do bazy"/>
+				</FORM>
+				<?php
+					if(isset($_SESSION['bladDodania2']))
+					{
+						echo $_SESSION['bladDodania2'];
+					}
+				?>
       </div>
     </div>
 

@@ -37,7 +37,7 @@
 				}
 				else
 				{
-					echo 'Blad: '.mysql_error();
+					//echo 'Blad: '.mysql_error();
 				}
 		
 	}

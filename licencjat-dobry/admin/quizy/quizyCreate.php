@@ -151,6 +151,7 @@
 			    $('#elements .element a').live('click', function()
 				{
 					var parent = $(this).parent();
+					alert(parent);
 					if($('#elements .element').index(parent) > 0)
 					{
 						parent.slideUp(2000, function() 

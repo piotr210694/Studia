@@ -50,6 +50,9 @@
 	<!-- Walidacja okna modalnego logowania -->
 	<script src="js/walidacjaModLog.js"></script>
 	
+	<!-- galeria lightbox 2 -->
+	<link rel="stylesheet" href="lightbox2-master/dist/css/lightbox.min.css">
+	
 	</head>
   
   <body >
@@ -173,6 +176,43 @@
             <div class="row">
 				<div class="col-md-12">
 				<h1>Witaj na naszej stronie!</h1> 
+					<div class="gallery">
+						<div class="row">
+							<div class="col-lg-3">
+								<a href="Suwalszczyzna/fotka.jpg" data-lightbox="Galeria" >
+									<img src="Suwalszczyzna/fotka.jpg" width="1000px" class="img-thumbnail">
+								</a>
+							</div>
+							<div class="col-lg-3">
+								<a href="Suwalszczyzna/fotka2.jpg" data-lightbox="Galeria" >
+									<img src="Suwalszczyzna/fotka2.jpg" width="1000px" class="img-thumbnail">
+								</a>
+							</div>
+							<div class="col-lg-3">
+								<a href="Suwalszczyzna/hdr.jpg" data-lightbox="Galeria" >
+									<img src="Suwalszczyzna/hdr.jpg" width="1000px" class="img-thumbnail">
+								</a>
+							</div>
+							<div class="col-lg-3">
+								<a href="Suwalszczyzna/net1.jpg" data-lightbox="Galeria" >
+									<img src="Suwalszczyzna/net1.jpg" width="1000px" class="img-thumbnail">
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+								<a href="Suwalszczyzna/net2.jpg" data-lightbox="Galeria" >
+									<img src="Suwalszczyzna/net2.jpg" width="1000px" class="img-thumbnail">
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<!-- JS do galerii -->
+					<script src="lightbox2-master/dist/js/lightbox-plus-jquery.min.js"></script> 
+			
+				
+				
 				
 				<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
 			
