@@ -176,59 +176,13 @@
             <div class="row">
 				<div class="col-md-12">
 				<h1>Witaj na naszej stronie!</h1> 
-					<div class="gallery">
-						<div class="row">
-							<div class="col-lg-3">
-								<a href="Suwalszczyzna/fotka.jpg" data-lightbox="Galeria" >
-									<img src="Suwalszczyzna/fotka.jpg" width="1000px" class="img-thumbnail">
-								</a>
-							</div>
-							<div class="col-lg-3">
-								<a href="Suwalszczyzna/fotka2.jpg" data-lightbox="Galeria" >
-									<img src="Suwalszczyzna/fotka2.jpg" width="1000px" class="img-thumbnail">
-								</a>
-							</div>
-							<div class="col-lg-3">
-								<a href="Suwalszczyzna/hdr.jpg" data-lightbox="Galeria" >
-									<img src="Suwalszczyzna/hdr.jpg" width="1000px" class="img-thumbnail">
-								</a>
-							</div>
-							<div class="col-lg-3">
-								<a href="Suwalszczyzna/net1.jpg" data-lightbox="Galeria" >
-									<img src="Suwalszczyzna/net1.jpg" width="1000px" class="img-thumbnail">
-								</a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-3">
-								<a href="Suwalszczyzna/net2.jpg" data-lightbox="Galeria" >
-									<img src="Suwalszczyzna/net2.jpg" width="1000px" class="img-thumbnail">
-								</a>
-							</div>
-						</div>
-					</div>
-					
-					<!-- JS do galerii -->
-					<script src="lightbox2-master/dist/js/lightbox-plus-jquery.min.js"></script> 
-			
-				
-				
-				
-				<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
-			
-				<p>Etiam condimentum sed lectus at laoreet. Fusce pellentesque porta purus a venenatis. Quisque erat augue, malesuada nec ultrices vitae, consequat sed metus. Donec at ipsum viverra mauris feugiat euismod. Morbi ultrices tellus libero, et gravida tortor laoreet eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi auctor interdum ornare. Praesent vel urna volutpat, accumsan erat at, pharetra urna. Pellentesque egestas sodales nibh vitae sodales. Suspendisse laoreet risus neque, viverra dictum leo condimentum vitae. Sed sem diam, blandit eu vestibulum in, tempor nec lacus. Nullam lacinia commodo elit, sed euismod leo. Suspendisse porttitor sem mi, fringilla viverra diam tincidunt ut.</p>
-			
-				<p>In dui turpis, varius nec neque id, mollis cursus neque. Pellentesque eget laoreet nulla. Nam lectus ex, vehicula ut euismod et, rhoncus in lectus. Donec luctus, sapien a venenatis vulputate, sapien ante condimentum lectus, ut molestie enim velit vitae magna. Suspendisse varius neque pulvinar enim ornare, nec lobortis enim lobortis. Ut eu ex neque. Vestibulum feugiat ligula et arcu rhoncus, quis maximus mauris pellentesque. Vivamus fermentum ultrices lacus vel vulputate. Morbi ultrices dolor nulla, ac lobortis nisl vestibulum sed. Vestibulum iaculis, lectus eget condimentum sodales, lorem nulla fermentum tellus, volutpat congue lacus dolor et quam. Phasellus ac risus blandit nisi rutrum suscipit non eu mauris. Vestibulum fringilla non neque vitae vestibulum.</p>
-			
-				<p>Fusce quis vehicula purus, ut fermentum quam. Suspendisse cursus dui ac est convallis, sit amet egestas lorem sodales. Praesent nec nunc mattis, hendrerit mauris quis, dignissim nisi. Pellentesque semper faucibus urna vel tempus. Suspendisse egestas lacus ornare ligula mattis, et pulvinar urna sodales. Suspendisse tristique eget lacus sit amet dapibus. Nam quis imperdiet velit. Vestibulum consectetur rutrum tortor, sit amet fringilla nisi rhoncus id. Aenean sit amet odio elit. Nulla orci quam, eleifend quis sapien sed, vestibulum elementum urna. Sed dapibus ligula vitae turpis bibendum, in tempus magna bibendum. Aenean ut purus diam. Praesent porta velit ut dui fringilla egestas. Donec dignissim non sapien at imperdiet. Quisque bibendum massa ligula, vel elementum eros iaculis quis. Maecenas velit nisl, imperdiet vitae dui sed, convallis placerat enim.</p>
-				
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rhoncus mi, in vestibulum lorem. Nulla urna mauris, egestas nec erat vel, tempus ullamcorper dolor. Maecenas eu mattis arcu. Aliquam dapibus quis risus eget consequat. Curabitur eu convallis urna, vitae scelerisque est. Nunc eget posuere urna. Nulla facilisi. Phasellus blandit eleifend aliquet. Curabitur porttitor pharetra pretium. Nam ac eros laoreet, consequat felis at, auctor metus.</p>
-			
-				<p>Etiam condimentum sed lectus at laoreet. Fusce pellentesque porta purus a venenatis. Quisque erat augue, malesuada nec ultrices vitae, consequat sed metus. Donec at ipsum viverra mauris feugiat euismod. Morbi ultrices tellus libero, et gravida tortor laoreet eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi auctor interdum ornare. Praesent vel urna volutpat, accumsan erat at, pharetra urna. Pellentesque egestas sodales nibh vitae sodales. Suspendisse laoreet risus neque, viverra dictum leo condimentum vitae. Sed sem diam, blandit eu vestibulum in, tempor nec lacus. Nullam lacinia commodo elit, sed euismod leo. Suspendisse porttitor sem mi, fringilla viverra diam tincidunt ut.</p>
-			
-				<p>In dui turpis, varius nec neque id, mollis cursus neque. Pellentesque eget laoreet nulla. Nam lectus ex, vehicula ut euismod et, rhoncus in lectus. Donec luctus, sapien a venenatis vulputate, sapien ante condimentum lectus, ut molestie enim velit vitae magna. Suspendisse varius neque pulvinar enim ornare, nec lobortis enim lobortis. Ut eu ex neque. Vestibulum feugiat ligula et arcu rhoncus, quis maximus mauris pellentesque. Vivamus fermentum ultrices lacus vel vulputate. Morbi ultrices dolor nulla, ac lobortis nisl vestibulum sed. Vestibulum iaculis, lectus eget condimentum sodales, lorem nulla fermentum tellus, volutpat congue lacus dolor et quam. Phasellus ac risus blandit nisi rutrum suscipit non eu mauris. Vestibulum fringilla non neque vitae vestibulum.</p>
-			
-				<p>Fusce quis vehicula purus, ut fermentum quam. Suspendisse cursus dui ac est convallis, sit amet egestas lorem sodales. Praesent nec nunc mattis, hendrerit mauris quis, dignissim nisi. Pellentesque semper faucibus urna vel tempus. Suspendisse egestas lacus ornare ligula mattis, et pulvinar urna sodales. Suspendisse tristique eget lacus sit amet dapibus. Nam quis imperdiet velit. Vestibulum consectetur rutrum tortor, sit amet fringilla nisi rhoncus id. Aenean sit amet odio elit. Nulla orci quam, eleifend quis sapien sed, vestibulum elementum urna. Sed dapibus ligula vitae turpis bibendum, in tempus magna bibendum. Aenean ut purus diam. Praesent porta velit ut dui fringilla egestas. Donec dignissim non sapien at imperdiet. Quisque bibendum massa ligula, vel elementum eros iaculis quis. Maecenas velit nisl, imperdiet vitae dui sed, convallis placerat enim.</p>
+				<p>Cieszymy się, że Nas odwiedziłeś! Mamy nadzieję, że niniejsza <a href="index2.php">witryna</a> pomoże ci w rozwijaniu Twojej pasji, którą jest <i>projektowanie systemów informatycznych</i>. Jeśli jednak trafiłeś tu przypadkowo bądź też nie jesteś fascynatem treści jaką oferuję nasz serwis, nie łam się! Jako administratorzy robimy wszystko co w naszej mocy, aby informacje zawarte na stronie były przejrzyste i zrozumiałem nawet dla laika. Być może wertując naszą stronę wdrożysz się w projektowanie i stanie się ono twoją pasją.</p>
+								<br>
+				<p><b>Co do zaoferowania ma nasz serwis?</b></p>
+				<p>Generalnie strona poświęcona jest <i>projektowaniu systemów informatycznych</i>, czyli motywem przewodnim, który Nas kieruje przy tworzeniu nowych materiałów dydaktycznych będzie właśnie sam początek cyklu życia orpogramowania. Będziemy skupiać się na zagadnieniach związanych z przygotowaniem bazy teoretycznej pod budowę przyszłego systemu. Szczególnie skupimy się na przedstawieniu fazy określenia wymagań i analizy. Dzięki galerii oraz obszernym artykułom będziecie mogli w prosty i przejrzysty sposób nauczyć się budowy diagramów UML - a więc opanujecie sztukę wizualizacji wymagań funkcjonalnych. Komunikację z działem administracyjnym umożliwi wam zakładka <a href="contact/kontaktlog.php">kontakt</a>. Dzięki niej będziecie mieli z nami stałą łączność o każdej porze. Komunikację z innymi użytkownikami umożliwią Wam komentarze, które będzie można zostawić pod każdym artykułem znajdującym się na naszej witrynie. <a href="">Samouczki</a> i <a href="">quizy</a> tworzone przez Naszych fachowców pomogą Wam w prostym przyswojeniu nowo nabytej wiedzy.</p>
+				<p>A więc nie zwlekajcie! Jak najszybciej zapoznajcie się z materiałami, które ma do zaoferowania Nasza witryna.</p>
+				<br>
+				<p style="text-align:right;">Pozdrawiamy! <i>Zarząd <a href="index2.php">PSI - projektuj z pomysłem</a>.</p></i>
 				
 
 				</div>

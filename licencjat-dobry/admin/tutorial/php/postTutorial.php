@@ -11,7 +11,12 @@
 	if($_POST['task'] AND $_POST['titleTutorial'] AND $_POST['describeTutorial'])
 	{
 		$tabTask = serialize($_POST['task']); //zamiana na string
-		$title = $_POST['titleTutorial'];
+		
+		$title2 = $_POST['titleTutorial'];
+		$str = iconv('utf-8','us-ascii//TRANSLIT//IGNORE', $title2); 
+		$str = str_replace("'",'', $str); 
+		$title = $str;
+		
 		$describe = $_POST['describeTutorial'];
 		$data = date( 'Y-m-d H:i:s' );
 		$link = "admin/tutorial/samouczki/$title.php";
@@ -33,7 +38,7 @@
 		{
 			$max_id = $wiersz['max'] + 1;
 		}
-		$ins = @mysql_query("INSERT INTO `samouczek` (`id_samouczka`, `id_autora`, `tytul`, `opis`, `tresc`, `link`, `data`) VALUES ('$max_id', '$id', '$title', '$describe', '$tabTask', '$link', '$data');") or die(mysql_error());
+		$ins = @mysql_query("INSERT INTO `samouczek` (`id_samouczka`, `id_autora`, `tytul`, `opis`, `tresc`, `link`, `data`) VALUES ('$max_id', '$id', '$title2', '$describe', '$tabTask', '$link', '$data');") or die(mysql_error());
 		
 		echo "dziala";
 		

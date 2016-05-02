@@ -14,9 +14,10 @@
 	<head>
 		<?php 
 			include('head.php');
+				
+			require_once "../php/connect.php"; //wymaga pliku w kodzie
+			include('checkNotifications.php');
 		?> 
-		
-		
 	</head>
   
 	<body>
@@ -99,6 +100,44 @@
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-pencil text-primary"></span><a href="tutorial/tutorialCreate.php">Stwórz</a>
+                                    </td>
+                                </tr>
+                           </table>
+                        </div>
+                    </div>
+                </div>				
+				<!-- User -->
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-user">
+                            </span>Użytkownicy&nbsp;											
+											<?php 
+												if(isset($iloscPowiadomien) AND $iloscPowiadomien > 0 ) 
+												{
+													echo '<span class="badge text-primary">';
+													echo $iloscPowiadomien; 
+													echo '</span>';
+												}
+											?>
+											</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-bell text-primary"></span><a href="user/changeTypeAccount.php">Powiadomienia&nbsp;
+											<?php 
+												if(isset($iloscPowiadomien) AND $iloscPowiadomien > 0 ) 
+												{
+													echo '<span class="badge text-primary">';
+													echo $iloscPowiadomien; 
+													echo '</span>';
+												}
+											?>
+										</a>
                                     </td>
                                 </tr>
                            </table>

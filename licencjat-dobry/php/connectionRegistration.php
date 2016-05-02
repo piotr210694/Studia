@@ -23,9 +23,9 @@ session_start();
 
 	if($newLogin AND $newPass AND $newEmail)
 	{
-		$ins = @mysql_query("INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`) VALUES ('$max_id', '$newLogin', '$newPass', '$newEmail', NULL, NULL, NULL, '$date');") or die(mysql_error());
+		$ins = @mysql_query("INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`, `rola`) VALUES ('$max_id', '$newLogin', '$newPass', '$newEmail', NULL, NULL, NULL, '$date', 'user');") or die(mysql_error());
 		echo '<br><div class="alert alert-success">';
-		echo '<strong>Witaj'.$newLogin.'!</strong> Operacja zakładania konta przebiegła pomyślnie! <a href="" data-toggle="modal" data-target="#myModal">Zaloguj się</a></div>';
+		echo '<strong>Witaj '.$newLogin.'!</strong> Operacja zakładania konta przebiegła pomyślnie! <a href="" data-toggle="modal" data-target="#myModal">Zaloguj się</a></div>';
 	}
 	else
 	{

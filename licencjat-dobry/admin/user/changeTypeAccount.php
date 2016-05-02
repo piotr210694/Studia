@@ -1,4 +1,4 @@
- <?php
+  <?php
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
@@ -7,6 +7,11 @@
 	}
 ?>
 
+<?php
+	require_once "../../php/connect.php"; //wymaga pliku w kodzie
+	include('../checkNotifications.php');
+	include('php/viewRequest.php');
+?>
 
 
 <!doctype html>
@@ -127,6 +132,12 @@
 						alert("Quiz musi zawierać przynajmniej jedno pytanie!");
 					}
 
+				});
+				
+				 $('.edytuj').click(function()
+				{
+					var he = $(this).val();
+					alert(he);
 				});
 			
 				
@@ -313,7 +324,7 @@
 									</span>Samouczki</a>
 								</h4>
 							</div>
-							<div id="collapseThree" class="panel-collapse collapse in">
+							<div id="collapseThree" class="panel-collapse collapse">
 								<div class="panel-body">
 									<table class="table">
 										<tr>
@@ -325,6 +336,44 @@
 								</div>
 							</div>
 						</div>
+										<!-- User -->
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-user">
+                            </span>Użytkownicy&nbsp;											
+											<?php 
+												if(isset($iloscPowiadomien) AND $iloscPowiadomien > 0 ) 
+												{
+													echo '<span class="badge text-primary">';
+													echo $iloscPowiadomien; 
+													echo '</span>';
+												}
+											?>
+											</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-bell text-primary"></span><a href="changeTypeAccount.php">Powiadomienia&nbsp;
+											<?php 
+												if(isset($iloscPowiadomien) AND $iloscPowiadomien > 0 ) 
+												{
+													echo '<span class="badge text-primary">';
+													echo $iloscPowiadomien; 
+													echo '</span>';
+												}
+											?>
+										</a>
+                                    </td>
+                                </tr>
+                           </table>
+                        </div>
+                    </div>
+                </div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -335,35 +384,61 @@
 						</div>
 					</div>
 				</div>
+				
         
 
 				<div class="col-sm-9 col-md-9">
-					<div class="well">	
-						<p><input class="form-control" type="number"  min="1" id="ile" placeholder="Podaj ilość kroków..."><p>
-<!---						<button>OK</button>
-						<div id="zawartosc" >
-							huehue
-						</div>
-						<div id="zawartoscPHP" ></div> -->
-	<div id="opening">
-		<p><input class="form-control" type="text" id="titleTutorial" placeholder="Podaj tytuł samouczka..."  ></p>
-		<p><textarea class="form-control" id="describeTutorial" placeholder="Podaj opis samouczka..." ></textarea></p>
-	</div>
-	<p><button type="button" class="btn btn-success" id="create">Utwórz</button></p>
-	<p><button type="button" class="btn btn-success" id="add">Dodaj</button></p>
-	
-	<br>
-    <div id="elements">
-		<div class="element">
-			<!-- <b>Krok nr:<span id="countTask" >1</span></b><br><div class="line-break">&nbsp;</div> -->
-			<textarea class="form-control" id="tx1" name="task" placeholder="Tutaj wpisz treść..."></textarea>
-			<a style="cursor: pointer;">usuń</a>
-			<hr>
-		</div>
-    </div>
-	<button type="button" class="btn btn-block btn-success" id="save">Zapisz</button>
-	
-	<div id="result2"></div>
+					<div class="well col-md-12">	
+					
+							<table class="table table-hover">
+								<thead>
+								  <tr>
+									<th>Login</th>
+									<th>Obecna typ konta</th>
+									<th>Chęć zmiany na</th>
+									<th>Data</th>
+									<th>Akcja</th>
+								  </tr>
+								</thead>
+						
+								<tbody>
+									<?php
+										for($i = 0; $i < $ileP; $i++)
+										{
+											if($stan[$i] == 1)
+											{
+												echo '<tr>';
+												echo '	<td>';
+												echo 		$login[$i];
+												echo '	</td>';
+												echo '	<td>';
+												echo 		$obecnyTyp[$i];
+												echo '	</td>';
+												echo '	<td>';
+												echo 		$rola[$i];
+												echo '	</td>';											
+												echo '	<td>';
+												echo 		$data[$i];
+												echo '	</td>';
+												echo '<form action="php/connectRequest.php" method="post" role="form">';
+												echo '	<td>';
+												echo 		'<button type="submit" name="akcept"  class="btn btn-primary btn-sm edytuj"  value="';
+												echo $idU[$i];										
+												echo '" nazwa = "';
+												echo "";
+												echo '"';
+												echo '>Akceptuj</button>&nbsp;<button type="submit" class="btn btn-danger btn-sm usun" value="';
+												echo $idU[$i];
+												echo '">Odrzuć</button>';
+												echo '	</td>';
+												echo '</form>';
+												echo '</tr>';
+											}
+										}
+									?>
+								</tbody>
+					
+							</table>
 					</div>
 				</div>
 				

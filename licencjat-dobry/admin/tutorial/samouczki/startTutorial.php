@@ -129,7 +129,7 @@
 					alert(myArr[1]);
 			}
 						
-			$(document).ready(function()
+				$(document).ready(function()
 			{
 				
 				//dzialania na oknie moodalnym
@@ -152,6 +152,10 @@
 							i++;
 							$('.modal-body-edit').text(myArr[i]);
 						}
+						/*if(i == len)
+						{
+							$('#next').hide();
+						}*/
 						else
 						{
 							$('#end').show();
@@ -168,10 +172,15 @@
 							$('#end').hide();
 							$('#next').show();
 						}
-						else
+						if(i == 0)
 						{
 							$('#back').hide();
 						}
+						/*else
+						{
+							$('#back').hide();
+						}
+						*/
 						// if(i==1)
 						// {
 							// $('#back').hide();
@@ -259,7 +268,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><?php echo $tytul; ?></h4>
       </div>
-      <div class="modal-body modal-body-edit">
+      <div class="modal-body modal-body-edit"  style="text-align: justify;">
 		*** Brak danych ***
 		<!-- Zawartosc okienka -->
       </div>

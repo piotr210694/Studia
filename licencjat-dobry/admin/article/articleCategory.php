@@ -8,12 +8,9 @@
 ?>
 
 <?php 
-	include('php/connectKategoria.php');
+	include('php/viewRequest.php');
 ?>
 
-<?php 
-	include('php/viewCategory.php');
-?>
 
 <!doctype html>
 

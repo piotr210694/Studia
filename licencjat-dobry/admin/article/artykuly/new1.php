@@ -3,13 +3,7 @@
 ?>
 
 <?php 
-	$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 	include('../../../php/connectMenu.php');
-?>
-
-<?php 
-	// zdjecia do galerii
-	include('../php/galleryImage.php');
 ?>
 
 
@@ -117,15 +111,10 @@
 				});
 			}
 			</script>
-			
-			<!-- galeria lightbox 2 -->
-			<link rel="stylesheet" href="../../../lightbox2-master/dist/css/lightbox.min.css">
 	  
 	</head>
   
   <body>
-  
-
 <!-- Panel logowania -->
 <div id="myModal" class="modal fade" role="dialog">
   <form id="contact_form" action="php/zaloguj.php" method="post" >
@@ -329,123 +318,242 @@
 	</div>
 <!-- KONIEC MENU-->
 			</div>
-	
-
-<!-- SLIDER DO ZDJEC -->
-    <script type="text/javascript" src="jsSlider/jssor.slider.min.js"></script>
-    <script>
-        jssor_1_slider_init = function() 
-		{
-            
-            var jssor_1_SlideoTransitions = [
-              [{b:0,d:600,y:-290,e:{y:27}}],
-              [{b:0,d:1000,y:185},{b:1000,d:500,o:-1},{b:1500,d:500,o:1},{b:2000,d:1500,r:360},{b:3500,d:1000,rX:30},{b:4500,d:500,rX:-30},{b:5000,d:1000,rY:30},{b:6000,d:500,rY:-30},{b:6500,d:500,sX:1},{b:7000,d:500,sX:-1},{b:7500,d:500,sY:1},{b:8000,d:500,sY:-1},{b:8500,d:500,kX:30},{b:9000,d:500,kX:-30},{b:9500,d:500,kY:30},{b:10000,d:500,kY:-30},{b:10500,d:500,c:{x:87.50,t:-87.50}},{b:11000,d:500,c:{x:-87.50,t:87.50}}],
-              [{b:0,d:600,x:410,e:{x:27}}],
-              [{b:-1,d:1,o:-1},{b:0,d:600,o:1,e:{o:5}}],
-              [{b:-1,d:1,c:{x:175.0,t:-175.0}},{b:0,d:800,c:{x:-175.0,t:175.0},e:{c:{x:7,t:7}}}],
-              [{b:-1,d:1,o:-1},{b:0,d:600,x:-570,o:1,e:{x:6}}],
-              [{b:-1,d:1,o:-1,r:-180},{b:0,d:800,o:1,r:180,e:{r:7}}],
-              [{b:0,d:1000,y:80,e:{y:24}},{b:1000,d:1100,x:570,y:170,o:-1,r:30,sX:9,sY:9,e:{x:2,y:6,r:1,sX:5,sY:5}}],
-              [{b:2000,d:600,rY:30}],
-              [{b:0,d:500,x:-105},{b:500,d:500,x:230},{b:1000,d:500,y:-120},{b:1500,d:500,x:-70,y:120},{b:2600,d:500,y:-80},{b:3100,d:900,y:160,e:{y:24}}],
-              [{b:0,d:1000,o:-0.4,rX:2,rY:1},{b:1000,d:1000,rY:1},{b:2000,d:1000,rX:-1},{b:3000,d:1000,rY:-1},{b:4000,d:1000,o:0.4,rX:-1,rY:-1}]
-            ];
-            
-            var jssor_1_options = {
-              $AutoPlay: true,
-              $Idle: 2000,
-              $CaptionSliderOptions: {
-                $Class: $JssorCaptionSlideo$,
-                $Transitions: jssor_1_SlideoTransitions,
-                $Breaks: [
-                  [{d:2000,b:1000}]
-                ]
-              },
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
-            };
-            
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-            
-            //responsywnosc - start
-            function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 600);
-                    jssor_1_slider.$ScaleWidth(refSize);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider();
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            //responsywnosc KONIEC
-        };
-    </script>
-
-    <style>
-        /* jssor slider bullet navigator skin 01 css */
-        /*
-        .jssorb01 div           (normal)
-        .jssorb01 div:hover     (normal mouseover)
-        .jssorb01 .av           (active)
-        .jssorb01 .av:hover     (active mouseover)
-        .jssorb01 .dn           (mousedown)
-        */
-        .jssorb01 {
-            position: absolute;
-        }
-        .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
-            position: absolute;
-            /* size of bullet elment */
-            width: 12px;
-            height: 12px;
-            filter: alpha(opacity=70);
-            opacity: .7;
-            overflow: hidden;
-            cursor: pointer;
-            border: #000 1px solid;
-        }
-        .jssorb01 div { background-color: gray; }
-        .jssorb01 div:hover, .jssorb01 .av:hover { background-color: #d3d3d3; }
-        .jssorb01 .av { background-color: #fff; }
-        .jssorb01 .dn, .jssorb01 .dn:hover { background-color: #555555; }
-
-        /* jssor slider arrow navigator skin 02 css */
-        /*
-        .jssora02l                  (normal)
-        .jssora02r                  (normal)
-        .jssora02l:hover            (normal mouseover)
-        .jssora02r:hover            (normal mouseover)
-        .jssora02l.jssora02ldn      (mousedown)
-        .jssora02r.jssora02rdn      (mousedown)
-        */
-        .jssora02l, .jssora02r {
-            display: block;
-            position: absolute;
-            /* size of arrow element */
-            width: 55px;
-            height: 55px;
-            cursor: pointer;
-            background: url('img/a02.png') no-repeat;
-            overflow: hidden;
-        }
-        .jssora02l { background-position: -3px -33px; }
-        .jssora02r { background-position: -63px -33px; }
-        .jssora02l:hover { background-position: -123px -33px; }
-        .jssora02r:hover { background-position: -183px -33px; }
-        .jssora02l.jssora02ldn { background-position: -3px -33px; }
-        .jssora02r.jssora02rdn { background-position: -63px -33px; }
-    </style>
-<!-- KONIEC SLIDER -->	
+			
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12">cososo</div> 
+            </div>
+			<hr>
+			</div>
+			
+
+			
+			<!-- Boczny panel admina -->
+			<?php 
+				if(isset($_SESSION['zalogowanyad']))
+				{
+					echo '<div class="okno">';
+					echo	'<a href="../../indexad.php">';
+					echo		'<div class=text>';
+					echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
+					echo			'Panel administratora';
+					echo		'</div>';
+					echo	'</a>';
+					echo '</div>';
+				}
+			?>
+			
+			<?php 
+			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
+			{
+				$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
+				include('../php/comment/showKom.php'); //sciagamy dane komentarzy
+		
+				//Form do komentarzy
+									echo '<div class="container" >';
+				echo '<div class="row">';
+
+				echo '<div class="col-md-6" style="padding:20px; clear: left;">';
+				echo '<h3 style="">Komentarze: (';
+				echo $ileK;
+				echo ')</h3>';
+				echo '<form action="../php/comment/connectKom.php".php" method="post" role="form">';
+				echo '<div class="form-group"  >';
+				echo		'<p><textarea required type="text" class="form-control" name="komentarz" row="2" placeholder="Napisz komentarz" required></textarea>';
+				echo		'</div>';
+				echo		'<button type="submit" class="btn btn-success pull-left btn-block ">Wyślij</button></p>';
+				echo '</form>';
+				echo '</div>';
+				echo '<div class="col-md-3">';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+
+				
+				//Wyświetleni komentarzy
+					echo '<div class="container" >';
+				echo '<div class="row">';
+				echo '<div class="col-md-3"></div>';
+				echo '<div class="col-md-6" style="padding:20px; clear: left;">';
+				//Panele z bootstrap
+				echo '<div class="panel-group">';
+				if($ileK <= $ogranicz)
+				{
+					for($i=0; $i<$ileK; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div class="col-md-5 align-div">';
+							if($_SESSION['login'] == 'admin' AND $login[$i] != $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4" ></span>';
+							}
+							if($login[$i] == $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-pencil pencil-icon" aria-hidden="true" tmp="';
+								echo $tresc[$i];
+								echo '" data-toggle="modal" data-target="#myModal2"></span>&thinsp;
+								<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4"></span>';
+							}
+							echo '</div>';
+							echo '<div  class="col-md-7 text-right align-div" >';
+							if(isset($data) AND $dataEdit[$i] != NULL){echo $data[$i].' <span class="commentEdit">(Edytowany)</span>';}
+							else if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
+					
+					echo '</div>';
+				
+				
+				
+				
+				echo '</div>';
+				echo '<div class="col-md-3">';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+	
+				}
+				else
+				{
+					for($i=0; $i<$ogranicz; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div class="col-md-5 align-div">';
+							if($_SESSION['login'] == 'admin' AND $login[$i] != $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4" ></span>';
+							}
+							if($login[$i] == $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-pencil pencil-icon" aria-hidden="true" tmp="';
+								echo $tresc[$i];
+								echo '" data-toggle="modal" data-target="#myModal2"></span>&thinsp;
+								<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4"></span>';
+							}
+							echo '</div>';
+							echo '<div  class="col-md-7 text-right align-div" >';
+							if(isset($data) AND $dataEdit[$i] != NULL){echo $data[$i].' <span class="commentEdit">(Edytowany)</span>';}
+							else if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
+					
+					
+					
+					
+					
+					/////////////UKRYTE
+					echo '<div class="ukryte"  style="  margin-top: 5px;">';
+					for($ogranicz; $i<$ileK; $i++)
+					{
+						echo '<div class="panel panel-primary">';
+						echo '<div class="panel-heading">';
+							echo '<div class="col-md-5 align-div">';
+							if($_SESSION['login'] == 'admin' AND $login[$i] != $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4" ></span>';
+							}
+							if($login[$i] == $_SESSION['login'])
+							{
+								echo '<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-pencil pencil-icon" aria-hidden="true" tmp="';
+								echo $tresc[$i];
+								echo '" data-toggle="modal" data-target="#myModal2"></span>&thinsp;
+								<span id="';
+								echo $idKom[$i];
+								echo '" class="glyphicon glyphicon-trash trash-icon" aria-hidden="true" data-toggle="modal" data-target="#myModal4"></span>';
+							}
+							echo '</div>';
+							echo '<div  class="col-md-7 text-right align-div" >';
+							if(isset($data) AND $dataEdit[$i] != NULL){echo $data[$i].' <span class="commentEdit">(Edytowany)</span>';}
+							else if(isset($data)){echo $data[$i];}
+							echo '</div>';
+							echo '<div  class="text-left" ><strong><span style="text-transform: uppercase;">';
+							echo $login[$i];
+							echo '</span></strong> napisał:</div>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+						if(isset($tresc)){echo $tresc[$i];}
+						echo '</div>';
+						echo '</div>';
+					}
+					echo '</div>';
+					/////////////////////////
+					echo '</div>';
+				
+				
+					echo '<div class="panel panel-primary kliknij " style="  margin-bottom: 10px;">';
+					echo '<div class="panel-heading text-center " id="hoho" style="cursor: pointer;">';
+					echo '***POKAŻ WSZYSTKIE KOMENTARZE***';
+					echo '</div>';
+					echo '</div>';
+				
+				echo '</div>';
+				echo '<div class="col-md-3">';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+					
+				}
+
+				
+				
+
+			}
+			else
+			{
+				echo '<div class="container-fluid" >';
+				echo '<div class="row">';
+				echo '<div class="col-md-12" style="padding:20px;">';
+				echo '<span style="color: #5CB85C;">Aby móc oglądać i dodawać komentarze musisz się <a href="#" data-toggle="modal" data-target="#myModal">zalogować</a>!<span>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+			}
+			?>
+
+			
+
+			
+			
+				
+          
+        </div>
+      </div>
+    </div>
+	  </body>
+
+</html>

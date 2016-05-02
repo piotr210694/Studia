@@ -129,12 +129,12 @@ input.valid, textarea.valid{
 }
 
 /* Nadpisanie bootstrap - stopk nie FIXED*/
-.navbar-fixed-bottom
+/*.navbar-fixed-bottom
 {
 	position: relative !important;
 	bottom: 5px !important;
 }
-		
+	*/	
 		.okno
 		{
 			z-index: 999999;
@@ -177,9 +177,10 @@ input.valid, textarea.valid{
 		/* STOPKA na dole*/
 		footer 
 		{
-			position:absolute;
+			position:fixed;
 			bottom:0;
 			width:100%;
+			/*background-color:black;*/
 
 		}
 		html 

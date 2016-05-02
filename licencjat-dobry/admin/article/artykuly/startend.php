@@ -1,6 +1,73 @@
-</div> 
-            </div>
-			<hr>
+<br><hr>
+				
+				<!-- Galeria START -->
+				<div class=" gallery">
+				<h3>Galeria zdjęć:</h3>
+					<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+						<!-- Ładujemy ekranik -->
+						<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+						</div>
+						<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">	 
+							<?php
+								if($ileZdjec == 0)
+								{
+									echo "Ten artykuł nie zawiera zdjęć.";
+								}
+								else
+								{
+									for($j = 0; $j < $ileZdjec; $j++)
+									{
+										/*if(($j+1)%4 == 0)
+										{
+											echo '<div class="row">';
+										}
+										echo '		<div class="col-lg-3">';
+										*/
+										echo ' <div data-p="112.50" style="display: none;">';
+										echo '			<a href="';
+										echo $zdjecie[$j];
+										echo '			" data-lightbox="Galeria" >';
+										echo '				<img data-u="image" src="';
+										echo $zdjecie[$j];
+										echo '				"s class="img-thumbnail">';
+										echo '			</a>';
+										echo '		</div>';
+										/*echo '		</div>';
+										if(($j+1)%4 == 0)
+										{
+											echo '</div>';
+										}
+										*/
+									}
+								}		
+							?>
+							<!-- <a data-u="ad" href="http://www.jssor.com" style="display:none">jQuery Slider</a> -->
+						</div>
+		
+						<!-- Nawigacja -->
+						<div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
+							<div data-u="prototype" style="width:12px;height:12px;"></div>
+						</div>
+						<!-- Strzałki nawigacji -->
+						<span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
+						<span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
+					</div>
+				<script>
+					jssor_1_slider_init();
+				</script>
+
+				<!-- Galeria END -->
+				</div>
+				
+				<!-- JS do galerii -->
+				<script src="../../../lightbox2-master/dist/js/lightbox-plus-jquery.min.js"></script> 
+				
+				<br>
+				<hr>
+				</div>
+				
+			</div>
 			</div>
 			
 
@@ -23,7 +90,7 @@
 			<?php 
 			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
 			{
-				$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
+				
 				include('../php/comment/showKom.php'); //sciagamy dane komentarzy
 		
 				//Form do komentarzy

@@ -3,13 +3,10 @@
 ?>
 
 <?php 
-	$_SESSION['url'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
-	include('../../../php/connectMenu.php');
-?>
+	$_SESSION['urlTutorial'] = $_SERVER['REQUEST_URI'];//wyciaganie adresu
 
-<?php 
-	// zdjecia do galerii
-	include('../php/galleryImage.php');
+	include('../../../php/connectMenu.php');
+	include('../php/connectTutorial.php');
 ?>
 
 
@@ -116,16 +113,93 @@
 					$('#result3').html(data);
 				});
 			}
-			</script>
 			
-			<!-- galeria lightbox 2 -->
-			<link rel="stylesheet" href="../../../lightbox2-master/dist/css/lightbox.min.css">
+			
+			/* Do samouczka */
+			var tablica = "";
+			tablica = '<?php echo $tab; ?>';
+			var myArr = eval(tablica);
+			function go()
+			{
+					// var tablica = new Array('hehe', 'hu');
+					
+					
+					// tablica.push(tab);
+					
+					alert(myArr[1]);
+			}
+						
+				$(document).ready(function()
+			{
+				
+				//dzialania na oknie moodalnym
+					// var tablica = new Array('elo', 'dwa', 'trzy');
+					// tablica = pytaniaTab;
+					// var dl_tab = tablica.length;
+					// $('#back').hide();					
+					var i = 0;
+					var len = myArr.length;
+					
+					$('.modal-body-edit').text(myArr[0]); //wstawienie zawartosci z tablicy
+					$('#end').hide(); //przycisk ZAKONCZ ukryty
+					$('#back').hide(); //przycisk COFNIJ ukryty
+					
+					$('#next').click(function()
+					{
+						$('#back').show();
+						if(i != len - 1)
+						{
+							i++;
+							$('.modal-body-edit').text(myArr[i]);
+						}
+						/*if(i == len)
+						{
+							$('#next').hide();
+						}*/
+						else
+						{
+							$('#end').show();
+							$('#next').hide();
+						}
+					});
+					
+					$('#back').click(function()
+					{
+						if(i != 0)
+						{
+							i--;
+							$('.modal-body-edit').text(myArr[i]);
+							$('#end').hide();
+							$('#next').show();
+						}
+						if(i == 0)
+						{
+							$('#back').hide();
+						}
+						/*else
+						{
+							$('#back').hide();
+						}
+						*/
+						// if(i==1)
+						// {
+							// $('#back').hide();
+						// }
+						// else
+						// {
+							// $('#next').show();
+						// }
+						// i--;
+						// $('.modal-body').text(tablica[i-1]);
+					});
+		
+				
+			});
+			</script>
 	  
 	</head>
   
   <body>
-  
-
 <!-- Panel logowania -->
 <div id="myModal" class="modal fade" role="dialog">
   <form id="contact_form" action="php/zaloguj.php" method="post" >
@@ -184,52 +258,24 @@
   </div>
 </div>
 
-<!-- Usuniecie komentarza - MODAL -->
-<div id="myModal4" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
+<!-- MODAL SAMOUCZKA -->
+  <div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content ">
-      <div class="modal-header modal-header-danger ">
+      <div class="modal-header modal-header  ">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie komentarza</h4>
+        <h4 class="modal-title"><?php echo $tytul; ?></h4>
       </div>
-      <div class="modal-body">
-        <p>Czy na pewno chcesz usunąć komentarz?</p>
-		<div id="result2"></div>
+      <div class="modal-body modal-body-edit">
+		*** Brak danych ***
+		<!-- Zawartosc okienka -->
       </div>
       <div class="modal-footer">
-		<button  name="akcja" value="Usuń" onclick="postDel()" class="btn btn-danger" >Usuń</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Edycja komentarza - MODAL -->
-<div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content ">
-      <div class="modal-header modal-header-danger ">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edycja komentarza</h4>
-      </div>
-      <div class="modal-body">
-					<div class="form-horizontal" >
-						<div class="form-group has-feedback">
-							<div class="col-sm-12">
-							  <input type="text" class="form-control " id="trescEdit"   onkeydown = "if (event.keyCode == 13)	postEdit();">
-							</div>
-						</div>
-						<div id="result3"></div> <!-- Rezultat ECHO  -->
-					</div>
-      </div>
-      <div class="modal-footer">
-		<button  name="akcja" value="Usuń" onclick="postEdit()" class="btn btn-primary" >Zapisz zmiany</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
+		<a  href="#" id="back"><span>Back</span></a>
+		<a href="#"  id="next"><span>Next</span></a>
+		<a href="#"  id="end" data-dismiss="modal"><span>Zakończ</span></a>
       </div>
     </div>
 
@@ -329,123 +375,77 @@
 	</div>
 <!-- KONIEC MENU-->
 			</div>
-	
-
-<!-- SLIDER DO ZDJEC -->
-    <script type="text/javascript" src="jsSlider/jssor.slider.min.js"></script>
-    <script>
-        jssor_1_slider_init = function() 
-		{
-            
-            var jssor_1_SlideoTransitions = [
-              [{b:0,d:600,y:-290,e:{y:27}}],
-              [{b:0,d:1000,y:185},{b:1000,d:500,o:-1},{b:1500,d:500,o:1},{b:2000,d:1500,r:360},{b:3500,d:1000,rX:30},{b:4500,d:500,rX:-30},{b:5000,d:1000,rY:30},{b:6000,d:500,rY:-30},{b:6500,d:500,sX:1},{b:7000,d:500,sX:-1},{b:7500,d:500,sY:1},{b:8000,d:500,sY:-1},{b:8500,d:500,kX:30},{b:9000,d:500,kX:-30},{b:9500,d:500,kY:30},{b:10000,d:500,kY:-30},{b:10500,d:500,c:{x:87.50,t:-87.50}},{b:11000,d:500,c:{x:-87.50,t:87.50}}],
-              [{b:0,d:600,x:410,e:{x:27}}],
-              [{b:-1,d:1,o:-1},{b:0,d:600,o:1,e:{o:5}}],
-              [{b:-1,d:1,c:{x:175.0,t:-175.0}},{b:0,d:800,c:{x:-175.0,t:175.0},e:{c:{x:7,t:7}}}],
-              [{b:-1,d:1,o:-1},{b:0,d:600,x:-570,o:1,e:{x:6}}],
-              [{b:-1,d:1,o:-1,r:-180},{b:0,d:800,o:1,r:180,e:{r:7}}],
-              [{b:0,d:1000,y:80,e:{y:24}},{b:1000,d:1100,x:570,y:170,o:-1,r:30,sX:9,sY:9,e:{x:2,y:6,r:1,sX:5,sY:5}}],
-              [{b:2000,d:600,rY:30}],
-              [{b:0,d:500,x:-105},{b:500,d:500,x:230},{b:1000,d:500,y:-120},{b:1500,d:500,x:-70,y:120},{b:2600,d:500,y:-80},{b:3100,d:900,y:160,e:{y:24}}],
-              [{b:0,d:1000,o:-0.4,rX:2,rY:1},{b:1000,d:1000,rY:1},{b:2000,d:1000,rX:-1},{b:3000,d:1000,rY:-1},{b:4000,d:1000,o:0.4,rX:-1,rY:-1}]
-            ];
-            
-            var jssor_1_options = {
-              $AutoPlay: true,
-              $Idle: 2000,
-              $CaptionSliderOptions: {
-                $Class: $JssorCaptionSlideo$,
-                $Transitions: jssor_1_SlideoTransitions,
-                $Breaks: [
-                  [{d:2000,b:1000}]
-                ]
-              },
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
-            };
-            
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-            
-            //responsywnosc - start
-            function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 600);
-                    jssor_1_slider.$ScaleWidth(refSize);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider();
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            //responsywnosc KONIEC
-        };
-    </script>
-
-    <style>
-        /* jssor slider bullet navigator skin 01 css */
-        /*
-        .jssorb01 div           (normal)
-        .jssorb01 div:hover     (normal mouseover)
-        .jssorb01 .av           (active)
-        .jssorb01 .av:hover     (active mouseover)
-        .jssorb01 .dn           (mousedown)
-        */
-        .jssorb01 {
-            position: absolute;
-        }
-        .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
-            position: absolute;
-            /* size of bullet elment */
-            width: 12px;
-            height: 12px;
-            filter: alpha(opacity=70);
-            opacity: .7;
-            overflow: hidden;
-            cursor: pointer;
-            border: #000 1px solid;
-        }
-        .jssorb01 div { background-color: gray; }
-        .jssorb01 div:hover, .jssorb01 .av:hover { background-color: #d3d3d3; }
-        .jssorb01 .av { background-color: #fff; }
-        .jssorb01 .dn, .jssorb01 .dn:hover { background-color: #555555; }
-
-        /* jssor slider arrow navigator skin 02 css */
-        /*
-        .jssora02l                  (normal)
-        .jssora02r                  (normal)
-        .jssora02l:hover            (normal mouseover)
-        .jssora02r:hover            (normal mouseover)
-        .jssora02l.jssora02ldn      (mousedown)
-        .jssora02r.jssora02rdn      (mousedown)
-        */
-        .jssora02l, .jssora02r {
-            display: block;
-            position: absolute;
-            /* size of arrow element */
-            width: 55px;
-            height: 55px;
-            cursor: pointer;
-            background: url('img/a02.png') no-repeat;
-            overflow: hidden;
-        }
-        .jssora02l { background-position: -3px -33px; }
-        .jssora02r { background-position: -63px -33px; }
-        .jssora02l:hover { background-position: -123px -33px; }
-        .jssora02r:hover { background-position: -183px -33px; }
-        .jssora02l.jssora02ldn { background-position: -3px -33px; }
-        .jssora02r.jssora02rdn { background-position: -63px -33px; }
-    </style>
-<!-- KONIEC SLIDER -->	
+			
 			
 			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-12">
+				<?php 
+					echo '<h1>';
+					echo $tytul;
+					echo '</h1>';
+					echo '<label>Opis samouczka: </label>';
+					echo '&nbsp';
+					echo $opis;
+					echo '<br>';
+				?>
+				</div> 
+            </div>
+			</div>
+			
+
+			
+			<!-- Boczny panel admina -->
+			<?php 
+				if(isset($_SESSION['zalogowanyad']))
+				{
+					echo '<div class="okno">';
+					echo	'<a href="../../indexad.php">';
+					echo		'<div class=text>';
+					echo			'<span class="ikona glyphicon glyphicon-chevron-down" aria-hidden="true"></span>';
+					echo			'Panel administratora';
+					echo		'</div>';
+					echo	'</a>';
+					echo '</div>';
+				}
+			?>
+			
+			<?php 
+			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
+			{
+				
+				echo '<div class="container-fluid" >';
+				echo '<div class="row">';
+				echo '<div class="col-md-12" style="padding:20px;">';
+				echo '<a href="" data-toggle="modal" data-target="#myModal5">';
+				echo 'Uruchom samouczek';
+				echo '</a>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+				//echo '<a href="" onclick="go()">Uruchom alert</a>';
+			}
+			else
+			{
+				echo '<div class="container-fluid" >';
+				echo '<div class="row">';
+				echo '<div class="col-md-12" style="padding:20px;">';
+				echo '<span style="color: #5CB85C;">Gość nie ma dostępu do treści samouczka. Musisz się <a href="#" data-toggle="modal" data-target="#myModal">zalogować</a>!<span>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+			}
+			?>
+
+			
+
+			
+			
+				
+          
+        </div>
+      </div>
+    </div>
+	  </body>
+
+</html>

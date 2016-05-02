@@ -152,6 +152,10 @@
 							i++;
 							$('.modal-body-edit').text(myArr[i]);
 						}
+						if(i == len)
+						{
+							$('#next').hide();
+						}
 						else
 						{
 							$('#end').show();
@@ -168,10 +172,15 @@
 							$('#end').hide();
 							$('#next').show();
 						}
-						else
+						if(i == 0)
 						{
 							$('#back').hide();
 						}
+						/*else
+						{
+							$('#back').hide();
+						}
+						*/
 						// if(i==1)
 						// {
 							// $('#back').hide();

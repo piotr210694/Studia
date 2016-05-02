@@ -32,13 +32,9 @@
 		mysqli_real_escape_string($polaczenie,$password))))
 			{
 				$ile_userow = $rezultat->num_rows;
-				if($ile_userow>0){	
+				if($ile_userow > 0){	
 					// $ids = $wiersz['id'];
 					// session_id($ids);
-					if($login=="admin")
-					{
-						$_SESSION['zalogowanyad'] = true;
-					}
 					
 					$_SESSION['zalogowany'] = true; //uzytkownik jest zalogowany
 					
@@ -46,6 +42,13 @@
 					//utworzenie globalnych zmiennych sesyjnych
 					$_SESSION['login'] = $wiersz['login'];
 					$_SESSION['id']= $wiersz['id'];
+					$_SESSION['rola'] = $wiersz['rola'];
+					
+					if($_SESSION['rola'] == 'root')
+					{
+						$_SESSION['zalogowanyad'] = true;
+					}
+					
 					// $kom = '<span style="color:green">Operacja logowania przebiegła pomyślnie!</span>'.'<br>'.'<a href="index.php">Przejdź do witryny...</a>';
 					// echo $kom;
 					//echo '<meta http-equiv="refresh" content="1" url="index2.php" />';
