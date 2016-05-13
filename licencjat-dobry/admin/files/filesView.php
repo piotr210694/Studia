@@ -1,4 +1,4 @@
-  <?php
+   <?php
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
@@ -8,9 +8,10 @@
 ?>
 
 <?php
-	require_once "../../php/connect.php"; //wymaga pliku w kodzie
-	include('../checkNotifications.php');
-	include('php/viewRequest.php');
+	//require_once "../../php/connect.php"; //wymaga pliku w kodzie
+	//include('../checkNotifications.php');
+	include('php/ViewFiles.php');
+	include('php/ViewCategory.php');
 ?>
 
 
@@ -182,6 +183,35 @@
 						i--;
 						$('.modal-body').text(tablica[i-1]);
 					});
+					
+					//Klikniecie na usun
+					$('.usun').click(function()
+					{
+						var idToDelete = $(this).val();
+						$('#usuwanie').attr('value', idToDelete);
+					});
+					
+					//Klikniecie na zmien role
+					$('.rola').click(function()
+					{
+						var idToRola = $(this).val();
+						$('#rolowanie').attr('value', idToRola);
+						//ustawiamy wartosc w oknie modalnym
+						
+					});
+					
+
+			$('.actionKat').click(function() 
+			{
+				var idK = 0;
+				idK = $('#kat').val(); 
+				$.get('php/viewArtykuly.php', {idK:idK},
+				function(data)
+				{
+					$('#artykuly').html(data);
+				});
+			});
+		
 		});
     </script>
 
@@ -190,26 +220,53 @@
 	
 	</head>
   
+<!-- Usuniecie konta użytkownika - MODAL -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie konta</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć konto?</p>
+      </div>
+      <div class="modal-footer">
+		<form action="php/connectActionUser.php" method="POST" >
+			<input id="usuwanie" type="hidden" name="usunID" value="" >
+			<input type="submit" value="Usuń" class="btn btn-danger" >
+			<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
-<div id="myModal5" class="modal fade" role="dialog">
+
+
+<div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content ">
       <div class="modal-header modal-header ">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie konta</h4>
+        <h4 class="modal-title">Dodawanie pliku</h4>
       </div>
-      <div class="modal-body modal-body-edit">
-        <p>Drugie okno</p>
-      </div>
+	<div class="modal-body modal-body-edit">
+											
+
+	</div>			
       <div class="modal-footer">
-		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-danger" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-		<a href='#'  data-toggle="modal" data-target="#myModal4"  data-dismiss="modal"><span>Back</span></a>
-		<a href='#'  data-toggle="modal"  data-dismiss="modal"><span>Zakończ</span></a>
+		
+			<input id="rolowanie" type="hidden" name="rolaID" value="" >
+			<input type="submit" value="Zapisz zmiany" class="btn btn-primary" >
+			<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+		
       </div>
     </div>
 
@@ -229,35 +286,7 @@
 
 		
 		
-		<!-- PANEL dodanie kategorii -->
-		<div id="myModal2" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content ">
-			  <div class="modal-header modal-header-danger ">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Dodawanie kategorii</h4>
-			  </div>
-			  <div class="modal-body">
-					<div class="form-horizontal" >
-						<div class="form-group has-feedback">
-							<div class="col-sm-12">
-							  <input type="text" class="form-control" id="kategoria" name="kategoria" placeholder="Podaj nazwę nowej kategorii..." onkeydown = "if (event.keyCode == 13)	post();">
-							</div>
-						</div>
-						<div id="result"></div> <!-- Rezultat ECHO  -->
-					</div>
-			  </div>
-			  <div class="modal-footer">
-				<form action="user/php/delete.php" >
-				<div  onclick="post();" class="btn btn-primary" >Dodaj</div>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-			  </div>
-			</div>
-
-		  </div>
-		</div>
 		
 		
 		<!-- MENU GLOWNE -->
@@ -329,14 +358,34 @@
 									<table class="table">
 										<tr>
 											<td>
-												<span class="glyphicon glyphicon-pencil text-primary"></span><a href="tutorialCreate.php">Stwórz</a>
+												<span class="glyphicon glyphicon-pencil text-primary"></span><a href="../tutorial/tutorialCreate.php">Stwórz</a>
 											</td>
 										</tr>
 								   </table>
 								</div>
 							</div>
 						</div>
-										<!-- User -->
+						<!-- Pliki do pobrania -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class=" glyphicon glyphicon-plus">
+									</span>Pliki do pobrania</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<table class="table">
+										<tr>
+											<td>
+												<span class="glyphicon glyphicon-file text-primary"></span><a href="filesView.php">Przeglądaj</a>
+											</td>
+										</tr>
+								   </table>
+								</div>
+							</div>
+						</div>
+				<!-- User -->
 				<div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -353,7 +402,7 @@
 											</a>
                         </h4>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse in">
+                    <div id="collapseFour" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -393,90 +442,116 @@
         
 
 				<div class="col-sm-9 col-md-9">
-					<div class="well col-md-12">	
-						
-							<table class="table table-hover">
+					
+					<div class="col-md-12 well">	
+					
+					<div class=" table-responsive">	
+
+									<!-- <a href="" data-toggle="modal" data-target="#myModal2" ><span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span><span class="text-success">Dodaj nowy plik</span></a> -->
+
+								
+								    <span class="btn btn-default btn-file">
+        								<form enctype="multipart/form-data" action="php/addFiles.php" method="POST">
+											<p><input type="hidden"  name="MAX_FILE_SIZE" value="50000" /></p>
+											<p><input name="plik" type="file" required></p>
+															
+											<p>
+												<label  for="sel1">Kategoria:</label>
+												<select class="form-control" name="kat" id="kat">
+												<option value="" selected disabled>Wybierz kategorię</option>
+														<?php
+															for($i = 0; $i < $ileK; $i++)
+															{
+																echo '<option class="actionKat" value="';
+																echo $idK[$i];
+																echo '">';
+																echo $nazwaK[$i];
+																echo '</option>';	
+															}
+														?>
+												</select>
+												<div id="artykuly"></div>
+											</p>
+							
+	
+					
+											<p><input type="submit" value="Wyślij plik" class="btn btn-sm btn-block btn-primary" /></p>
+										</form>
+								<?php
+									if(isset($_SESSION['commFiles']))
+									{
+										echo $_SESSION['commFiles'];
+									}
+								?>
+								
+									</span>
+									<br><br>
+
+					<table class="table table-hover">
 								<thead>
 								  <tr>
-									<th>Login</th>
-									<th>Obecna typ konta</th>
-									<th>Chęć zmiany na</th>
-									<th>Data</th>
+									<th>Nazwa</th>
+									<th>Typ</th>
+									<th>Rozmiar</th>
+									<th>Artykuł</th>
 									<th>Akcja</th>
+									<?php 
+										// $str = iconv('utf-8','us-ascii//TRANSLIT//IGNORE', $title2); 
+										// $str = str_replace("'",'', $str); 
+										// $title = $str;
+									?>
 								  </tr>
 								</thead>
-						
+								
 								<tbody>
 									<?php
-
-											for($i = 0; $i < $ileP; $i++)
-											{
-												if($stan[$i] == 1)
+										for($i = 0; $i < $ileP; $i++)
+										{
+												echo '<tr>';
+												echo '	<td>';
+												echo '<a target="_blank" href="../../pliki/';
+												echo $nazwa[$i];
+												echo '">';
+												echo $nazwa[$i];
+												echo '</a>';
+												echo '	</td>';																						
+												echo '	<td>';
+												if($typ[$i] == NULL)
 												{
-													echo '<tr>';
-													echo '	<td>';
-													echo 		$login[$i]; 
-													echo '	</td>';
-													echo '	<td>';
-													if($obecnyTyp[$i] == 'student')
-													{
-														echo "student";
-													}
-													else if($obecnyTyp[$i] == 'root')
-													{
-														echo "administrator";
-													}
-													else if($obecnyTyp[$i] == 'user')
-													{
-														echo "zwykły użytkownik";
-													}
-													echo '	</td>';
-													echo '	<td>';
-													if($rola[$i] == 'student')
-													{
-														echo "student";
-													}
-													else if($rola[$i] == 'root')
-													{
-														echo "administrator";
-													}
-													else if($rola[$i] == 'user')
-													{
-														echo "zwykły użytkownik";
-													}
-													echo '	</td>';											
-													echo '	<td>';
-													echo 		$data[$i];
-													echo '	</td>';
-													echo '<form action="php/connectRequest.php" method="post" role="form">';
-													echo '<input type="hidden" name="rola" value="';
-													echo $rola[$i]; //przekazanie roli
-													echo '">';
-													echo '	<td>';
-													echo 		'<button type="submit" name="Akceptuj"  class="btn btn-primary btn-sm edytuj"  value="';
-													echo $idU[$i];										
-													echo '" nazwa = "';
-													echo "";
-													echo '"';
-													echo '>Akceptuj</button>&nbsp;<button name="Odrzuc" type="submit" class="btn btn-danger btn-sm usun" value="';
-													echo $idU[$i];
-													echo '">Odrzuć</button>';
-													echo '	</td>';
-													echo '</form>';
-													echo '</tr>';
+													echo "Brak danych";
 												}
-											}
-
+												else
+												{
+													echo $typ[$i];
+												}
+												echo '	</td>';
+												echo '	<td>';
+												if($rozmiar[$i] == 0)
+												{
+													echo "Brak danych";
+												}
+												else
+												{
+													echo 		$rozmiar[$i];
+													echo ' kb';
+												}
+												echo '	</td>';
+												echo '	<td>';
+												echo 		$nazwaArt[$i];
+												echo '	</td>';		
+												echo '	<td>';
+												echo '<form action="php/deleteFile.php" method="POST" ><button  name="usun"  class="btn btn-danger btn-sm usun" value="';
+												echo $idPliku[$i];
+												echo '">Usuń</button></form>';
+												echo '	</td>';
+												
+												echo '</tr>';
+										}
 									?>
 								</tbody>
 					
 							</table>
-							<p><?php
-								if(isset($_SESSION['komunikatRequest']))
-								{
-									echo $_SESSION['komunikatRequest'];
-								}
-							?></p>
+						</div>
 					</div>
 				</div>
 				

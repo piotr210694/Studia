@@ -1,0 +1,131 @@
+       <script>
+            var wynik="";
+            var tmp=0;
+            
+            $(document).ready(function(){
+ 
+var linkVar ={ message:'pozdrowienia A'};
+     var pVar ={ message:'pozdrowienia p'};
+    function clickHandler(evt)
+    {
+        $('input[name="1"]').click(function (e)
+            { 
+                if(e.target)
+                {
+                    wynik += 1;
+                    $('#1 input').val(wynik);
+                }
+                else
+                {
+                    alert('blad');
+                }
+            });
+    }
+    $('#1 input').bind('focus', linkVar, clickHandler);
+    $('#2 input').bind('focusin', pVar, clickHandler);
+});
+       
+ $(document).ready(function()
+    {
+        $('.ukryte').hide();
+        $(function () {
+            $('.kliknij').click(function () {
+            $(this).next('div').slideToggle();
+        
+            $(this).parent().siblings().children().next().slideUp();
+            return false;
+            });
+         });
+     });
+     
+  
+    
+  /*  
+    function clickHandler (event) {
+   event.preventDefault();
+}
+*/
+   /*     
+ $("#2 input").off("click", clickHandler);
+        $(this).on("click", clickHandler);      
+   */
+            
+    $(document).ready(function()
+    {
+
+        $("#1 input").focusin(function()
+        {
+            $(this).css("background-color", "#cccccc");
+            $('input[name="1"]').click(function (e)
+            { 
+                if(e.target)
+                {
+                    $('#1 input').val('1');
+                }
+            });
+            $('input[name="2"]').click(function (e)
+            {
+                if(e.target)
+                {
+                    $('#1 input').val('2');
+                }
+            });
+        });
+    
+        $("#1 input").blur(function()
+        {
+            $(this).css("background-color", "#ffffff");
+        });
+     
+    }); 
+/*---------------------------------------------------------------*/
+ $(document).ready(function(){    
+     $("#2 input").focusin(function(){
+         $(this).css("background-color", "#cccccc");
+            $('input[name="1"]').click(function (e)
+            {
+                
+                if(e.target)
+                {
+                    $('#2 input').val('1');
+                }
+            });
+            $('input[name="2"]').click(function (e)
+            {
+                if(e.target)
+                {
+                    $('#2 input').val('2');
+                }
+            });
+    });
+    $("#2 input").blur(function(){
+        $(this).css("background-color", "#ffffff");
+    });
+  }); 
+  
+        function wypisz1()
+            {  
+               wynik += "1";
+               First.value = wynik;
+
+            }
+            /*
+            function wypisz2()
+            {
+               wynik += "2";
+               wynik.value = wynik;
+            }
+            
+            function setFocusFirst()
+            {
+                document.getElementById("First").focus();
+                tmp=1;
+            }
+            
+            function setFocusSecond()
+            {
+                document.getElementById("Second").focus();
+                tmp=2;
+            }
+            */
+        </script>

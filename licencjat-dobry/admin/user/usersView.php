@@ -1,4 +1,4 @@
-  <?php
+   <?php
 	session_start(); //start sesji
 	if (!isset($_SESSION['zalogowanyad'])) //jesli nie ma zmiennej zalogowany
 	{
@@ -10,7 +10,7 @@
 <?php
 	require_once "../../php/connect.php"; //wymaga pliku w kodzie
 	include('../checkNotifications.php');
-	include('php/viewRequest.php');
+	include('php/ViewUsers.php');
 ?>
 
 
@@ -182,6 +182,22 @@
 						i--;
 						$('.modal-body').text(tablica[i-1]);
 					});
+					
+					//Klikniecie na usun
+					$('.usun').click(function()
+					{
+						var idToDelete = $(this).val();
+						$('#usuwanie').attr('value', idToDelete);
+					});
+					
+					//Klikniecie na zmien role
+					$('.rola').click(function()
+					{
+						var idToRola = $(this).val();
+						$('#rolowanie').attr('value', idToRola);
+						//ustawiamy wartosc w oknie modalnym
+						
+					});
 		});
     </script>
 
@@ -190,26 +206,59 @@
 	
 	</head>
   
+<!-- Usuniecie konta użytkownika - MODAL -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header modal-header-danger ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Usuwanie konta</h4>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz usunąć konto?</p>
+      </div>
+      <div class="modal-footer">
+		<form action="php/connectActionUser.php" method="POST" >
+			<input id="usuwanie" type="hidden" name="usunID" value="" >
+			<input type="submit" value="Usuń" class="btn btn-danger" >
+			<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
-<div id="myModal5" class="modal fade" role="dialog">
+<div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content ">
       <div class="modal-header modal-header ">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuwanie konta</h4>
+        <h4 class="modal-title">Zmiana typu konta</h4>
       </div>
-      <div class="modal-body modal-body-edit">
-        <p>Drugie okno</p>
-      </div>
+	<div class="modal-body modal-body-edit">
+		<form action="php/connectActionUser.php" method="POST" >
+			<div class="form-group">
+				<p><label for="sel1">Wybierz nowy typ konta:</label>
+					<select class="form-control" id="sel1" name="typeA">
+							<option value="user">Zwykły użytkownik</option>	 
+							<option value="student">Student</option>	 
+							<option value="root">Administrator</option>	 
+					</select>
+				</p>
+			</div>				
+	</div>			
       <div class="modal-footer">
-		<form action="user/php/delete.php" >
-		<input type="submit" value="Usuń" class="btn btn-danger" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-		<a href='#'  data-toggle="modal" data-target="#myModal4"  data-dismiss="modal"><span>Back</span></a>
-		<a href='#'  data-toggle="modal"  data-dismiss="modal"><span>Zakończ</span></a>
+		
+			<input id="rolowanie" type="hidden" name="rolaID" value="" >
+			<input type="submit" value="Zapisz zmiany" class="btn btn-primary" >
+			<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+		</form>
       </div>
     </div>
 
@@ -229,35 +278,7 @@
 
 		
 		
-		<!-- PANEL dodanie kategorii -->
-		<div id="myModal2" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content ">
-			  <div class="modal-header modal-header-danger ">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Dodawanie kategorii</h4>
-			  </div>
-			  <div class="modal-body">
-					<div class="form-horizontal" >
-						<div class="form-group has-feedback">
-							<div class="col-sm-12">
-							  <input type="text" class="form-control" id="kategoria" name="kategoria" placeholder="Podaj nazwę nowej kategorii..." onkeydown = "if (event.keyCode == 13)	post();">
-							</div>
-						</div>
-						<div id="result"></div> <!-- Rezultat ECHO  -->
-					</div>
-			  </div>
-			  <div class="modal-footer">
-				<form action="user/php/delete.php" >
-				<div  onclick="post();" class="btn btn-primary" >Dodaj</div>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
-			  </div>
-			</div>
-
-		  </div>
-		</div>
 		
 		
 		<!-- MENU GLOWNE -->
@@ -329,14 +350,14 @@
 									<table class="table">
 										<tr>
 											<td>
-												<span class="glyphicon glyphicon-pencil text-primary"></span><a href="tutorialCreate.php">Stwórz</a>
+												<span class="glyphicon glyphicon-pencil text-primary"></span><a href="../tutorial/tutorialCreate.php">Stwórz</a>
 											</td>
 										</tr>
 								   </table>
 								</div>
 							</div>
 						</div>
-										<!-- User -->
+				<!-- User -->
 				<div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -393,90 +414,91 @@
         
 
 				<div class="col-sm-9 col-md-9">
-					<div class="well col-md-12">	
-						
-							<table class="table table-hover">
+					
+					<div class="col-md-12 well">	
+					
+					<div class=" table-responsive">	
+					<table class="table table-hover">
 								<thead>
 								  <tr>
 									<th>Login</th>
-									<th>Obecna typ konta</th>
-									<th>Chęć zmiany na</th>
+									<th>Email</th>
+									<th>Rola</th>
+									<th>Telefon</th>
+									<th>Imię</th>
+									<th>Nazwisko</th>
 									<th>Data</th>
 									<th>Akcja</th>
 								  </tr>
 								</thead>
-						
+								
 								<tbody>
 									<?php
-
-											for($i = 0; $i < $ileP; $i++)
+										for($i = 0; $i < $ileUsers; $i++)
+										{
+											if($_SESSION['login'] != $login[$i])
 											{
-												if($stan[$i] == 1)
+												echo '<tr>';
+												echo '	<td>';
+												echo 		$login[$i];
+												echo '	</td>';
+												echo '	<td>';
+												echo '<a href="mailto:';
+												echo $email[$i];
+												echo '">';
+												echo 		$email[$i];
+												echo '</a>';
+												echo '	</td>';
+												echo '	<td>';
+												if($rola[$i] == 'student')
 												{
-													echo '<tr>';
-													echo '	<td>';
-													echo 		$login[$i]; 
-													echo '	</td>';
-													echo '	<td>';
-													if($obecnyTyp[$i] == 'student')
-													{
-														echo "student";
-													}
-													else if($obecnyTyp[$i] == 'root')
-													{
-														echo "administrator";
-													}
-													else if($obecnyTyp[$i] == 'user')
-													{
-														echo "zwykły użytkownik";
-													}
-													echo '	</td>';
-													echo '	<td>';
-													if($rola[$i] == 'student')
-													{
-														echo "student";
-													}
-													else if($rola[$i] == 'root')
-													{
-														echo "administrator";
-													}
-													else if($rola[$i] == 'user')
-													{
-														echo "zwykły użytkownik";
-													}
-													echo '	</td>';											
-													echo '	<td>';
-													echo 		$data[$i];
-													echo '	</td>';
-													echo '<form action="php/connectRequest.php" method="post" role="form">';
-													echo '<input type="hidden" name="rola" value="';
-													echo $rola[$i]; //przekazanie roli
-													echo '">';
-													echo '	<td>';
-													echo 		'<button type="submit" name="Akceptuj"  class="btn btn-primary btn-sm edytuj"  value="';
-													echo $idU[$i];										
-													echo '" nazwa = "';
-													echo "";
-													echo '"';
-													echo '>Akceptuj</button>&nbsp;<button name="Odrzuc" type="submit" class="btn btn-danger btn-sm usun" value="';
-													echo $idU[$i];
-													echo '">Odrzuć</button>';
-													echo '	</td>';
-													echo '</form>';
-													echo '</tr>';
+													echo "student";
 												}
+												else if($rola[$i] == 'root')
+												{
+													echo "administrator";
+												}
+												else if($rola[$i] == 'user')
+												{
+													echo "zwykły użytkownik";
+												}
+												echo '	</td>';	
+												echo '	<td>';
+												echo 		$telefon[$i];
+												echo '	</td>';												
+												echo '	<td>';
+												echo 		$imie[$i];
+												echo '	</td>';
+												echo '	<td>';
+												echo 		$nazwisko[$i];
+												echo '	</td>';
+												echo '	<td>';
+												echo 		$data[$i];
+												echo '	</td>';
+												
+												echo '<input type="hidden" name="rola22" value="';
+												echo $rola[$i]; //przekazanie roli
+												echo '">';
+												echo '	<td>';
+												echo 		'<button data-toggle="modal" data-target="#myModal2" name="rola"  class="btn btn-primary btn-sm rola"  value="';
+												echo $idUser[$i];										
+												echo '" nazwa = "';
+												echo "";
+												echo '"';
+												echo '>Zmień rolę</button>&nbsp;<button data-toggle="modal" data-target="#myModal3" name="usun"  class="btn btn-danger btn-sm usun" value="';
+												echo $idUser[$i];
+												echo '">Usuń</button>';
+												echo '	</td>';
+												
+												echo '</tr>';
 											}
-
+										}
 									?>
 								</tbody>
 					
 							</table>
-							<p><?php
-								if(isset($_SESSION['komunikatRequest']))
-								{
-									echo $_SESSION['komunikatRequest'];
-								}
-							?></p>
+								
+						</div>
 					</div>
 				</div>
 				

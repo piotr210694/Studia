@@ -85,7 +85,8 @@
 
 	</script>
 	
-
+	<!-- PAGINATION -->
+	<script src="../../js/jqueryPage.js"></script>
 	  
 	</head>
   
@@ -317,8 +318,43 @@
 							</table>
 				 
 				<div id="result2"> </div>
+				
+	<!-- PAGINATION -->
+	<div id="content">Dynamic Content goes here</div>
+    <div id="page-selection"></div>
+    <script>
+	
+		
+
+		 /*var tytul = '<?php echo $tytulJ; ?>';
+		 alert(tytul);*/
+		
+        // init bootpag
+        $('#page-selection').bootpag(
+		{
+			total: 50,
+			page: 1,
+			maxVisible: 5,
+			leaps: true,
+			firstLastUse: true,
+			first: '←',
+			last: '→',
+			wrapClass: 'pagination',
+			activeClass: 'active',
+			disabledClass: 'disabled',
+			nextClass: 'next',
+			prevClass: 'prev',
+			lastClass: 'last',
+			firstClass: 'first'
+		}).on("page", function(event, num)
+			{
+				var php = "";
+				$("#content").html(php); // or some ajax content loading...
+			});
+    </script>
+	<!-- END PAGINATION -->
 			
-			
+
 				
 
 				</div>

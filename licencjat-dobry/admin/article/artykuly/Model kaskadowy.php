@@ -516,8 +516,53 @@
 				<br>
 				<hr>
 				</div>
-				
+
+			
 			</div>
+			
+				<!-- PLIKI DO POBRANIA --- START -->
+				<?php
+					if(!isset($_SESSION['rola']))
+					{
+
+					}
+					else
+					{
+						echo '	<h3> Pliki do pobrania: </h3>
+								<ul class="listedFiles">';						
+					
+						if($_SESSION['rola'] == 'student' || $_SESSION['rola'] == 'root')
+						{
+							include('../../../php/listedFiles.php');
+							for($i = 0; $i < $ilePlikow; $i++)
+							{
+								echo '<li>';
+								echo '<a href="../../../pliki/';
+								echo $nazwaPl[$i];
+								echo '">';
+								echo $nazwaPl[$i];
+								echo '</a>';
+								echo '</li>';
+							}
+						}
+						else if($ilePlikow == 0 AND ($_SESSION['rola'] == 'student' || $_SESSION['rola'] == 'root'))
+						{
+							echo "Brak plików do pobrania";
+						}
+						else
+						{
+							echo '<span style="color: #5CB85C;">Pliki dostępne są wyłącznie dla użytkownika, który jest STUDENTEM. Jeśli chcesz uzyskać uprawnienia do tej funkcjonalności poproś o <a href="../../../user/accountRole.php"> zmianę typu konta</a>.</span>';
+						}
+
+						echo '		</ul>
+									<br>
+									<hr>';
+					}
+				?>
+				<!-- PLIKI DO POBRANIA --- END -->
+				
+
+				
 			</div>
 			
 

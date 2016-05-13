@@ -164,7 +164,6 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='kursy.php'><span>Kursy</span></a></li>
    <li><a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"><span>Zaloguj się</span></a></li>
 </ul>
 

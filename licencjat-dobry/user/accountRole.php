@@ -499,11 +499,11 @@ $(document).ready(function() {
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-   <li><a href='../kursy.php'><span>Kursy</span></a></li>
    <li class='last active has-sub' ><a><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVQ4jaWSr04DQRCHR1YgKoAgECUYDG+AWEXuz0x3llCPqMABCQkIEhJ4BAQCUX/H7UxCArwAIBAXNALBAyCQiMPQAO1drweT/NTu983sZgBKiq5oFtWek/AjCueo7iJKooWyu2Nlkt4MeudRuBjJbXjdm6sVoLApgQsULkiYawWkbq9KgMLH00xwOkFwVi/I7GblEzLbrxWEwssofFciyCO1q7UCAADybg2F337A75HvBlPBLNymS1oJs43FSHgLfXc7EO4Ewh0WbleCZmBasfDusDOpvSFvD2Nv91FdisIfX2dHZmBaY11R+HnC74/m9ddmktqDBvBwqU4AAGDdu3kUvm8qQG+fKKElILX9xvB3dgDVPvxDkAOqS2Phl78E1aWf25ZmvHtqCpEAAAAASUVORK5CYII="/></span></a>
 		<ul>
 			<li><a href='../php/logout.php'><span>Wyloguj się</span></a></li>
 			<li><a href='manage.php'><span>Przeglądaj</span></a></li>
+			<li><a href='accountRole.php'><span>Typ konta</span></a></li>
 			<li><a href='#'  data-toggle="modal" data-target="#myModal3"><span>Usuń konto</span></a></li>
 		</ul>
    </li>
@@ -524,15 +524,15 @@ $(document).ready(function() {
 						<?php
 							if ($_SESSION['rola'] == 'root')
 							{
-								echo '<b>'."Administrator".'</b>';;
+								echo '<b>'."Administrator".'</b>';
 							}
 							else if ($_SESSION['rola'] == 'user')
 							{
-								echo "Zwykły użytkownik";
+								echo '<b>Zwykły użytkownik</b>';
 							}
 							else if ($_SESSION['rola'] == 'student')
 							{
-								echo "Student";
+								echo '<b>Student</b>';
 							}
 							else
 							{
@@ -555,18 +555,21 @@ $(document).ready(function() {
 								</select>
 							</p>
 							<p>
-							<button type="submit" class="btn btn-success pull-left btn-block">Wyśli prośbę</button></p>			
-					</form>	
-					<p>
+							<button type="submit" class="btn btn-success pull-left btn-block">Wyśli prośbę</button></p>		
+						</div>
+					</form>
+					<br>
+					<br>
+					<div class="text-left" style="">
 						<?php
 							if(isset($_SESSION['komunikatRoli']))
 							{
 								echo $_SESSION['komunikatRoli'];
 							}
 						?>
-					</p>
+					</div>
 					
-				</div>
+				
 				<div class="col-md-3"></div>
 
 				
@@ -580,12 +583,12 @@ $(document).ready(function() {
 	
 	</div>
 	
-	<footer >
-		<div class = "linia"><hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"></div>
+	<footer id="foot" >
+		<!-- <hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"> -->
 		 <div class="container" >
 		 <div class="row">
 				<div class="col-md-12 ">
-				<p class="text-center" style=" color:black;">************************** ...Tu będzie stopka...**************************</p>
+				<p class="" style=" color:gray; opacity: 0.7;">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
 				</div>
 		</div>
 		</div>

@@ -33,16 +33,18 @@
 					
 					$wiersz = $rezultat->fetch_assoc(); //tablica asocjacyjna by moc wyciagnac z sql
 					//utworzenie globalnych zmiennych sesyjnych
-					$_SESSION['login'] = $wiersz['login'];
-					$_SESSION['id']= $wiersz['id'];
+
 					
-					$user=$wiersz['login']; //wyciagniecie danego rekordu z tabeli
-					$pass=$wiersz['password']; //wyciagniecie danego rekordu z tabeli
+					$rola=$wiersz['rola']; //wyciagniecie danego rekordu z tabeli
 					
-					if($user=="admin" and $pass=="!?admin15?16")
+					if($rola=="root")
 					{
 						$_SESSION['zalogowany'] = true; //uzytkownik jest zalogowany
 						$_SESSION['zalogowanyad'] = true; //uzytkownik jest zalogowany
+						$_SESSION['login'] = $wiersz['login'];
+						$_SESSION['id']= $wiersz['id'];
+						$_SESSION['rola'] = $wiersz['rola'];
+						
 						$rezultat->close();
 						header('Location: ../admin/indexad.php');
 						unset($_SESSION['bladad']); //usuwa zmienna po poprawnym wykonaniu

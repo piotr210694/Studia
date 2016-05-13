@@ -75,22 +75,7 @@
 						 return false;
 					 });
 				 });
-				 
-				 		/*	$('#foot').hide();
-				$(window).on("scroll", function() {
-	var scrollHeight = $(document).height();
-	var scrollPosition = $(window).height() + $(window).scrollTop();
-	if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-	   $('#foot').show(300);
-	}
-	else
-	{
-		$('#foot').hide(300);
-	}
-});*/
 			});
-			
-
 			</script>
 
 			<!-- Zarządzanie komentarzami - USUWANIE I EDYCJA po ID -->
@@ -190,7 +175,7 @@
         <p>Czy na pewno chcesz usunąć konto?</p>
       </div>
       <div class="modal-footer">
-		<form action="user/php/delete.php" >
+		<form action="../../../user/php/delete.php" >
 		<input type="submit" value="Usuń" class="btn btn-danger" >
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
@@ -463,7 +448,7 @@
 			
 			<div class="container-fluid wys" >
             <div class="row">
-				<div class="col-md-12">fdsfsd<br><hr>
+				<div class="col-md-12"><h1>No to zobaczymy</h1><br><hr>
 				
 				<!-- Galeria START -->
 				<div class=" gallery">
@@ -533,6 +518,48 @@
 				</div>
 				
 			</div>
+			
+							<!-- PLIKI DO POBRANIA --- START -->
+				<?php
+					if(!isset($_SESSION['rola']))
+					{
+
+					}
+					else
+					{
+						echo '	<h3> Pliki do pobrania: </h3>
+								<ul class="listedFiles">';						
+					
+						if(($_SESSION['rola'] == 'student' || $_SESSION['rola'] == 'root') AND $ilePlikow > 0)
+						{
+							include('../../../php/listedFiles.php');
+							for($i = 0; $i < $ilePlikow; $i++)
+							{
+								echo '<li>';
+								echo '<a href="../../../pliki/';
+								echo $nazwaPl[$i];
+								echo '">';
+								echo $nazwaPl[$i];
+								echo '</a>';
+								echo '</li>';
+							}
+						}
+						else if($ilePlikow == 0 AND ($_SESSION['rola'] == 'student' || $_SESSION['rola'] == 'root'))
+						{
+							echo "Brak plików do pobrania";
+						}
+						else
+						{
+							echo '<span style="color: #5CB85C;">Pliki dostępne są wyłącznie dla użytkownika, który jest STUDENTEM. Jeśli chcesz uzyskać uprawnienia do tej funkcjonalności poproś o <a href="../../../user/accountRole.php"> zmianę typu konta</a>.</span>';
+						}
+
+						echo '		</ul>
+									<br>
+									<hr>';
+					}
+				?>
+				<!-- PLIKI DO POBRANIA --- END -->
+			
 			</div>
 			
 
@@ -752,6 +779,9 @@
 				echo '</div>';
 			}
 			?>
+
+			
+
 			
 			
 				
@@ -759,21 +789,6 @@
         </div>
       </div>
     </div>
-	
-	<script>
-
-	</script>
-	
-		<footer id="foot">
-		<!-- <hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"> -->
-		 <div class="container" style="opacity:1;">
-		 <div class="row">
-				<div class="col-md-12 ">
-				<p class="" style=" color:gray; opacity: 0.7;">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
-				</div>
-		</div>
-		</div>
-	</footer>
 	  </body>
 
 </html>

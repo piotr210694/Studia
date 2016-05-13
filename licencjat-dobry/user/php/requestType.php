@@ -26,7 +26,7 @@
 				if($stan == 1)
 				{
 					unset($_SESSION['komunikatRoli']);
-					$_SESSION['komunikatRoli'] = "Już złożyłeś prośbę. Czekaj na reakcję admina!";
+					$_SESSION['komunikatRoli'] = '<div class="alert alert-warning"><strong>Uwaga! </strong>Już złożyłeś prośbę. Czekaj na reakcję administratora!</div>';
 					header('Location: ../accountRole.php');
 				}
 				else
@@ -42,7 +42,7 @@
 					$ins = @mysql_query("INSERT INTO `powiadomienia` (`id`, `id_uzytkownika`, `rola`, `data`, `stan`) VALUES ('$max_id', '$idUser', '$rola', '$data', 1)") or die(mysql_error());
 					
 					unset($_SESSION['komunikatRoli']);
-					$_SESSION['komunikatRoli'] = "Prośba została wysłana. Czekaj na decyzję administratora";
+					$_SESSION['komunikatRoli'] = '<div class="alert alert-success"><strong>Sukces! </strong>Prośba została wysłana. Czekaj na decyzję administratora!</div>';
 					header('Location: ../accountRole.php');
 				}
 			}
@@ -59,7 +59,7 @@
 				$ins = @mysql_query("INSERT INTO `powiadomienia` (`id`, `id_uzytkownika`, `rola`, `data`, `stan`) VALUES ('$max_id', '$idUser', '$rola', '$data', 1)") or die(mysql_error());
 				
 				unset($_SESSION['komunikatRoli']);
-				$_SESSION['komunikatRoli'] = "Prośba została wysłana. Czekaj na decyzję administratora";
+				$_SESSION['komunikatRoli'] = '<div class="alert alert-success"><strong>Sukces! </strong>Prośba została wysłana. Czekaj na decyzję administratora!</div>';
 				header('Location: ../accountRole.php');
 			}
 			
@@ -70,14 +70,14 @@
 		else
 		{
 			unset($_SESSION['komunikatRoli']);
-			$_SESSION['komunikatRoli'] = "Wybrałeś typ konta taki, jaki posiadasz obecnie!";
+			$_SESSION['komunikatRoli'] = '<div class="alert alert-warning"><strong>Uwaga! </strong>Wybrałeś typ konta taki, jaki posiadasz obecnie!</div>';
 			header('Location: ../accountRole.php');
 		}
 	}
 	else
 	{
 		unset($_SESSION['komunikatRoli']);
-		$_SESSION['komunikatRoli'] = "blad";
+		$_SESSION['komunikatRoli'] = "Wystąpił nieoczekiwany błąd";
 		header('Location: ../accountRole.php');
 	}
 	

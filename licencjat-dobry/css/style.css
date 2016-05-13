@@ -192,6 +192,11 @@ input.valid, textarea.valid{
 			min-height:100%;
 			position:relative;
 		}
+		/* Stopka na dole caly czas */
+		.footOnBottom
+		{
+			position:absolute;
+		}
 		
 		.white
 		{
@@ -226,6 +231,14 @@ input.valid, textarea.valid{
 		{
 			color: #4acf4a;
 			font-weight: lighter;
+		}
+		
+		/* LIstowanie plikow do pobrania w artykulach */
+		.listedFiles
+		{
+			list-style-type:none;  
+			padding: 0; 
+			margin: 0;
 		}
 		
 		

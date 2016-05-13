@@ -16,12 +16,14 @@ session_start();
 		
 	/* wyszukiwanie id */
 	$ins = @mysql_query("SELECT MAX(id) AS max FROM `uzytkownik`") or die(mysql_error());
+	
+	
 	while ($wiersz=mysql_fetch_array($ins)) 
 	{
 		$max_id = $wiersz['max']+1;
 	}
 
-	if($newLogin AND $newPass AND $newEmail)
+	if($ins AND $newLogin AND $newPass AND $newEmail)
 	{
 		$ins = @mysql_query("INSERT INTO `uzytkownik` (`id`, `login`, `password`, `email`, `telefon`, `imie`, `nazwisko`, `data`, `rola`) VALUES ('$max_id', '$newLogin', '$newPass', '$newEmail', NULL, NULL, NULL, '$date', 'user');") or die(mysql_error());
 		echo '<br><div class="alert alert-success">';

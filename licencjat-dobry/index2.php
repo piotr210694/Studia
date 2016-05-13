@@ -49,6 +49,7 @@
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/jquery-ui.js"></script>
+
 	</head>
   
   
@@ -192,7 +193,22 @@
 					if($_SESSION['rola'] == 'root')
 					{
 						echo '<p>';
-						echo 'Jako administrator posiadasz takie same uprawnienia jak aktorzy o niższej randze. Dodatkowo posiadasz opcję przejścia do panelu administratora, gdzie możesz zarządzać stroną. Możesz sprawować kontrolę nad artykułami, komentarzami, quizami, samouczkami, galerią zdjęć, plikami do pobrania, użytkownikami.';
+						echo 'Twoje uprawnienia to: <b style="text-transform: uppercase;">';
+						echo "Administrator";
+						echo '</b>';
+						echo '</p>';
+						echo '<p>';
+						echo 'Jako administrator posiadasz takie same uprawnienia jak aktorzy o niższej randze. Dodatkowo dysponujesz opcją przejścia do panelu administratora, gdzie możesz zarządzać stroną. Możesz sprawować kontrolę nad:
+						<ul style="margin-left: -27px;">
+							<li > artykułami,</li>
+							<li> komentarzami, </li> 
+							<li> quizami, </li>
+							<li> samouczkami, </li>
+							<li> galerią zdjęć, </li>
+							<li> plikami do pobrania, </li> 
+							<li> użytkownikami.</li>
+						</ul>';
+						
 						echo '</p>';
 					}
 				?>
@@ -200,7 +216,15 @@
 					if($_SESSION['rola'] == 'student')
 					{
 						echo '<p>';
-						echo 'Jako student możesz poza funkcjonalnościami dostępnymi dla zwykłego użytkownika masz możliwość pobierania pdfów, które służą do rozszerzenia wiedzy z danej dziedziny.';
+						echo 'Twoje uprawnienia to: <b style="text-transform: uppercase;">';
+						echo "Student";
+						echo '</b></p>';
+						echo '<p>';
+						echo 'Jako student poza funkcjonalnościami dostępnymi dla zwykłego użytkownika masz możliwość:
+						<ul style="margin-left: -27px;">
+							<li > pobierania pdfów, które służą do rozszerzenia wiedzy z danej dziedziny naukowej.</li>
+						</ul>';
+						
 						echo '</p>';
 					}
 				?>
@@ -208,7 +232,17 @@
 					if($_SESSION['rola'] == 'user')
 					{
 						echo '<p>';
-						echo 'Jako użytkownik możesz robić to i to.';
+						echo 'Twoje uprawnienia to: <b style="text-transform: uppercase;">';
+						echo "Zwykły użytkownik";
+						echo '</b></p>';
+						echo '<p>';
+						echo 'Jako zwykły użytkownik posiadasz większe uprawnienia niż gość. Masz dostęp do wszelkich materiałów zawartych na stronie. Poza tym jakże ważnym aspektem możesz także:
+						<ul style="margin-left: -27px;">
+							<li > dodawać komentarze do artykułów ,</li>
+							<li> przeglądać samouczki, </li> 
+							<li> przeglądać quizy, </li>
+							<li> zarządzać swoim kontem. </li>
+						</ul>';
 						echo '</p>';
 					}
 				?>
@@ -226,12 +260,12 @@
 	  
     </div>
 				
-	<footer >
-		<hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+	<footer id="foot" >
+		<!-- <hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"> -->
 		 <div class="container" >
 		 <div class="row">
 				<div class="col-md-12 ">
-				<p class="text-center" style=" color:black;">************************** ...Tu będzie stopka...**************************</p>
+				<p class="" style=" color:gray; opacity: 0.7;">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
 				</div>
 		</div>
 		</div>

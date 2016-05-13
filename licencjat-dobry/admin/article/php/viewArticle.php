@@ -35,6 +35,10 @@
 		$nazwaKa[$i] = $wiersz['nazwa'];
 	}
 
+	// echo '<input ';
+	// echo 'class="zmienna" value = ';
+	// echo $tytul;
+	// echo '>';
 	// $zapytanie = mysql_query("SELECT MAX(id_kategorii) AS max FROM `kategoria` ORDER BY id_kategorii") or die(mysql_error());
 	// /* wyszukiwanie id */
 	// while ($wiersz=mysql_fetch_array($zapytanie)) 

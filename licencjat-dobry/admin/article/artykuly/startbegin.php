@@ -175,7 +175,7 @@
         <p>Czy na pewno chcesz usunąć konto?</p>
       </div>
       <div class="modal-footer">
-		<form action="user/php/delete.php" >
+		<form action="../../../user/php/delete.php" >
 		<input type="submit" value="Usuń" class="btn btn-danger" >
         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button></form>
       </div>
@@ -296,8 +296,33 @@
    </li>
    <li class='active has-sub'><a><span>Samouczki</span></a>
 		<ul>
-            <li><a href='#'><span>Sub Product</span></a></li>
-            <li class='last'><a href='#'><span>Sub Product</span></a></li>
+            <!-- <li><a href='admin/tutorial/samouczki/samouczekTest.php'><span>Test</span></a></li> -->
+            <?php
+				if($ileS < $doIluS + 1)
+				{
+					for($j = 0; $j < $ileS; $j++)
+					{
+						echo '<li><a href="../../../';
+						echo $linkiS[$j];
+						echo '">'.$tytulyS[$j].'</a>';
+						echo '</li>';
+					}
+				}
+				else
+				{
+					for($j = 0; $j < $doIluS; $j++)
+					{
+						echo '<li><a href="../../../';
+						echo $linkiS[$j];
+						echo '">'.$tytulyS[$j].'</a>';
+						echo '</li>';
+					}
+					echo '<li class="last" ><a href="../../../admin/tutorial/tutorials.php';
+					echo "";
+					echo '">'.'***POKAŻ WIĘCEJ***'.'</a>';
+					echo '</li>';
+				}
+			?>
         </ul>
    </li>
    <li class='active has-sub'><a><span>Quizy</span></a>
@@ -306,7 +331,7 @@
             <li class='last'><a href='#'><span>Sub Product</span></a></li>
         </ul>
    </li>
-     <li><a href='../../../kursy.php'><span>Kursy</span></a></li>
+    
    	<?php 
 			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)) //jesli jest zmienna zalogowany to wtedy: 
 			{

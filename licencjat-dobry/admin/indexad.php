@@ -18,6 +18,8 @@
 			require_once "../php/connect.php"; //wymaga pliku w kodzie
 			include('checkNotifications.php');
 		?> 
+		
+
 	</head>
   
 	<body>
@@ -105,7 +107,27 @@
                            </table>
                         </div>
                     </div>
-                </div>				
+                </div>
+						<!-- Pliki do pobrania -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class=" glyphicon glyphicon-plus">
+									</span>Pliki do pobrania</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse">
+								<div class="panel-body">
+									<table class="table">
+										<tr>
+											<td>
+												<span class="glyphicon glyphicon-file text-primary"></span><a href="files/filesView.php">Przeglądaj</a>
+											</td>
+										</tr>
+								   </table>
+								</div>
+							</div>
+						</div>				
 				<!-- User -->
 				<div class="panel panel-default">
                     <div class="panel-heading">
@@ -139,6 +161,11 @@
 											?>
 										</a>
                                     </td>
+                                </tr>                               
+								<tr>
+                                    <td>
+                                        <span class=" glyphicon glyphicon-th-large text-primary"></span><a href="user/usersView.php">Przeglądaj</a>
+                                    </td>
                                 </tr>
                            </table>
                         </div>
@@ -159,7 +186,33 @@
 
 <div class="col-sm-9 col-md-9 panel-primary" >
             <div class="well">
-                <h1> Witaj w panelu administratora!</h1>
+					
+
+					
+                <h1><span style="color: green;"><?php if(isset($_SESSION['login'])){echo $_SESSION['login'];} ?></span>, witaj w panelu administratora!</h1> 
+				<p>Po lewej stronie znajduje się rozwijane menu, dzięki któremu możesz zarządząć elementami na stronie.</p>
+							<span class="glyphicon glyphicon-folder-close"></span> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><b >Artykuły</b></a>
+							<p style="text-align:justify;">Ta zakładka zawiera opcje do zarządzania artykułami. Możesz stworzyć nowy artykuł czy zedytować obecny. Dodać/usunąć zdjęcia z galerii. Możesz też dodać nowe pliki, które będą mogli pobrać studenci. Także masz możliwość dodania spisu literatury.</p>
+						
+					
+							<span class="glyphicon glyphicon-th-list"></span><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><b>Quizy</b></a>
+							<p style="text-align:justify;">
+								Quizy są formą sprawdzenia wiedzy użytkowników. Muszą być tworzone na podstawie materiałów wcześniej zamieszczonych w artykułach bądź też samouczkach. <br>Tutaj możesz dodać nowy quiz bądź też edytować już istniejący.
+							</p>
+												
+						
+							<span class="glyphicon glyphicon-book"></span><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><b>Samouczki</b></a>
+							<p style="text-align:justify;">
+								Samouczki jest to utrwalenie wiedzy poprzez naukę <q>krok po kroku</q>. Należy tutaj przygotować podstawowe informację, który w szybki sposób będzie można sobie przyswoić. <br>Można tutaj dodać czy też edytować samouczek.
+							</p>
+							
+							<span class="glyphicon glyphicon-user"></span><a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><b>Użytkownicy</b></a>
+							<p style="text-align:justify;">
+								Ta zakładka służy do zarządzania kontami użytkowników. Można przeglądać o nich dane czy też usunąć konto. System informuje także o prośbach dotyczących zmian typu konta, które administrator może zaakceptować bądź nie.
+							</p>
+						
+					
+				
             </div>
         </div>
     </div>

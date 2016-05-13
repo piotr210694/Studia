@@ -38,6 +38,7 @@
 		echo '  </select></p>';
 		echo '		<p><button onclick="post3()"  name="akcja" value="Edytuj" class="btn btn-primary pull-left btn-block" data-toggle="modal" data-target="#myModal2">EDYTUJ</button>';	
 		echo '		<button onclick="post4()" type="button" name="akcja" value="Galeria zdjęć" data-toggle="modal" data-target="#myModal22" class="btn btn-primary pull-left btn-block">GALERIA ZDJĘĆ</button>';
+		echo '		<button onclick="" type="button" name="akcja" value="pliki" data-toggle="modal" data-target="#myModal222" class="btn btn-primary pull-left btn-block">DODATKOWE PLIKI</button>';
 		echo '		<button type="button" name="akcja" value="Usun" data-toggle="modal" data-target="#myModal3" class="btn btn-danger pull-left btn-block">USUŃ</button><br><br><br><br><br>';
 		echo '		</p>';
 		echo '		</div>';

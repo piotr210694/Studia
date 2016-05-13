@@ -234,6 +234,37 @@
   </div>
 </div>
 
+<!-- Dodatkowe pliki - MODAL -->
+<div id="myModal222" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dodatkowe pliki</h4>
+      </div>
+		  <div class="modal-body">
+					<div id="result44"></div>
+		  </div>
+      <div class="modal-footer">
+				<FORM ACTION="php/uploadPhotoExist.php"  METHOD="POST" ENCTYPE="multipart/form-data">
+					<INPUT type="file"  name="zdjecie"  required>
+					<input type="submit" class="btn btn-primary" name="ok" value="Wyślij zdjęcie do bazy"/>
+				</FORM>
+				<?php
+					// if(isset($_SESSION['bladDodania2']))
+					// {
+						// echo $_SESSION['bladDodania2'];
+					// }
+				?>
+				
+      </div>
+    </div>
+
+  </div>
+</div>
+
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
 							<div class="form-group">

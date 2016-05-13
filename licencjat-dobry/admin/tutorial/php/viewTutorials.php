@@ -16,24 +16,23 @@
 		$tytul[$i] = $wiersz['tytul']; //stworzenie tablicy kategorie[]
 		$link[$i] = $wiersz['link'];
 		$data[$i] = $wiersz['data'];
-		$idK[$i] = $wiersz['id_kategorii'];
 	}
 	
-	$zapytanie = mysql_query("SELECT * FROM `kategoria` ") or die(mysql_error());
-	$ileKat = mysql_num_rows($zapytanie);
-	$zapytanie2 = mysql_query("SELECT MAX(id_kategorii) AS max FROM `kategoria` ORDER BY id_kategorii") or die(mysql_error());
-	/* wyszukiwanie id */
-	while ($wiersz=mysql_fetch_array($zapytanie2)) 
-	{
-		$max_id = $wiersz['max'];
-	}
-	for($i=0; $i < $max_id; $i++)
-	{
-		$wiersz = @mysql_fetch_assoc($zapytanie);
-		$idKate[$i] = $wiersz['id_kategorii']; //stworzenie tablicy kategorie[]
-		$nazwaKate[$idKate[$i]] = $wiersz['nazwa'];
-		$nazwaKa[$i] = $wiersz['nazwa'];
-	}
+	// $zapytanie = mysql_query("SELECT * FROM `kategoria` ") or die(mysql_error());
+	// $ileKat = mysql_num_rows($zapytanie);
+	// $zapytanie2 = mysql_query("SELECT MAX(id_kategorii) AS max FROM `kategoria` ORDER BY id_kategorii") or die(mysql_error());
+	// /* wyszukiwanie id */
+	// while ($wiersz=mysql_fetch_array($zapytanie2)) 
+	// {
+		// $max_id = $wiersz['max'];
+	// }
+	// for($i=0; $i < $max_id; $i++)
+	// {
+		// $wiersz = @mysql_fetch_assoc($zapytanie);
+		// $idKate[$i] = $wiersz['id_kategorii']; //stworzenie tablicy kategorie[]
+		// $nazwaKate[$idKate[$i]] = $wiersz['nazwa'];
+		// $nazwaKa[$i] = $wiersz['nazwa'];
+	// }
 
 	// $zapytanie = mysql_query("SELECT MAX(id_kategorii) AS max FROM `kategoria` ORDER BY id_kategorii") or die(mysql_error());
 	// /* wyszukiwanie id */

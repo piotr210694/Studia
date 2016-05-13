@@ -58,7 +58,7 @@
 			x = $(this).text();
 			$("#dropdownMenu1:first-child").html($(this).text()+' <span class="caret"></span>'); //zmiana aktywnej nazwy
 			
-			$.post('php/viewArticle2.php', {x:x, y:y},
+			$.post('php/viewTutorials2.php', {x:x, y:y},
 			function(data)
 			{
 				$('#result2').html(data);
@@ -249,7 +249,7 @@
 			<div class="container-fluid wys" >
             <div class="row">
 				<div class="col-md-12">
-					<p>
+					<!-- <p>
 					<div class="dropdown dropdown1">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						Wszystkie kategorie
@@ -268,33 +268,32 @@
 						<li><a href="" name="0">Wszystkie kategorie</a></li>
 					  </ul>
 					</div>
-					</p>
+					</p> -->
 					
 					<p>
 					<div class="dropdown dropdown2">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    <span class="dropdownActive2">Artykuły - od najnowszych</a>
+					    <span class="dropdownActive2">Samouczki - od najnowszych</a>
 						<span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						<li><a href="#" name="1">Artykuły - od najnowszych</a></li>
-						<li><a href="#" name="2">Artykuły - od najstarszych</a></li>
-						<li><a href="#" name="3">Artykuły - A-Z</a></li>
-						<li><a href="#" name="4">Artykuły - Z-A</a></li>
+						<li><a href="#" name="1">Samouczki - od najnowszych</a></li>
+						<li><a href="#" name="2">Samouczki - od najstarszych</a></li>
+						<li><a href="#" name="3">Samouczki - A-Z</a></li>
+						<li><a href="#" name="4">Samouczki - Z-A</a></li>
 					  </ul>
 					</div>
 					</p>
 							<table class="table table-hover main-table">
 								<thead>
 								  <tr>
-									<th>Artykuł</th>
-									<th>Kategoria</th>
+									<th>Samouczek</th>
 									<th>Data utworzenia</th>
 								  </tr>
 								</thead>
 								<tbody>
 									<?php
-										for($i = 0; $i < $ileArt; $i++)
+										for($i = 0; $i < $ileS; $i++)
 										{
 											echo '<tr>';
 											echo '	<td>';
@@ -303,9 +302,6 @@
 											echo '		">';
 											echo 			$tytul[$i];
 											echo 		'</a>';
-											echo '	</td>';
-											echo '	<td>';
-											echo 		$nazwaKate[$idK[$i]];
 											echo '	</td>';
 											echo '	<td>';
 											echo 		$data[$i];

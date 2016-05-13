@@ -91,6 +91,13 @@ body
       color:white !important;
       text-align: center;
       font-size: 20px;
+  }  
+  
+  #myModal222 .modal-header{
+      background-color: #428bca;
+      color:white !important;
+      text-align: center;
+      font-size: 20px;
   }
   
   
@@ -172,3 +179,5 @@ body
 			cursor: pointer;
 			/*font-size: 19px;		*/	
 	}
+	
+	

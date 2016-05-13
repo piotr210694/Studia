@@ -2,20 +2,21 @@
 				
 				<!-- Galeria START -->
 				<div class=" gallery">
-				<h3>Galeria zdjęć:</h3>
-					<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
-						<!-- Ładujemy ekranik -->
-						<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-							<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-						</div>
-						<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">	 
+				<h3>Galeria zdjęć:</h3> 
 							<?php
 								if($ileZdjec == 0)
 								{
-									echo "Ten artykuł nie zawiera zdjęć.";
+									echo '<span style="color: gray;">Ten artykuł nie zawiera zdjęć.</span>';
 								}
 								else
 								{
+									echo '		<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 	300px; overflow: hidden; visibility: hidden;">
+										<!-- Ładujemy ekranik -->
+										<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+											<div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+										</div>
+										<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">	';
+								
 									for($j = 0; $j < $ileZdjec; $j++)
 									{
 										/*if(($j+1)%4 == 0)
@@ -40,10 +41,8 @@
 										}
 										*/
 									}
-								}		
-							?>
-							<!-- <a data-u="ad" href="http://www.jssor.com" style="display:none">jQuery Slider</a> -->
-						</div>
+									
+									echo '</div>
 		
 						<!-- Nawigacja -->
 						<div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
@@ -52,7 +51,12 @@
 						<!-- Strzałki nawigacji -->
 						<span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
 						<span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
-					</div>
+					</div>';
+									
+								}		
+							?>
+							<!-- <a data-u="ad" href="http://www.jssor.com" style="display:none">jQuery Slider</a> -->
+						
 				<script>
 					jssor_1_slider_init();
 				</script>
@@ -68,6 +72,80 @@
 				</div>
 				
 			</div>
+			
+				<!-- PLIKI DO POBRANIA --- START -->
+				<?php
+					include('../../../php/listedFiles.php');
+					
+					if(!isset($_SESSION['rola']))
+					{
+
+					}
+					else
+					{
+						echo '	<h3> Pliki do pobrania: </h3>
+								<ul class="listedFiles">';						
+					
+						if($ilePlikoww > 0)
+						{
+							if($_SESSION['rola'] == 'student' OR $_SESSION['rola'] == 'root')
+							{
+								for($i = 0; $i < $ilePlikoww; $i++)
+								{
+									echo '<li>';
+									echo '<a href="../../../pliki/';
+									echo $nazwaPl[$i];
+									echo '">';
+									echo $nazwaPl[$i];
+									echo '</a>';
+									echo '</li>';
+								}					
+							}
+							else
+							{
+								echo '<span style="color: #5CB85C;">Pliki dostępne są wyłącznie dla użytkownika, który jest STUDENTEM. Jeśli chcesz uzyskać uprawnienia do tej funkcjonalności poproś o <a href="../../../user/accountRole.php"> zmianę typu konta</a>.</span>';
+							}
+						}
+						else
+						{
+							echo '<span style="color: gray;">Brak plików do pobrania.</span>';
+						}
+						
+						/*
+						if(($_SESSION['rola'] == 'student' OR $_SESSION['rola'] == 'root') AND $ilePlikow != 0)
+						{
+							
+							
+							include('../../../php/listedFiles.php');
+							for($i = 0; $i < $ilePlikow; $i++)
+							{
+								echo '<li>';
+								echo '<a href="../../../pliki/';
+								echo $nazwaPl[$i];
+								echo '">';
+								echo $nazwaPl[$i];
+								echo '</a>';
+								echo '</li>';
+							}
+						
+						}
+						else if($ilePlikow == NULL AND ($_SESSION['rola'] == 'student' || $_SESSION['rola'] == 'root'))
+						{
+							echo "Brak plików do pobrania";
+						}
+						else
+						{
+							echo '<span style="color: #5CB85C;">Pliki dostępne są wyłącznie dla użytkownika, który jest STUDENTEM. Jeśli chcesz uzyskać uprawnienia do tej funkcjonalności poproś o <a href="../../../user/accountRole.php"> zmianę typu konta</a>.</span>';
+						}
+						*/
+						echo '		</ul>
+									<br>
+									<hr>';
+									
+					}
+				?>
+				<!-- PLIKI DO POBRANIA --- END -->
+			
 			</div>
 			
 
@@ -297,6 +375,19 @@
         </div>
       </div>
     </div>
+	
+	<!-- STOPKA -->
+	<footer id="foot" class="footOnBottom">
+		<!-- <hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"> -->
+		 <div class="container" >
+		 <div class="row">
+				<div class="col-md-12 ">
+				<p class="" style=" color:gray; opacity: 0.7;">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
+				</div>
+		</div>
+		</div>
+	</footer>
+	
 	  </body>
 
 </html>
