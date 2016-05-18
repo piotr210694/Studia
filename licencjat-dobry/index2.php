@@ -260,14 +260,13 @@
 	  
     </div>
 				
-	<footer id="foot" >
-		<!-- <hr style=" height: 5px; border: 0;  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);"> -->
+	<footer>
 		 <div class="container" >
-		 <div class="row">
-				<div class="col-md-12 ">
-				<p class="" style=" color:gray; opacity: 0.7;">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="footerStyle">&copy; 2015/2016 Piotr Aleksandrowicz <i>Serwis internetowy poświęcony projektowaniu systemów informatycznych</i></p>
 				</div>
-		</div>
+			</div>
 		</div>
 	</footer>
    

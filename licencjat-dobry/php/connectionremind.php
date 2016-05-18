@@ -12,35 +12,52 @@ session_start();
 $ins = @mysql_query("SELECT * FROM `uzytkownik` where `email` = '$email'") or die(mysql_error());
 while ($wiersz=mysql_fetch_array($ins)) 
 {
-$pass=$wiersz['password'];
-$login=$wiersz['login'];
-$bazamail=$wiersz['email'];
-
+	$pass=$wiersz['password'];
+	$login=$wiersz['login'];
+	$bazamail=$wiersz['email'];
 }
 
-$message = 'Twoje dane do zalogowania to:'.' LOGIN:'.$login.' HASLO:'.$pass;
+
+//dodanie tokenu
+$token = uniqid("pass");
+//$token = md5($cleanPass);
+$ins = @mysql_query("UPDATE `uzytkownik` SET `token` = '$token' WHERE `login` = '$login'") or die(mysql_error());
+
+if($ins)
+{
+	$adresStrony = 'http://sysinf.cba.pl/resetPass.php'.'?login='.$login.'&token='.$token;
+	//$message = 'Twoje dane do zalogowania to:<br>'.' <b>LOGIN:</b>'.$login.'<br> HASLO:'.$pass;
+	$message = 'Wysłano prośbę o zmianę hasła! <br> Jeśli chcesz zresetować swoje obecne hasło, kliknij poniższy link: <br>'.'<a href="'.$adresStrony.'">'.'Zresetuj swoje hasło'.'</a>';
 $message = wordwrap($message, 35); //funkcja dla wiadomości dłuższej niż 70 znakow
 	$header = 	"From: Serwis systemy informatyczne";
 	$header  .= "\r\n" . 'MIME-Version: 1.0' . "\r\n";
     $header .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	$subject = "Odzyskiwanie hasla";
+	$subject = "Resetowanie hasla";
 
 	
 		
-if($_POST['email'] AND $_POST['email']==$bazamail)
-{
-	mail($email, $subject, $message, $header);
-		unset($_SESSION['bladremind']);
-	$_SESSION['komunikatremind'] = '<span style="color:green">Operacja odzyskiwania hasła przebiegła pomyślnie!</span>'.'<br>'.'Na podany adres e-mail została wysłana wiadomość z danymi potrzebnymi do zalogowania. '.'<a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Zaloguj się</a>';
-	header('Location: ../remindpass.php');
+	if($_POST['email'] AND $_POST['email']==$bazamail)
+	{
+		mail($email, $subject, $message, $header);
+			unset($_SESSION['bladremind']);
+		$_SESSION['komunikatremind'] = '<span style="color:green">Operacja odzyskiwania hasła przebiegła pomyślnie!</span>'.'<br>'.'Na podany adres e-mail została wysłana wiadomość z danymi potrzebnymi do zalogowania. '.'<a id="opener" style="cursor:pointer;" id="opener" style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Zaloguj się</a>';
+		header('Location: ../remindpass.php');
 
+	}
+	else
+	{
+		unset($_SESSION['komunikatremind']);
+		$_SESSION['bladremind'] = '<span style="color:red">Tego adresu e-mail nie ma w naszej bazie! </span>'.'<a href="registration.php">Załóż konto</a>';
+		header('Location: ../remindpass.php');
+	}
 }
 else
 {
-	unset($_SESSION['komunikatremind']);
-	$_SESSION['bladremind'] = '<span style="color:red">Tego adresu e-mail nie ma w naszej bazie! </span>'.'<a href="registration.php">Załóż konto</a>';
-	header('Location: ../remindpass.php');
+		unset($_SESSION['komunikatremind']);
+		$_SESSION['bladremind'] = '<span style="color:red">Wystąpił nieoczekiwany błąd!</span>';
+		header('Location: ../remindpass.php');
 }
+
 	
 
 ?>

@@ -95,6 +95,7 @@
 					{
 						task.push($(this).val()); //dodanie do tablicy
 					});
+					alert(task);
 					var myArrString = JSON.stringify(task);
 					task = myArrString;
 					// alert(myArrString);

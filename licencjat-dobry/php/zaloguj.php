@@ -21,6 +21,10 @@
 	{
 		$login = $_POST['login'];
 		$password = $_POST['password'];
+		
+		//kodowanie md5
+		$password = md5($password);
+		
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8"); //zapobieganie wstrzykiwaniu sql
 		$password = htmlentities($password, ENT_QUOTES, "UTF-8");
 	

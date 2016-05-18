@@ -140,7 +140,7 @@
 					var i = 0;
 					var len = myArr.length;
 					
-					$('.modal-body-edit').html(myArr[0]); //wstawienie zawartosci z tablicy
+					$('.modal-body-edit').text(myArr[0]); //wstawienie zawartosci z tablicy
 					$('#end').hide(); //przycisk ZAKONCZ ukryty
 					$('#back').hide(); //przycisk COFNIJ ukryty
 					

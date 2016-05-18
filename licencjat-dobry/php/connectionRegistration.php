@@ -13,7 +13,10 @@ session_start();
 	$newLogin = $_POST['newLogin'];
 	$newPass = $_POST['newPass'];
 	$newEmail = $_POST['newEmail'];
-		
+	
+	//zakodowanie md5
+	$newPass = md5($newPass);
+	
 	/* wyszukiwanie id */
 	$ins = @mysql_query("SELECT MAX(id) AS max FROM `uzytkownik`") or die(mysql_error());
 	

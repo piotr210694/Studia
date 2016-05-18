@@ -101,6 +101,9 @@
              W momencie gdy klikniemy na przycisk "dodaj". Skrypt pobiera pierwszy element z div#elements, klonuje go dodaje na koniec div#elements ( metoda appendTo(element) ) a następnie znajduje wszystkie elementy input i czyści ich wartości.
           */
 				$('#elements').hide();
+				$('#opening').hide();
+				$('#add').hide();
+				$('#save').hide();
 				$('#create').click(function()
 				{
 					var x = $('#ile').val() - 1;
@@ -113,9 +116,13 @@
 						for(var i = 0; i < x; i++)
 						{
 							$('#elements .element:first').clone().appendTo($('#elements')).find('input').val('');  
-						}
+						}						
+						$('#opening').show(1000);
 						$('#elements').show(2000);
 						$('#create').remove();
+						$('#ile').hide();
+						$('#add').show();
+						$('#save').show(2000);
 					}
 				});
 		  
@@ -124,14 +131,16 @@
 					$('#elements .element:first').clone().appendTo($('#elements')).find('input').val('');
 			  });
 			  
-			  					var cenaTab = [];
+			  					var answerTab = [];
 					var pytaniaTab = [];
 					var optionTab = [];
+					var correctTab = [];
 			  $('#save').click(function()
 			  {
-					$("input[name=cena[]]").each(function() 
+					$("input[name=answer[]]").each(function() 
 					{
-						cenaTab.push($(this).val()); //dodanie do tablicy
+						answerTab.push($(this).val()); //dodanie do tablicy
+						//alert(answerTab);
 					});
 					$("input[name=ask[]]").each(function() 
 					{
@@ -142,16 +151,21 @@
 						var tmp = $('input:radio[name=optradio[]]:checked').val();
 						//alert(tmp); //dodanie do tablicy
 					});
+					$("input[name=correct]").each(function() 
+					{
+						correctTab.push($(this).val()); //dodanie do tablicy
+						//alert(correctTab); //dodanie do tablicy
+					});
 
 					// alert(cenaTab[0] + " " + cenaTab[1]);
 					// alert(pytaniaTab[0] + " " + pytaniaTab[1]);
 					// alert(optionTab[0] + " " + optionTab[1]);
 			  });
 			  
+			  
 			    $('#elements .element a').live('click', function()
 				{
 					var parent = $(this).parent();
-					alert(parent);
 					if($('#elements .element').index(parent) > 0)
 					{
 						parent.slideUp(2000, function() 
@@ -381,42 +395,108 @@
 
 				<div class="col-sm-9 col-md-9">
 					<div class="well">	
-					<a href='#'  data-toggle="modal" data-target="#myModal4"><span>Link to open modal</span></a>
-					<button id="info">Info</button>
-						<input type="numb" id="ile" placeholder="podaj ilosc">
+					
+				<!--	<a href='#'  data-toggle="modal" data-target="#myModal4"><span>Link to open modal</span></a>
+					<button id="info">Info</button> -->
+						<p><input class="form-control" type="number"  min="1" id="ile" placeholder="Podaj ilość kroków..."><p>
 <!---						<button>OK</button>
 						<div id="zawartosc" >
 							huehue
 						</div>
 						<div id="zawartoscPHP" ></div> -->
-	<button id="create">utwórz</button>	
-	<button id="add">dodaj</button>
+	<div id="opening">
+		<p><input class="form-control" type="text" id="titleTutorial" placeholder="Podaj tytuł quizu..."  ></p>
+		<p><textarea class="form-control" id="describeTutorial" placeholder="Podaj opis quizu..." ></textarea></p>
+	</div>
+	<p><button type="button" class="btn btn-success" id="create">Utwórz</button></p>
+	<p><button type="button" class="btn btn-success" id="add">Dodaj</button></p>
+	<br>
+	
     <div id="elements">
 		<div class="element">
-			<label>Pytanie<input type="text" name="ask[]"></label><br />
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>A: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>B: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>C: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
-				<label class="radio-inline">
-					<input type="radio" name="optradio[]"><label>D: <input type="text" name="cena[]"></label> <input type="button" id="square" >
-				</label><br>
+		
+			<!-- <input type="button" id="square" > -->
+					<!-- <label>a:</label> <input class="form-control"  type="text" name="cena[]"><br> 
+					<label>b: <input class="form-control"  type="text" name="cena[]"></label><br>
+					<label>c: <input class="form-control"  type="text" name="cena[]"></label><br>
+					<label>d: <input class="form-control"  type="text" name="cena[]"></label><br>
+			-->
+			<form class="form-horizontal" role="form">
+		<!-- 		<label>Pytanie<input type="text" name="ask[]"></label><br /> -->
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm"></label>
+					<div class="col-sm-11">
+						<input class="form-control" type="text" id="sm" name="ask[]" placeholder="Podaj treść pytania...">
+					</div>
+				</div>	
+				
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm">a:</label>
+					<div class="col-sm-11">
+						<input class="form-control" type="text" id="sm" name="answer[]" placeholder="Odpowiedź a...">
+					</div>
+				</div>		
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm">b:</label>
+					<div class="col-sm-11">
+						<input class="form-control" type="text" id="sm" name="answer[]" placeholder="Odpowiedź b...">
+					</div>
+				</div>		
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm">c:</label>
+					<div class="col-sm-11">
+						<input class="form-control" type="text" id="sm" name="answer[]" placeholder="Odpowiedź c...">
+					</div>
+				</div>		
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm">d:</label>
+					<div class="col-sm-11">
+						<input class="form-control" type="text" id="sm" name="answer[]" placeholder="Odpowiedź d...">
+					</div>
+				</div>
+				
+				<div class="form-group form-group-sm">
+					<label class="col-sm-1 control-label" for="sm"></label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" id="sm" name="correct" placeholder="Poprawna odpowiedź...">
+					</div>
+					<label class="col-sm-8 control-label" for="sm"></label>
+				</div>	
+				
+				
+			</form>		
+					
+			<!-- <label>Poprawna odpowiedź<input type="text" name="correct"></label><br> -->
+			<label class="col-sm-1 control-label" for="sm"></label>
 			  <a style="cursor: pointer;">usuń</a>
+			  <hr>
        </div>
     </div>
-	<button id = "save">Zapisz</button>
+	<button type="button" class="btn btn-block btn-success" id="save">Zapisz</button>
 	
 	
-	<form id="myForm">
+							
+<!---		 
+
+	<br>
+    <div id="elements">
+		<div class="element">-->
+			<!-- <b>Krok nr:<span id="countTask" >1</span></b><br><div class="line-break">&nbsp;</div> -->
+			<!-- <textarea class="form-control" id="tx1" name="task" placeholder="Tutaj wpisz treść..."></textarea>
+			<a style="cursor: pointer;">usuń</a>
+			<hr>
+		</div>
+    </div>
+	
+	-->
+	
+	
+	
+	<!-- <form id="myForm">
 <input type="radio" name="radioName" value="1" /> 1 <br />
 <input type="radio" name="radioName" value="2" /> 2 <br />
 <input type="radio" name="radioName" value="3" /> 3 <br />
-</form>
+</form> -->
 					</div>
 				</div>
 				

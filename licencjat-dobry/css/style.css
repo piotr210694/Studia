@@ -183,7 +183,7 @@ input.valid, textarea.valid{
 			/*background-color:black;*/
 
 		}
-		html 
+		/*html 
 		{
 			height:100%;
 		}
@@ -191,7 +191,13 @@ input.valid, textarea.valid{
 		{
 			min-height:100%;
 			position:relative;
+		}*/
+		.footerStyle
+		{
+			color:gray; 
+			opacity: 0.7;
 		}
+		
 		/* Stopka na dole caly czas */
 		.footOnBottom
 		{

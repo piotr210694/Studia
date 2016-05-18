@@ -198,7 +198,13 @@
 						$('#rolowanie').attr('value', idToRola);
 						//ustawiamy wartosc w oknie modalnym
 						
-					});
+					});					
+					
+					// $('#ten').click(function()
+					// {
+						// $("#content2").php(); // or some ajax content loading...
+						
+					// });
 					
 
 			$('.actionKat').click(function() 
@@ -486,8 +492,8 @@
 								
 									</span>
 									<br><br>
-
-					<table class="table table-hover">
+			
+					<table class="table table-hover" id="content2">
 								<thead>
 								  <tr>
 									<th>Nazwa</th>
